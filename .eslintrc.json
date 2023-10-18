@@ -1,0 +1,45 @@
+//eslintrc.json
+{
+	"plugins": ["@typescript-eslint", "prettier"],
+
+	"extends": [
+		"react-app",
+		"eslint:recommended",
+		"prettier",
+		"plugin:@typescript-eslint/recommended"
+	],
+
+	"env": {
+		"browser": true,
+		"es2021": true,
+		"node": true
+	},
+
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"ecmaFeatures": {
+			"jsx": true
+		},
+		"ecmaVersion": 12,
+		"sourceType": "module"
+	},
+
+	"rules": {
+		"indent": "off",
+		"@typescript-eslint/indent": ["error", "tab"],
+		"no-var": "error",
+		"no-new-object": "error",
+		"lines-between-class-members": "error",
+		"no-new-func": "error",
+		"implicit-arrow-linebreak": "error",
+		"brace-style": "error",
+		"curly": "error",
+		"eqeqeq": "error",
+		"react/jsx-pascal-case": "warn",
+		"react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],
+		"react/no-multi-comp": "warn",
+		"react/jsx-wrap-multilines": "warn"
+	},
+
+	"ignorePatterns": ["build", "dist", "public"]
+}
