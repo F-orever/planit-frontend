@@ -19,12 +19,12 @@ function App() {
 				<NavigationMenu />
 			</div>
 
-			<main className="main">
+			<main className="main" style={{marginTop:"100px"}}>
 				<VideoWrapper />
 				<VideoInfomation />
 				<VideoPlaces />
 			</main>
-			<aside className="aside">
+			<aside className="aside"  style={{marginTop:"100px"}}>
 				<VideoTimeLine />
 				<MyTrip />
 			</aside>
