@@ -99,6 +99,7 @@ const DropDownMenu = styled.div<{$isopen: boolean}>`
 	background-color:#F9F9F9;
 	
 	position:absolute;
+	z-index:10;
 	top:140px;
 	left:0px;
 	

@@ -22,7 +22,7 @@ const StyledHeader = styled.div`
 	justify-content:center;
 	align-items:center;
 
-	position:absolute;
+	position:fixed;
 	top:0px;
 	z-index:10;
 

@@ -19,12 +19,12 @@ function App() {
 				<NavigationMenu />
 			</div>
 
-			<main className="main" style={{marginTop:"100px"}}>
+			<main className="main">
 				<VideoWrapper />
-				<VideoInfomation />
+				<VideoInfomation/>
 				<VideoPlaces />
 			</main>
-			<aside className="aside"  style={{marginTop:"100px"}}>
+			<aside className="aside">
 				<VideoTimeLine />
 				<MyTrip />
 			</aside>
@@ -58,12 +58,20 @@ const AppContainer = styled.div`
 		grid-area:main;
 		display:flex;
 		flex-direction:column;
+		
+		padding-top:20px;
+		padding-left:150px;
+		padding-right:20px;
 	}
 
 	.aside {
 		grid-area:aside;
 		display:flex;
 		flex-direction:column;
+		
+		padding-top:20px;
+		padding-left:20px;
+		padding-right:150px;
 	}
 `
 
