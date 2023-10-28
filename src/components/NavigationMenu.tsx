@@ -4,7 +4,7 @@ import styled, {css} from 'styled-components';
 import { IoMdNotificationsOutline } from 'react-icons/io';
 import { FaUserCircle } from 'react-icons/fa'
 
-import Logo from '../assets/logo.svg';
+import Logo from '../assets/Logo.svg';
 
 function NavigationMenu() {
 	const [isopen, setIsOpen] = useState<boolean>(false);
@@ -12,7 +12,7 @@ function NavigationMenu() {
 	return(
 		<StyledHeader>
 			<div className="leftItems">
-				<img src={Logo} alt="logo" />
+				<Logo />
 				<NavBar 
 					onMouseOver={() => {
 						setIsOpen(true);
@@ -68,7 +68,7 @@ const StyledHeader = styled.div`
 
 		margin-left:150px;
 	}
-	img {
+	svg {
 		width:160px;
 		height:30px;
 	}

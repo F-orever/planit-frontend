@@ -1,37 +1,77 @@
-import React, {useRef, useEffect} from 'react';
-import YouTube, {YouTubeProps} from 'react-youtube';
+import React, { useState, useRef, useEffect } from "react";
+import YouTube, { YouTubeProps } from "react-youtube";
 
-function VideoWrapper() {
+type currentTimeProps = {
+	sliderTime: number;
+	setCurrentTime: React.Dispatch<React.SetStateAction<number>>;
+};
+
+function VideoWrapper({ sliderTime, setCurrentTime }: currentTimeProps) {
 	const playerRef = useRef<YouTube>(null);
-	const opts: YouTubeProps['opts'] = {
-		width:"100%",
-		height:"720px"
-	};
+	const Wrapper = useRef<HTMLDivElement>(null);
+	const [opts, setOpts] = useState<YouTubeProps["opts"]>({
+		width: Wrapper.current?.offsetWidth,
+		height: Wrapper.current?.offsetHeight,
+		playerVars: {
+			start: 0,
+			autoplay: 1,
+		},
+	});
 
 	useEffect(() => {
-		playerRef.current?.getInternalPlayer().playVideoAt(10);
-		const interval = setInterval(async() => {
-			const elapsed = await playerRef.current?.getInternalPlayer().getCurrentTime();
+		setOpts({
+			width: Wrapper.current?.offsetWidth,
+			height: Wrapper.current?.offsetHeight,
+			playerVars: {
+				start: sliderTime,
+				autoplay: 1,
+			},
+		});
+	}, [sliderTime]);
 
-			const seconds = Math.floor(elapsed);
-			//TODO : seconds 실시간 정보 장소 슬라이더 덱과 연동하기
-			console.log(seconds);
-		  }, 100);
+	useEffect(() => {
+		const observer = new ResizeObserver(() => {
+			setOpts({
+				width: Wrapper.current?.offsetWidth,
+				height: Wrapper.current?.offsetHeight,
+				playerVars: {
+					autoplay: 1,
+				},
+			});
+		});
 
-		  return () => {
-			clearInterval(interval);
-		  }
+		if (Wrapper.current !== null) {
+			observer.observe(Wrapper.current);
+		}
 	}, []);
 
-	return(
-		<div style={{
-			position:'relative',
-			width: '66vw',
-			height:'37vw',
-		}}>
-			<YouTube videoId='_3IU4Ekql1s' opts={opts} ref={playerRef}/>
+	useEffect(() => {
+		const interval = setInterval(async () => {
+			const elapsed = await playerRef.current
+				?.getInternalPlayer()
+				.getCurrentTime();
+
+			const seconds = Math.floor(elapsed);
+			setCurrentTime(seconds);
+		}, 100);
+
+		return () => {
+			clearInterval(interval);
+		};
+	}, []);
+
+	return (
+		<div
+			ref={Wrapper}
+			style={{
+				position: "relative",
+				width: "calc(100vw / 3 * 2)",
+				height: "37vw",
+			}}
+		>
+			<YouTube videoId="_3IU4Ekql1s" opts={opts} ref={playerRef} />
 		</div>
-	)
+	);
 }
 
 export default VideoWrapper;
