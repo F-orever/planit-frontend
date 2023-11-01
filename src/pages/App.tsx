@@ -10,6 +10,7 @@ import VideoPlaces from "../components/video/VideoPlaces";
 import MyTrip from "../components/MyTrip";
 
 import Footer from "../components/Footer";
+import Modal from "../components/Modal";
 
 function App() {
 	const [currentTime, setCurrentTime] = useState(0);
@@ -17,6 +18,7 @@ function App() {
 
 	return (
 		<AppContainer>
+			<Modal />
 			<div className="header">
 				<FixedHeader />
 				<NavigationMenu />

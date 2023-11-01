@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { useSetRecoilState } from "recoil";
+import { sliderIdx } from "../../recoil/sliderState";
 
 import MarketIcon from "../../assets/svg/MarketIcon.svg";
 import FillWhiteCirclePlusIcon from "../../assets/svg/FillWhiteCirclePlusIcon.svg";
@@ -27,6 +29,7 @@ function TimeLineTag({
 	isCenter,
 	setCenterIdx,
 }: TimeLineTagProps) {
+	const setSliderIdx = useSetRecoilState(sliderIdx);
 	return (
 		<TagWrapper isCenter={isCenter}>
 			<Content
@@ -36,7 +39,13 @@ function TimeLineTag({
 					setCenterIdx(index);
 				}}
 			>
-				<MessageDetailIcon className="infoBtn" />
+				<div
+					onClick={(e) => {
+						setSliderIdx(index);
+					}}
+				>
+					<MessageDetailIcon className="infoBtn" />
+				</div>
 				<VerticalLine />
 				<div className="textContainer">
 					<span className="place">{place}</span>
@@ -99,6 +108,7 @@ const Content = styled.div<{ isCenter?: boolean }>`
 		height: 32px;
 		color: ${(props) => (props.isCenter ? "white" : "grey")};
 		margin-right: 0px;
+		z-index: 10;
 	}
 
 	.textContainer {
