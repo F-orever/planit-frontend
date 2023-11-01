@@ -12,19 +12,19 @@ type currentTimeProps = {
 
 const mockData = [
 	{
-		place: "흰여울문화마을",
-		placeType: "기차역",
+		place: "용두산공원",
+		placeType: "공원",
 		IconType: "Market",
 		time: 10,
 	},
 	{
-		place: "흰여울문화마을",
+		place: "에슐리퀸즈",
 		placeType: "기차역",
 		IconType: "Market",
 		time: 120,
 	},
 	{
-		place: "흰여울문화마을",
+		place: "부경대학교",
 		placeType: "기차역",
 		IconType: "Market",
 		time: 240,
@@ -63,7 +63,6 @@ function VideoTimeLine({ currentTime, setCurrentTime }: currentTimeProps) {
 
 	useEffect(() => {
 		for (let i = 1; i < mockData.length; i++) {
-			console.log(i);
 			if (
 				mockData[i - 1].time <= currentTime &&
 				currentTime < mockData[i].time
