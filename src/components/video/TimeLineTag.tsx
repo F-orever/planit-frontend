@@ -1,9 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import { useSetRecoilState } from "recoil";
-import { sliderIdx } from "../../recoil/sliderState";
 
-import MarketIcon from "../../assets/svg/MarketIcon.svg";
+//recoil
+import { useSetRecoilState, useRecoilState } from "recoil";
+import { sliderIdx } from "../../recoil/sliderState";
+import { myTripState, idState } from "../../recoil/myTripState";
+
+import MarketIcon from "../../assets/svg/placetType/MarketIcon.svg";
 import FillWhiteCirclePlusIcon from "../../assets/svg/FillWhiteCirclePlusIcon.svg";
 import FillPrimaryCirclePlusIcon from "../../assets/svg/FillPrimaryCirclePlusIcon.svg";
 import MessageDetailIcon from "../../assets/svg/MessageDetailIcon.svg";
@@ -30,18 +33,20 @@ function TimeLineTag({
 	setCenterIdx,
 }: TimeLineTagProps) {
 	const setSliderIdx = useSetRecoilState(sliderIdx);
+	const setMyTrip = useSetRecoilState(myTripState);
+	const [id, setId] = useRecoilState(idState);
 	return (
 		<TagWrapper isCenter={isCenter}>
 			<Content
 				isCenter={isCenter}
 				onClick={() => {
 					setCurrentTime(time);
-					setCenterIdx(index);
 				}}
 			>
 				<div
 					onClick={(e) => {
 						setSliderIdx(index);
+						setCenterIdx(index);
 					}}
 				>
 					<MessageDetailIcon className="infoBtn" />
@@ -54,9 +59,35 @@ function TimeLineTag({
 				<MarketIcon className="backgroundIcon" />
 			</Content>
 			{isCenter ? (
-				<FillPrimaryCirclePlusIcon className="plusBtn" />
+				<FillPrimaryCirclePlusIcon
+					className="plusBtn"
+					onClick={() => {
+						setMyTrip((prev) => [
+							...prev,
+							{
+								id: id,
+								icon: <MarketIcon />,
+								placeName: place,
+							},
+						]);
+						setId((prev) => prev + 1);
+					}}
+				/>
 			) : (
-				<FillWhiteCirclePlusIcon className="plusBtn" />
+				<FillWhiteCirclePlusIcon
+					className="plusBtn"
+					onClick={() => {
+						setMyTrip((prev) => [
+							...prev,
+							{
+								id: id,
+								icon: <MarketIcon />,
+								placeName: place,
+							},
+						]);
+						setId((prev) => prev + 1);
+					}}
+				/>
 			)}
 		</TagWrapper>
 	);
@@ -86,6 +117,7 @@ const TagWrapper = styled.div<{ isCenter: boolean }>`
 	border-radius: 6px;
 	.plusBtn {
 		margin-right: 10px;
+		cursor: pointer;
 	}
 `;
 

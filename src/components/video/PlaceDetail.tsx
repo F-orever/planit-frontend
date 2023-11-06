@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
+import { useSetRecoilState, useRecoilState } from "recoil";
+import { myTripState, idState } from "../../recoil/myTripState";
+
 import { FaLocationDot } from "react-icons/fa6";
 import { IoMdCall } from "react-icons/io";
 import { BiTimeFive } from "react-icons/bi";
@@ -13,6 +16,7 @@ import axios from "axios";
 import PhotoSlider from "./PhotosSlider";
 import Review, { reviewType } from "./Review";
 import StarIcon from "../../assets/svg/StarIcon.svg";
+import MarketIcon from "../../assets/svg/placetType/MarketIcon.svg";
 
 type PlaceDetailProps = {
 	onNextClick: () => void;
@@ -22,6 +26,8 @@ type PlaceDetailProps = {
 
 function PlaceDetail({ onNextClick, onPrevClick, id }: PlaceDetailProps) {
 	const [data, setData] = useState<any>(null);
+	const setMyTrip = useSetRecoilState(myTripState);
+	const [myTripId, setMyTripId] = useRecoilState(idState);
 
 	useEffect(() => {
 		axios
@@ -29,7 +35,6 @@ function PlaceDetail({ onNextClick, onPrevClick, id }: PlaceDetailProps) {
 				`https://places.googleapis.com/v1/places/${id}?fields=*&key=${process.env.REACT_APP_GOOGLE_API_KEY}`,
 			)
 			.then((response) => {
-				console.log(response.data.reviews == null);
 				setData(response.data);
 			});
 	}, []);
@@ -81,7 +86,22 @@ function PlaceDetail({ onNextClick, onPrevClick, id }: PlaceDetailProps) {
 							</div>
 						</div>
 						<div className="rightItems">
-							<div className="addBtnBox">
+							<div
+								className="addBtnBox"
+								onClick={() => {
+									setMyTrip((prev) => [
+										...prev,
+										{
+											id: myTripId,
+											icon: <MarketIcon />,
+											placeName: String(
+												data.displayName.text,
+											),
+										},
+									]);
+									setMyTripId((prev) => prev + 1);
+								}}
+							>
 								<FillPrimaryCirclePlusIcon />
 								<span>일정 추가</span>
 							</div>
@@ -228,6 +248,7 @@ const SliderHeader = styled.div`
 			font-size: 48px;
 			font-weight: 700;
 			letter-spacing: 2.4px;
+			word-break: keep-all;
 		}
 
 		.type {
