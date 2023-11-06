@@ -70,26 +70,41 @@ function VideoTimeLine({ currentTime, setCurrentTime }: currentTimeProps) {
 				mockData[i - 1].time <= currentTime &&
 				currentTime < mockData[i].time
 			) {
-				refArr.current[i - 1].scrollIntoView({
+				// 		refArr.current[i - 1].scrollIntoView({
+				// 			behavior: "smooth",
+				// 			block: "center",
+				// 		});
+				tagsContainerRef.current?.scrollTo({
+					top: centerIdx * 116 - 160,
+					left: 0,
 					behavior: "smooth",
-					block: "center",
 				});
 				setCenterIdx(i - 1);
 			}
 		}
 		if (mockData[mockData.length - 1].time < currentTime) {
-			refArr.current[mockData.length - 1].scrollIntoView({
+			// 	refArr.current[mockData.length - 1].scrollIntoView({
+			// 		behavior: "smooth",
+			// 		block: "center",
+			// 	});
+			tagsContainerRef.current?.scrollTo({
+				top: centerIdx * 116 - 160,
+				left: 0,
 				behavior: "smooth",
-				block: "center",
 			});
 			setCenterIdx(mockData.length - 1);
 		}
 	}, [currentTime]);
 
 	useEffect(() => {
-		refArr.current[centerIdx].scrollIntoView({
+		// refArr.current[centerIdx].scrollIntoView({
+		// 	behavior: "smooth",
+		// 	block: "center",
+		// });
+		tagsContainerRef.current?.scrollTo({
+			top: centerIdx * 116 - 160,
+			left: 0,
 			behavior: "smooth",
-			block: "center",
 		});
 	}, [centerIdx]);
 
@@ -98,8 +113,8 @@ function VideoTimeLine({ currentTime, setCurrentTime }: currentTimeProps) {
 			<div className="header">
 				<span>여행 경로</span>
 			</div>
-			<TagsContainer isOpen={isopen}>
-				<div className="scrollContainer" ref={tagsContainerRef}>
+			<TagsContainer isOpen={isopen} ref={tagsContainerRef}>
+				<div className="scrollContainer">
 					{mockData.map((data, idx) => {
 						return (
 							<div
@@ -213,6 +228,19 @@ const TagsContainer = styled.div<{ isOpen: boolean }>`
 	height: ${(props) => (props.isOpen ? "calc(100% - 100px)" : "0px")};
 	transition: height 0.4s ease-in-out;
 	overflow-y: auto;
+
+	&::-webkit-scrollbar {
+		width: 10px;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background: rgba(138, 139, 138, 0.8);
+		border-radius: 10px; /* 스크롤바 둥근 테두리 */
+	}
+
+	&::-webkit-scrollbar-track {
+		background: rgba(35, 37, 36, 0.1); /*스크롤바 뒷 배경 색상*/
+	}
 `;
 
 export default VideoTimeLine;
