@@ -70,37 +70,29 @@ function VideoTimeLine({ currentTime, setCurrentTime }: currentTimeProps) {
 				mockData[i - 1].time <= currentTime &&
 				currentTime < mockData[i].time
 			) {
-				// 		refArr.current[i - 1].scrollIntoView({
-				// 			behavior: "smooth",
-				// 			block: "center",
-				// 		});
+				if (centerIdx !== i - 1) {
+					tagsContainerRef.current?.scrollTo({
+						top: centerIdx * 116 - 160,
+						left: 0,
+						behavior: "smooth",
+					});
+					setCenterIdx(i - 1);
+				}
+			}
+		}
+		if (mockData[mockData.length - 1].time < currentTime) {
+			if (centerIdx !== mockData.length - 1) {
 				tagsContainerRef.current?.scrollTo({
 					top: centerIdx * 116 - 160,
 					left: 0,
 					behavior: "smooth",
 				});
-				setCenterIdx(i - 1);
+				setCenterIdx(mockData.length - 1);
 			}
-		}
-		if (mockData[mockData.length - 1].time < currentTime) {
-			// 	refArr.current[mockData.length - 1].scrollIntoView({
-			// 		behavior: "smooth",
-			// 		block: "center",
-			// 	});
-			tagsContainerRef.current?.scrollTo({
-				top: centerIdx * 116 - 160,
-				left: 0,
-				behavior: "smooth",
-			});
-			setCenterIdx(mockData.length - 1);
 		}
 	}, [currentTime]);
 
 	useEffect(() => {
-		// refArr.current[centerIdx].scrollIntoView({
-		// 	behavior: "smooth",
-		// 	block: "center",
-		// });
 		tagsContainerRef.current?.scrollTo({
 			top: centerIdx * 116 - 160,
 			left: 0,
