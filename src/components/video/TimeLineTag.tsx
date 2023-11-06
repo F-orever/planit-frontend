@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 //recoil
 import { useSetRecoilState, useRecoilState } from "recoil";
-import { sliderIdx } from "../../recoil/sliderState";
+import { placeDetailSliderIdx } from "../../recoil/placeDetailSliderIdxState";
 import { myTripState, idState } from "../../recoil/myTripState";
 
 import MarketIcon from "../../assets/svg/placetType/MarketIcon.svg";
@@ -32,7 +32,7 @@ function TimeLineTag({
 	isCenter,
 	setCenterIdx,
 }: TimeLineTagProps) {
-	const setSliderIdx = useSetRecoilState(sliderIdx);
+	const setPlaceDetailSliderIdx = useSetRecoilState(placeDetailSliderIdx);
 	const setMyTrip = useSetRecoilState(myTripState);
 	const [id, setId] = useRecoilState(idState);
 	return (
@@ -41,14 +41,11 @@ function TimeLineTag({
 				isCenter={isCenter}
 				onClick={() => {
 					setCurrentTime(time);
+					setPlaceDetailSliderIdx(index);
+					setCenterIdx(index);
 				}}
 			>
-				<div
-					onClick={(e) => {
-						setSliderIdx(index);
-						setCenterIdx(index);
-					}}
-				>
+				<div>
 					<MessageDetailIcon className="infoBtn" />
 				</div>
 				<VerticalLine />
@@ -134,6 +131,7 @@ const Content = styled.div<{ isCenter?: boolean }>`
 
 	display: flex;
 	align-items: center;
+	cursor: pointer;
 
 	.infoBtn {
 		width: 32px;

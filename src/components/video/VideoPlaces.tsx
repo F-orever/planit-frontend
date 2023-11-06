@@ -4,7 +4,7 @@ import styled from "styled-components";
 import PlaceDetail from "./PlaceDetail";
 
 import { useRecoilValue } from "recoil";
-import { sliderIdx } from "../../recoil/sliderState";
+import { placeDetailSliderIdx } from "../../recoil/placeDetailSliderIdxState";
 
 const mockPlacesId: string[] = [
 	"ChIJl8gXNgvpaDURP6m_S0gwF74",
@@ -21,7 +21,7 @@ function VideoPlaces() {
 		slidesToScroll: 1,
 		draggable: false,
 	};
-	const idx = useRecoilValue(sliderIdx);
+	const idx = useRecoilValue(placeDetailSliderIdx);
 
 	useEffect(() => {
 		sliderRef.current?.slickGoTo(idx);
