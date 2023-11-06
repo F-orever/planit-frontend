@@ -1,9 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 
 import TimeLineTag from "./TimeLineTag";
 import TimeLineTagLinker from "./TimeLineTagLinker";
+
+//svg
+import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
+import MarketIcon from "../../assets/svg/placetType/MarketIcon.svg";
 
 type currentTimeProps = {
 	currentTime: number;
@@ -14,43 +17,43 @@ const mockData = [
 	{
 		place: "용두산공원",
 		placeType: "공원",
-		IconType: "Market",
+		Icon: <MarketIcon />,
 		time: 10,
 	},
 	{
 		place: "에슐리퀸즈",
 		placeType: "기차역",
-		IconType: "Market",
+		Icon: <MarketIcon />,
 		time: 120,
 	},
 	{
 		place: "부경대학교",
 		placeType: "기차역",
-		IconType: "Market",
+		Icon: <MarketIcon />,
 		time: 240,
 	},
 	{
 		place: "흰여울문화마을",
 		placeType: "기차역",
-		IconType: "Market",
+		Icon: <MarketIcon />,
 		time: 360,
 	},
 	{
 		place: "흰여울문화마을",
 		placeType: "기차역",
-		IconType: "Market",
+		Icon: <MarketIcon />,
 		time: 480,
 	},
 	{
 		place: "흰여울문화마을",
 		placeType: "기차역",
-		IconType: "Market",
+		Icon: <MarketIcon />,
 		time: 600,
 	},
 	{
 		place: "흰여울문화마을",
 		placeType: "기차역",
-		IconType: "Market",
+		Icon: <MarketIcon />,
 		time: 720,
 	},
 ];

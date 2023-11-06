@@ -6,6 +6,7 @@ import { useSetRecoilState, useRecoilState } from "recoil";
 import { placeDetailSliderIdx } from "../../recoil/placeDetailSliderIdxState";
 import { myTripState, idState } from "../../recoil/myTripState";
 
+//svg
 import MarketIcon from "../../assets/svg/placetType/MarketIcon.svg";
 import FillWhiteCirclePlusIcon from "../../assets/svg/FillWhiteCirclePlusIcon.svg";
 import FillPrimaryCirclePlusIcon from "../../assets/svg/FillPrimaryCirclePlusIcon.svg";
@@ -15,7 +16,7 @@ type TimeLineTagProps = {
 	index: number;
 	place: string;
 	placeType: string;
-	IconType: string;
+	Icon: React.ReactNode;
 	isCenter: boolean;
 	time: number;
 	setCurrentTime: React.Dispatch<React.SetStateAction<number>>;
@@ -26,7 +27,7 @@ function TimeLineTag({
 	index,
 	place,
 	placeType,
-	IconType,
+	Icon,
 	time,
 	setCurrentTime,
 	isCenter,
@@ -45,15 +46,13 @@ function TimeLineTag({
 					setCenterIdx(index);
 				}}
 			>
-				<div>
-					<MessageDetailIcon className="infoBtn" />
-				</div>
+				<MessageDetailIcon className="infoBtn" />
 				<VerticalLine />
 				<div className="textContainer">
 					<span className="place">{place}</span>
 					<span className="type">{placeType}</span>
 				</div>
-				<MarketIcon className="backgroundIcon" />
+				<BackgroundIconWrapper>{Icon}</BackgroundIconWrapper>
 			</Content>
 			{isCenter ? (
 				<FillPrimaryCirclePlusIcon
@@ -160,8 +159,10 @@ const Content = styled.div<{ isCenter?: boolean }>`
 			color: ${(props) => props.isCenter ? "white" : props.theme.titleSecondary};
 		}
 	}
+`;
 
-	.backgroundIcon {
+const BackgroundIconWrapper = styled.div`
+	svg {
 		width: 60px;
 		height: 60px;
 		position: absolute;
