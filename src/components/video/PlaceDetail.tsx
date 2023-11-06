@@ -138,11 +138,9 @@ function PlaceDetail({ onNextClick, onPrevClick, id }: PlaceDetailProps) {
 					</ReviewSummary>
 					<SeperateLine />
 					<ReviewContainer>
-						{data.reviews.map((review: reviewType, idx: number) => {
-							if (idx <= 1) {
-								return <Review {...review} />;
-							}
-						})}
+						{data.reviews.map((review: reviewType, idx: number) => (
+							<Review {...review} />
+						))}
 					</ReviewContainer>
 				</>
 			)}
@@ -151,7 +149,7 @@ function PlaceDetail({ onNextClick, onPrevClick, id }: PlaceDetailProps) {
 }
 
 const SeperateLine = styled.div`
-	width: 1035px;
+	width: 90%;
 	height: 0px;
 
 	border-top: 1px solid #d9d9d9;
@@ -295,6 +293,7 @@ const SliderHeader = styled.div`
 			height: 48px;
 		}
 		span {
+			width: 100px;
 			color: ${({ theme }) => theme.textPrimary};
 			text-align: center;
 			font-size: 15px;
@@ -323,6 +322,21 @@ const Container = styled.div`
 const ReviewContainer = styled.div`
 	width: 100%;
 	margin-top: 45px;
+	height: 420px;
+	overflow-y: auto;
+
+	&::-webkit-scrollbar {
+		width: 10px;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background: rgba(138, 139, 138, 0.8);
+		border-radius: 10px;
+	}
+
+	&::-webkit-scrollbar-track {
+		background: rgba(35, 37, 36, 0.1);
+	}
 `;
 
 export default PlaceDetail;

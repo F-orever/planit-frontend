@@ -103,11 +103,18 @@ const StyledSlider = styled(Slider)`
 			border-radius: 10px;
 		}
 	}
+
 	.slick-prev {
-		left: -75px;
+		width: 15px;
+		height: 24px;
+		left: -85px;
+		cursor: pointer;
 	}
 	.slick-next {
-		right: -75px;
+		width: 15px;
+		height: 24px;
+		right: -85px;
+		cursor: pointer;
 	}
 `;
 

@@ -227,11 +227,11 @@ const TagsContainer = styled.div<{ isOpen: boolean }>`
 
 	&::-webkit-scrollbar-thumb {
 		background: rgba(138, 139, 138, 0.8);
-		border-radius: 10px; /* 스크롤바 둥근 테두리 */
+		border-radius: 10px;
 	}
 
 	&::-webkit-scrollbar-track {
-		background: rgba(35, 37, 36, 0.1); /*스크롤바 뒷 배경 색상*/
+		background: rgba(35, 37, 36, 0.1);
 	}
 `;
 
