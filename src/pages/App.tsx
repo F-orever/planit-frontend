@@ -7,7 +7,7 @@ import VideoWrapper from "../components/video/VideoWrapper";
 import VideoTimeLine from "../components/video/VideoTimeLine";
 import VideoInfomation from "../components/video/VideoInfomation";
 import VideoPlaces from "../components/video/VideoPlaces";
-import MyTrip from "../components/MyTrip";
+import MyTrip from "../components/video/MyTrip";
 
 import Footer from "../components/Footer";
 import Modal from "../components/Modal";
