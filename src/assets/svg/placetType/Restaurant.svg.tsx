@@ -8,7 +8,7 @@ export default function Restaurant(props: React.SVGProps<SVGSVGElement>) {
 			fill="none"
 			className={props.className}
 		>
-			<g clip-path="url(#clip0_469_1044)">
+			<g clipPath="url(#clip0_469_1044)">
 				<path
 					d="M22.4021 5.87796C20.7837 2.58642 17.2203 0.458076 13.3254 0.458076C10.6125 0.458076 8.07585 1.45184 6.18261 3.25618L5.82886 2.93675C7.81701 1.04311 10.4794 0.00012207 13.3254 0.00012207C17.4126 0.00012207 21.1523 2.23265 22.8508 5.68677L22.4021 5.87682V5.87796Z"
 					fill="black"

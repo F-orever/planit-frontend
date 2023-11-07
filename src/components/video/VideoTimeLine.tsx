@@ -7,11 +7,13 @@ import TimeLineTagLinker from "./TimeLineTagLinker";
 //svg
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 import { mockData } from "./mockData";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { timelineIdx } from "../../recoil/timelineIdx";
+import { placeDetailSliderIdx } from "../../recoil/placeDetailSliderIdxState";
 
 function VideoTimeLine() {
 	const index = useRecoilValue(timelineIdx);
+	const setDetailsIdx = useSetRecoilState(placeDetailSliderIdx);
 	const [isopen, setIsOpen] = useState(true);
 	const refArr = useRef<HTMLDivElement[]>([]);
 	const tagsContainerRef = useRef<HTMLDivElement>(null);
@@ -25,21 +27,22 @@ function VideoTimeLine() {
 	}, [index]);
 
 	return (
-		<Container isOpen={isopen}>
+		<Container isopen={isopen}>
 			<div className="header">
 				<span>여행 경로</span>
 			</div>
-			<TagsContainer isOpen={isopen} ref={tagsContainerRef}>
+			<TagsContainer isopen={isopen} ref={tagsContainerRef}>
 				<div className="scrollContainer">
 					{mockData.map((data, idx) => {
 						return (
 							<div
+								key={idx}
 								ref={(el) => (refArr.current[idx] = el as HTMLDivElement)
 								}
 							>
 								<TimeLineTag
 									index={idx}
-									isCenter={idx === index}
+									iscenter={idx === index}
 									{...data}
 								/>
 								{idx !== mockData.length - 1 && (
@@ -66,9 +69,9 @@ function VideoTimeLine() {
 	);
 }
 
-const Container = styled.div<{ isOpen: boolean }>`
+const Container = styled.div<{ isopen: boolean }>`
 	width: 100%;
-	height: ${(props) => (props.isOpen ? "37vw" : "100px")};
+	height: ${(props) => (props.isopen ? "37vw" : "100px")};
 	max-height: 720px;
 	position: relative;
 
@@ -133,13 +136,13 @@ const Container = styled.div<{ isOpen: boolean }>`
 	}
 `;
 
-const TagsContainer = styled.div<{ isOpen: boolean }>`
+const TagsContainer = styled.div<{ isopen: boolean }>`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 
 	position: relative;
-	height: ${(props) => (props.isOpen ? "calc(100% - 100px)" : "0px")};
+	height: ${(props) => (props.isopen ? "calc(100% - 100px)" : "0px")};
 	transition: height 0.4s ease-in-out;
 	overflow-y: auto;
 

@@ -1,3 +1,4 @@
+import React from "react";
 import MarketIcon from "../../assets/svg/placetType/MarketIcon.svg";
 
 export const mockData = [

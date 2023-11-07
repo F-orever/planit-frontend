@@ -35,6 +35,7 @@ function PlaceDetail({ onNextClick, onPrevClick, id }: PlaceDetailProps) {
 				`https://places.googleapis.com/v1/places/${id}?fields=*&key=${process.env.REACT_APP_GOOGLE_API_KEY}`,
 			)
 			.then((response) => {
+				console.log(response.data);
 				setData(response.data);
 			});
 	}, []);

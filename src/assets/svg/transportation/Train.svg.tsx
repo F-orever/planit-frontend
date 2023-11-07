@@ -8,7 +8,7 @@ export default function TrainIcon(props: React.SVGProps<SVGSVGElement>) {
 			fill="none"
 			className={props.className}
 		>
-			<g clip-path="url(#clip0_469_1061)">
+			<g clipPath="url(#clip0_469_1061)">
 				<path
 					d="M17.893 20.8698V13.734C17.893 14.8346 14.0464 15.7272 9.30284 15.7272C4.55923 15.7272 0.712646 14.8346 0.712646 13.734V20.8698H17.8944H17.893Z"
 					fill="white"
