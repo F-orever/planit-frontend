@@ -7,26 +7,24 @@ import { useSetRecoilState } from "recoil";
 import { myTripState } from "../../recoil/myTripState";
 
 type MyTripTagProps = {
-	isGreen: boolean;
-	icon: React.ReactNode;
+	isgreen: boolean;
 	text?: string;
 	placeName: string;
 	id: number;
 };
 
-function MyTripTag({ isGreen, icon, text, placeName, id }: MyTripTagProps) {
+function MyTripTag({ isgreen, text, placeName, id }: MyTripTagProps) {
 	const setMyTrip = useSetRecoilState(myTripState);
 
 	return (
-		<Container isGreen={isGreen}>
-			{isGreen ? (
+		<Container isgreen={isgreen}>
+			{isgreen ? (
 				<span className="head">{text}</span>
 			) : (
 				<GiHamburgerMenu className="handle" />
 			)}
-			{icon}
-			<span className={isGreen ? "" : "placeName"}>{placeName}</span>
-			{!isGreen && (
+			<span className={isgreen ? "" : "placeName"}>{placeName}</span>
+			{!isgreen && (
 				<BsFillTrashFill
 					className="trash"
 					onClick={() => {
@@ -39,9 +37,9 @@ function MyTripTag({ isGreen, icon, text, placeName, id }: MyTripTagProps) {
 	);
 }
 
-const Container = styled.div<{ isGreen: boolean }>`
+const Container = styled.div<{ isgreen: boolean }>`
 	width: 250px;
-	height: 46px;
+	height: 40px;
 	flex-shrink: 0;
 	position: relative;
 
@@ -51,10 +49,10 @@ const Container = styled.div<{ isGreen: boolean }>`
 
 	border-radius: 7.5px;
 	border: 0.75px solid ${({ theme }) => theme.textPrimary};
-	background-color: ${({ isGreen, theme }) => isGreen ? theme.primary : "white"};
+	background-color: ${({ isgreen, theme }) => isgreen ? "#32543A" : "white"};
 
 	span {
-		color: ${({ isGreen, theme }) => isGreen ? "white" : theme.textPrimary};
+		color: ${({ isgreen, theme }) => isgreen ? "white" : theme.textPrimary};
 		font-size: 16px;
 		font-weight: 600;
 		letter-spacing: 1.6px;
@@ -68,24 +66,24 @@ const Container = styled.div<{ isGreen: boolean }>`
 		white-space: nowrap;
 
 		color: ${({ theme }) => theme.textPrimary};
-		font-size: 15px;
-		font-weight: 400;
-		letter-spacing: 1.5px;
+		font-size: 16px;
+		font-weight: 500;
+		letter-spacing: -0.4px;
 	}
 
 	svg {
-		width: ${({ isGreen }) => (isGreen ? "20px" : "26px")};
-		height: ${({ isGreen }) => (isGreen ? "28px" : "20px")};
+		width: ${({ isgreen }) => (isgreen ? "20px" : "26px")};
+		height: ${({ isgreen }) => (isgreen ? "28px" : "20px")};
 
 		position: absolute;
-		left: ${({ isGreen }) => (isGreen ? "52px" : "50px")};
-		top: ${({ isGreen }) => (isGreen ? "9px" : "13px")};
+		left: ${({ isgreen }) => (isgreen ? "52px" : "50px")};
+		top: ${({ isgreen }) => (isgreen ? "9px" : "13px")};
 	}
 
 	.handle {
 		position: absolute;
-		top: 17px;
-		left: 17px;
+		top: 14px;
+		left: 15px;
 
 		width: 12px;
 		height: 12px;
@@ -94,13 +92,13 @@ const Container = styled.div<{ isGreen: boolean }>`
 	}
 
 	.head {
-		font-size: 10px;
-		font-weight: 700;
-		letter-spacing: 1px;
+		font-size: 12px;
+		font-weight: 500;
+		letter-spacing: -0.3px;
 
 		position: absolute;
-		left: 10px;
-		top: 7px;
+		left: 9px;
+		top: 13px;
 	}
 
 	.trash {
@@ -111,7 +109,7 @@ const Container = styled.div<{ isGreen: boolean }>`
 		position: absolute;
 		left: inherit;
 		right: 13px;
-		top: 13px;
+		top: 10px;
 	}
 `;
 

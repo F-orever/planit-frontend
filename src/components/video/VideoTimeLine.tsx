@@ -1,113 +1,48 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 
 import TimeLineTag from "./TimeLineTag";
 import TimeLineTagLinker from "./TimeLineTagLinker";
 
-type currentTimeProps = {
-	currentTime: number;
-	setCurrentTime: React.Dispatch<React.SetStateAction<number>>;
-};
+//svg
+import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
+import { mockData } from "./mockData";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { timelineIdx } from "../../recoil/timelineIdx";
+import { placeDetailSliderIdx } from "../../recoil/placeDetailSliderIdxState";
 
-const mockData = [
-	{
-		place: "용두산공원",
-		placeType: "공원",
-		IconType: "Market",
-		time: 10,
-	},
-	{
-		place: "에슐리퀸즈",
-		placeType: "기차역",
-		IconType: "Market",
-		time: 120,
-	},
-	{
-		place: "부경대학교",
-		placeType: "기차역",
-		IconType: "Market",
-		time: 240,
-	},
-	{
-		place: "흰여울문화마을",
-		placeType: "기차역",
-		IconType: "Market",
-		time: 360,
-	},
-	{
-		place: "흰여울문화마을",
-		placeType: "기차역",
-		IconType: "Market",
-		time: 480,
-	},
-	{
-		place: "흰여울문화마을",
-		placeType: "기차역",
-		IconType: "Market",
-		time: 600,
-	},
-	{
-		place: "흰여울문화마을",
-		placeType: "기차역",
-		IconType: "Market",
-		time: 720,
-	},
-];
-
-function VideoTimeLine({ currentTime, setCurrentTime }: currentTimeProps) {
-	const [centerIdx, setCenterIdx] = useState(0);
+function VideoTimeLine() {
+	const index = useRecoilValue(timelineIdx);
+	const setDetailsIdx = useSetRecoilState(placeDetailSliderIdx);
 	const [isopen, setIsOpen] = useState(true);
 	const refArr = useRef<HTMLDivElement[]>([]);
 	const tagsContainerRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
-		for (let i = 1; i < mockData.length; i++) {
-			if (
-				mockData[i - 1].time <= currentTime &&
-				currentTime < mockData[i].time
-			) {
-				refArr.current[i - 1].scrollIntoView({
-					behavior: "smooth",
-					block: "center",
-				});
-				setCenterIdx(i - 1);
-			}
-		}
-		if (mockData[mockData.length - 1].time < currentTime) {
-			refArr.current[mockData.length - 1].scrollIntoView({
-				behavior: "smooth",
-				block: "center",
-			});
-			setCenterIdx(mockData.length - 1);
-		}
-	}, [currentTime]);
-
-	useEffect(() => {
-		refArr.current[centerIdx].scrollIntoView({
+		tagsContainerRef.current?.scrollTo({
+			top: index * 116 - 160,
+			left: 0,
 			behavior: "smooth",
-			block: "center",
 		});
-	}, [centerIdx]);
+	}, [index]);
 
 	return (
-		<Container isOpen={isopen}>
+		<Container isopen={isopen}>
 			<div className="header">
 				<span>여행 경로</span>
 			</div>
-			<TagsContainer isOpen={isopen}>
-				<div className="scrollContainer" ref={tagsContainerRef}>
+			<TagsContainer isopen={isopen} ref={tagsContainerRef}>
+				<div className="scrollContainer">
 					{mockData.map((data, idx) => {
 						return (
 							<div
+								key={idx}
 								ref={(el) => (refArr.current[idx] = el as HTMLDivElement)
 								}
 							>
 								<TimeLineTag
 									index={idx}
-									isCenter={idx === centerIdx}
-									setCenterIdx={setCenterIdx}
-									setCurrentTime={setCurrentTime}
+									iscenter={idx === index}
 									{...data}
 								/>
 								{idx !== mockData.length - 1 && (
@@ -134,9 +69,9 @@ function VideoTimeLine({ currentTime, setCurrentTime }: currentTimeProps) {
 	);
 }
 
-const Container = styled.div<{ isOpen: boolean }>`
+const Container = styled.div<{ isopen: boolean }>`
 	width: 100%;
-	height: ${(props) => (props.isOpen ? "37vw" : "100px")};
+	height: ${(props) => (props.isopen ? "37vw" : "100px")};
 	max-height: 720px;
 	position: relative;
 
@@ -201,15 +136,28 @@ const Container = styled.div<{ isOpen: boolean }>`
 	}
 `;
 
-const TagsContainer = styled.div<{ isOpen: boolean }>`
+const TagsContainer = styled.div<{ isopen: boolean }>`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 
 	position: relative;
-	height: ${(props) => (props.isOpen ? "calc(100% - 100px)" : "0px")};
+	height: ${(props) => (props.isopen ? "calc(100% - 100px)" : "0px")};
 	transition: height 0.4s ease-in-out;
 	overflow-y: auto;
+
+	&::-webkit-scrollbar {
+		width: 10px;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background: rgba(138, 139, 138, 0.8);
+		border-radius: 10px;
+	}
+
+	&::-webkit-scrollbar-track {
+		background: rgba(35, 37, 36, 0.1);
+	}
 `;
 
 export default VideoTimeLine;

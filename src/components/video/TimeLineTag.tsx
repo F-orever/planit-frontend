@@ -3,62 +3,57 @@ import styled from "styled-components";
 
 //recoil
 import { useSetRecoilState, useRecoilState } from "recoil";
-import { sliderIdx } from "../../recoil/sliderState";
+import { placeDetailSliderIdx } from "../../recoil/placeDetailSliderIdxState";
 import { myTripState, idState } from "../../recoil/myTripState";
 
+//svg
 import MarketIcon from "../../assets/svg/placetType/MarketIcon.svg";
 import FillWhiteCirclePlusIcon from "../../assets/svg/FillWhiteCirclePlusIcon.svg";
 import FillPrimaryCirclePlusIcon from "../../assets/svg/FillPrimaryCirclePlusIcon.svg";
 import MessageDetailIcon from "../../assets/svg/MessageDetailIcon.svg";
+import { sliderTimeState, timelineIdx } from "../../recoil/timelineIdx";
 
 type TimeLineTagProps = {
 	index: number;
 	place: string;
 	placeType: string;
-	IconType: string;
-	isCenter: boolean;
+	Icon: React.ReactNode;
+	iscenter: boolean;
 	time: number;
-	setCurrentTime: React.Dispatch<React.SetStateAction<number>>;
-	setCenterIdx: React.Dispatch<React.SetStateAction<number>>;
 };
 
 function TimeLineTag({
 	index,
 	place,
 	placeType,
-	IconType,
+	Icon,
 	time,
-	setCurrentTime,
-	isCenter,
-	setCenterIdx,
+	iscenter,
 }: TimeLineTagProps) {
-	const setSliderIdx = useSetRecoilState(sliderIdx);
+	const setPlaceDetailSliderIdx = useSetRecoilState(placeDetailSliderIdx);
 	const setMyTrip = useSetRecoilState(myTripState);
+	const setCenterIdx = useSetRecoilState(timelineIdx);
+	const setCurrentTime = useSetRecoilState(sliderTimeState);
 	const [id, setId] = useRecoilState(idState);
 	return (
-		<TagWrapper isCenter={isCenter}>
+		<TagWrapper iscenter={iscenter}>
 			<Content
-				isCenter={isCenter}
+				iscenter={iscenter}
 				onClick={() => {
 					setCurrentTime(time);
+					setPlaceDetailSliderIdx(index);
+					setCenterIdx(index);
 				}}
 			>
-				<div
-					onClick={(e) => {
-						setSliderIdx(index);
-						setCenterIdx(index);
-					}}
-				>
-					<MessageDetailIcon className="infoBtn" />
-				</div>
+				<MessageDetailIcon className="infoBtn" />
 				<VerticalLine />
 				<div className="textContainer">
 					<span className="place">{place}</span>
 					<span className="type">{placeType}</span>
 				</div>
-				<MarketIcon className="backgroundIcon" />
+				<BackgroundIconWrapper>{Icon}</BackgroundIconWrapper>
 			</Content>
-			{isCenter ? (
+			{iscenter ? (
 				<FillPrimaryCirclePlusIcon
 					className="plusBtn"
 					onClick={() => {
@@ -100,11 +95,11 @@ const VerticalLine = styled.div`
 	margin-right: 8px;
 `;
 
-const TagWrapper = styled.div<{ isCenter: boolean }>`
+const TagWrapper = styled.div<{ iscenter: boolean }>`
 	width: 240px;
 	height: 66px;
 	border-radius: 6px;
-	background-color: ${(props) => props.isCenter ? "white" : props.theme.primary};
+	background-color: ${(props) => props.iscenter ? "white" : props.theme.primary};
 
 	display: flex;
 	flex-direction: row;
@@ -121,10 +116,10 @@ const TagWrapper = styled.div<{ isCenter: boolean }>`
 	}
 `;
 
-const Content = styled.div<{ isCenter?: boolean }>`
+const Content = styled.div<{ iscenter?: boolean }>`
 	width: 200px;
 	height: 66px;
-	background-color: ${(props) => props.isCenter ? props.theme.primary : "white"};
+	background-color: ${(props) => props.iscenter ? props.theme.primary : "white"};
 	border-radius: 6px;
 	border: 0.25px solid #d6d6d9;
 	box-shadow: 6px 0px 4px -2px rgba(0, 0, 0, 0.2);
@@ -134,11 +129,12 @@ const Content = styled.div<{ isCenter?: boolean }>`
 
 	display: flex;
 	align-items: center;
+	cursor: pointer;
 
 	.infoBtn {
 		width: 32px;
 		height: 32px;
-		color: ${(props) => (props.isCenter ? "white" : "grey")};
+		color: ${(props) => (props.iscenter ? "white" : "grey")};
 		margin-right: 0px;
 		z-index: 10;
 	}
@@ -152,18 +148,20 @@ const Content = styled.div<{ isCenter?: boolean }>`
 			font-size: 20px;
 			font-weight: 600;
 			letter-spacing: -0.5px;
-			color: ${(props) => (props.isCenter ? "white" : "black")};
+			color: ${(props) => (props.iscenter ? "white" : "black")};
 		}
 
 		.type {
 			font-size: 14px;
 			font-weight: 400;
 			letter-spacing: -0.35px;
-			color: ${(props) => props.isCenter ? "white" : props.theme.titleSecondary};
+			color: ${(props) => props.iscenter ? "white" : props.theme.titleSecondary};
 		}
 	}
+`;
 
-	.backgroundIcon {
+const BackgroundIconWrapper = styled.div`
+	svg {
 		width: 60px;
 		height: 60px;
 		position: absolute;

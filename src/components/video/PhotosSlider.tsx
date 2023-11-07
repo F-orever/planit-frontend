@@ -25,6 +25,7 @@ function PhotoSlider({ photos }: PhotoSliderProps) {
 		dots: false,
 		infinite: true,
 		speed: 500,
+		swipeToSlide: true,
 		slidesToShow: 4,
 		slidesToScroll: 1,
 		nextArrow: <AiOutlineRight />,
@@ -48,11 +49,12 @@ function PhotoSlider({ photos }: PhotoSliderProps) {
 										children: (
 											<StyledChildren>
 												<img
-													onClick={(e) => e.stopPropagation()
-													}
+													onClick={(e) => {
+														e.stopPropagation();
+													}}
 													src={`https://places.googleapis.com/v1/${photo.name}/media?maxHeightPx=1080&maxWidthPx=1920&key=${process.env.REACT_APP_GOOGLE_API_KEY}`}
 													alt=""
-												></img>
+												/>
 												<AiOutlineClose
 													onClick={() => {
 														setModalState({
@@ -101,11 +103,18 @@ const StyledSlider = styled(Slider)`
 			border-radius: 10px;
 		}
 	}
+
 	.slick-prev {
-		left: -75px;
+		width: 15px;
+		height: 24px;
+		left: -85px;
+		cursor: pointer;
 	}
 	.slick-next {
-		right: -75px;
+		width: 15px;
+		height: 24px;
+		right: -85px;
+		cursor: pointer;
 	}
 `;
 

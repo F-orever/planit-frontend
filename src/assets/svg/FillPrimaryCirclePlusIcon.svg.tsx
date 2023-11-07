@@ -23,17 +23,17 @@ export default function FillWhiteCirclePlusIcon(
 						id="Vector 2"
 						d="M12 6.59998V17.4"
 						stroke="#FFFFFF"
-						stroke-width="2"
-						stroke-miterlimit="2.3662"
-						stroke-linecap="square"
+						strokeWidth="2"
+						strokeMiterlimit="2.3662"
+						strokeLinecap="square"
 					/>
 					<path
 						id="Vector 3"
 						d="M17.3999 12L6.5999 12"
 						stroke="#FFFFFF"
-						stroke-width="2"
-						stroke-miterlimit="2.3662"
-						stroke-linecap="square"
+						strokeWidth="2"
+						strokeMiterlimit="2.3662"
+						strokeLinecap="square"
 					/>
 				</g>
 			</g>

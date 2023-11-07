@@ -17,7 +17,7 @@ export default function MarketIcon(props: React.SVGProps<SVGSVGElement>) {
 					fill="none"
 				/>
 				<g id="Group 34">
-					<g id="Isolation_Mode" clip-path="url(#clip0_1_252)">
+					<g id="Isolation_Mode" clipPath="url(#clip0_1_252)">
 						<path
 							id="Vector"
 							d="M66.8456 11.5158H0.773626C0.742679 11.5158 0.728925 11.4779 0.749556 11.4573L12.365 0.687744H56.8084L66.8696 11.4608C66.8903 11.4814 66.8731 11.5192 66.8456 11.5192V11.5158Z"
