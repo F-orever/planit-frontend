@@ -6,8 +6,6 @@ import { ReactSortable } from "react-sortablejs";
 import { myTripState } from "../../recoil/myTripState";
 import { useRecoilState } from "recoil";
 
-import TrainIcon from "../../assets/svg/transportation/Train.svg";
-
 function MyTrip() {
 	const [myTripList, setMyTripList] = useRecoilState(myTripState);
 
@@ -21,13 +19,7 @@ function MyTrip() {
 				<span>내 여행 일정</span>
 			</Header>
 			<Main>
-				<Tag
-					isGreen={true}
-					text="출발지"
-					icon={<TrainIcon />}
-					placeName="부산역"
-					id={-1}
-				/>
+				<Tag isgreen={true} text="출발지" placeName="부산역" id={-1} />
 				<VerticalLine />
 				<ReactSortable
 					list={myTripList.map((x) => ({ ...x, chosen: false }))}
@@ -44,8 +36,7 @@ function MyTrip() {
 							}}
 						>
 							<Tag
-								isGreen={false}
-								icon={item.icon}
+								isgreen={false}
 								placeName={item.placeName}
 								id={item.id}
 							/>
@@ -57,13 +48,7 @@ function MyTrip() {
 					<span>이 위치에 추가됩니다</span>
 				</div>
 				<VerticalLine />
-				<Tag
-					isGreen={true}
-					text="도착지"
-					icon={<TrainIcon />}
-					placeName="부산역"
-					id={-2}
-				/>
+				<Tag isgreen={true} text="도착지" placeName="부산역" id={-2} />
 			</Main>
 			<Footer>
 				<span>계획 실행하기</span>
@@ -164,7 +149,7 @@ const Main = styled.div`
 `;
 
 const VerticalLine = styled.div`
-	width: 200px;
+	width: 210px;
 	height: 20px;
 	border-left: 4px dotted #807b7b;
 `;
