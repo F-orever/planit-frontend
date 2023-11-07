@@ -13,9 +13,6 @@ import Footer from "../components/Footer";
 import Modal from "../components/Modal";
 
 function App() {
-	const [currentTime, setCurrentTime] = useState(0);
-	const [sliderTime, setSliderTime] = useState(0);
-
 	return (
 		<AppContainer>
 			<Modal />
@@ -25,18 +22,12 @@ function App() {
 			</div>
 
 			<main className="main">
-				<VideoWrapper
-					sliderTime={sliderTime}
-					setCurrentTime={setCurrentTime}
-				/>
+				<VideoWrapper />
 				<VideoInfomation />
 				<VideoPlaces />
 			</main>
 			<aside className="aside">
-				<VideoTimeLine
-					currentTime={currentTime}
-					setCurrentTime={setSliderTime}
-				/>
+				<VideoTimeLine />
 				<MyTrip />
 			</aside>
 

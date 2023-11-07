@@ -11,6 +11,7 @@ import MarketIcon from "../../assets/svg/placetType/MarketIcon.svg";
 import FillWhiteCirclePlusIcon from "../../assets/svg/FillWhiteCirclePlusIcon.svg";
 import FillPrimaryCirclePlusIcon from "../../assets/svg/FillPrimaryCirclePlusIcon.svg";
 import MessageDetailIcon from "../../assets/svg/MessageDetailIcon.svg";
+import { sliderTimeState, timelineIdx } from "../../recoil/timelineIdx";
 
 type TimeLineTagProps = {
 	index: number;
@@ -19,8 +20,6 @@ type TimeLineTagProps = {
 	Icon: React.ReactNode;
 	isCenter: boolean;
 	time: number;
-	setCurrentTime: React.Dispatch<React.SetStateAction<number>>;
-	setCenterIdx: React.Dispatch<React.SetStateAction<number>>;
 };
 
 function TimeLineTag({
@@ -29,12 +28,12 @@ function TimeLineTag({
 	placeType,
 	Icon,
 	time,
-	setCurrentTime,
 	isCenter,
-	setCenterIdx,
 }: TimeLineTagProps) {
 	const setPlaceDetailSliderIdx = useSetRecoilState(placeDetailSliderIdx);
 	const setMyTrip = useSetRecoilState(myTripState);
+	const setCenterIdx = useSetRecoilState(timelineIdx);
+	const setCurrentTime = useSetRecoilState(sliderTimeState);
 	const [id, setId] = useRecoilState(idState);
 	return (
 		<TagWrapper isCenter={isCenter}>

@@ -1,14 +1,14 @@
 import React, { useState, useRef, useEffect } from "react";
 import YouTube, { YouTubeProps } from "react-youtube";
+import { mockData } from "./mockData";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { sliderTimeState, timelineIdx } from "../../recoil/timelineIdx";
 
-type currentTimeProps = {
-	sliderTime: number;
-	setCurrentTime: React.Dispatch<React.SetStateAction<number>>;
-};
-
-function VideoWrapper({ sliderTime, setCurrentTime }: currentTimeProps) {
+function VideoWrapper() {
 	const playerRef = useRef<YouTube>(null);
 	const Wrapper = useRef<HTMLDivElement>(null);
+	const setCenterIdx = useSetRecoilState(timelineIdx);
+	const sliderTime = useRecoilValue(sliderTimeState);
 	const [opts, setOpts] = useState<YouTubeProps["opts"]>({
 		width: Wrapper.current?.offsetWidth,
 		height: Wrapper.current?.offsetHeight,
@@ -29,6 +29,7 @@ function VideoWrapper({ sliderTime, setCurrentTime }: currentTimeProps) {
 		});
 	}, [sliderTime]);
 
+	//반응형 영상 크기 조절
 	useEffect(() => {
 		const observer = new ResizeObserver(() => {
 			setOpts({
@@ -52,7 +53,19 @@ function VideoWrapper({ sliderTime, setCurrentTime }: currentTimeProps) {
 				.getCurrentTime();
 
 			const seconds = Math.floor(elapsed);
-			setCurrentTime(seconds);
+			for (let i = 1; i < mockData.length; i++) {
+				if (
+					mockData[i - 1].time <= seconds &&
+					seconds < mockData[i].time
+				) {
+					setCenterIdx(i - 1);
+				}
+			}
+			if (mockData[mockData.length - 1].time < seconds) {
+				if (seconds !== mockData.length - 1) {
+					setCenterIdx(mockData.length - 1);
+				}
+			}
 		}, 100);
 
 		return () => {

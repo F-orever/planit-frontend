@@ -6,99 +6,23 @@ import TimeLineTagLinker from "./TimeLineTagLinker";
 
 //svg
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
-import MarketIcon from "../../assets/svg/placetType/MarketIcon.svg";
+import { mockData } from "./mockData";
+import { useRecoilValue } from "recoil";
+import { timelineIdx } from "../../recoil/timelineIdx";
 
-type currentTimeProps = {
-	currentTime: number;
-	setCurrentTime: React.Dispatch<React.SetStateAction<number>>;
-};
-
-const mockData = [
-	{
-		place: "용두산공원",
-		placeType: "공원",
-		Icon: <MarketIcon />,
-		time: 10,
-	},
-	{
-		place: "에슐리퀸즈",
-		placeType: "기차역",
-		Icon: <MarketIcon />,
-		time: 120,
-	},
-	{
-		place: "부경대학교",
-		placeType: "기차역",
-		Icon: <MarketIcon />,
-		time: 240,
-	},
-	{
-		place: "흰여울문화마을",
-		placeType: "기차역",
-		Icon: <MarketIcon />,
-		time: 360,
-	},
-	{
-		place: "흰여울문화마을",
-		placeType: "기차역",
-		Icon: <MarketIcon />,
-		time: 480,
-	},
-	{
-		place: "흰여울문화마을",
-		placeType: "기차역",
-		Icon: <MarketIcon />,
-		time: 600,
-	},
-	{
-		place: "흰여울문화마을",
-		placeType: "기차역",
-		Icon: <MarketIcon />,
-		time: 720,
-	},
-];
-
-function VideoTimeLine({ currentTime, setCurrentTime }: currentTimeProps) {
-	const [centerIdx, setCenterIdx] = useState(0);
+function VideoTimeLine() {
+	const index = useRecoilValue(timelineIdx);
 	const [isopen, setIsOpen] = useState(true);
 	const refArr = useRef<HTMLDivElement[]>([]);
 	const tagsContainerRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
-		for (let i = 1; i < mockData.length; i++) {
-			if (
-				mockData[i - 1].time <= currentTime &&
-				currentTime < mockData[i].time
-			) {
-				if (centerIdx !== i - 1) {
-					tagsContainerRef.current?.scrollTo({
-						top: centerIdx * 116 - 160,
-						left: 0,
-						behavior: "smooth",
-					});
-					setCenterIdx(i - 1);
-				}
-			}
-		}
-		if (mockData[mockData.length - 1].time < currentTime) {
-			if (centerIdx !== mockData.length - 1) {
-				tagsContainerRef.current?.scrollTo({
-					top: centerIdx * 116 - 160,
-					left: 0,
-					behavior: "smooth",
-				});
-				setCenterIdx(mockData.length - 1);
-			}
-		}
-	}, [currentTime]);
-
-	useEffect(() => {
 		tagsContainerRef.current?.scrollTo({
-			top: centerIdx * 116 - 160,
+			top: index * 116 - 160,
 			left: 0,
 			behavior: "smooth",
 		});
-	}, [centerIdx]);
+	}, [index]);
 
 	return (
 		<Container isOpen={isopen}>
@@ -115,9 +39,7 @@ function VideoTimeLine({ currentTime, setCurrentTime }: currentTimeProps) {
 							>
 								<TimeLineTag
 									index={idx}
-									isCenter={idx === centerIdx}
-									setCenterIdx={setCenterIdx}
-									setCurrentTime={setCurrentTime}
+									isCenter={idx === index}
 									{...data}
 								/>
 								{idx !== mockData.length - 1 && (
