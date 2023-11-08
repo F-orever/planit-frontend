@@ -62,7 +62,7 @@ function VideoTimeLine() {
 					setIsOpen((prev) => !prev);
 				}}
 			>
-				<span>경로 접기</span>
+				<span>{isopen ? "경로 접기" : "경로 펼치기"} </span>
 				{isopen ? <MdKeyboardArrowUp /> : <MdKeyboardArrowDown />}
 			</div>
 		</Container>
