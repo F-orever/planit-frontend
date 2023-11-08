@@ -46,6 +46,7 @@ const Container = styled.div<{ isgreen: boolean }>`
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
 
 	border-radius: 7.5px;
 	border: 0.75px solid ${({ theme }) => theme.textPrimary};
@@ -56,7 +57,7 @@ const Container = styled.div<{ isgreen: boolean }>`
 		font-size: 16px;
 		font-weight: 600;
 		letter-spacing: 1.6px;
-		max-width: 93px;
+		max-width: 140px;
 	}
 
 	.placeName {

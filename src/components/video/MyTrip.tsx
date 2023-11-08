@@ -127,7 +127,7 @@ const Main = styled.div`
 
 	.addTag {
 		width: 250px;
-		height: 46px;
+		height: 40px;
 		flex-shrink: 0;
 		position: relative;
 
