@@ -3,6 +3,7 @@ import YouTube, { YouTubeProps } from "react-youtube";
 import { mockData } from "./mockData";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { sliderTimeState, timelineIdx } from "../../recoil/timelineIdx";
+import styled from "styled-components";
 
 function VideoWrapper() {
 	const playerRef = useRef<YouTube>(null);
@@ -74,17 +75,21 @@ function VideoWrapper() {
 	}, []);
 
 	return (
-		<div
-			ref={Wrapper}
-			style={{
-				position: "relative",
-				width: "calc(100vw / 3 * 2)",
-				height: "37vw",
-			}}
-		>
+		<StyledWrapper ref={Wrapper}>
 			<YouTube videoId="_3IU4Ekql1s" opts={opts} ref={playerRef} />
-		</div>
+		</StyledWrapper>
 	);
 }
+
+const StyledWrapper = styled.div`
+	position: relative;
+	width: calc() (100vw / 3 * 2);
+	height: 37vw;
+
+	@media (max-width: 360px) {
+		width: 100vw;
+		height: 200px;
+	}
+`;
 
 export default VideoWrapper;

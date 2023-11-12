@@ -52,6 +52,10 @@ const Container = styled.div<{ isgreen: boolean }>`
 	border: 0.75px solid ${({ theme }) => theme.textPrimary};
 	background-color: ${({ isgreen, theme }) => isgreen ? "#32543A" : "white"};
 
+	@media (max-width: 360px) {
+		width: 200px;
+	}
+
 	span {
 		color: ${({ isgreen, theme }) => isgreen ? "white" : theme.textPrimary};
 		font-size: 16px;

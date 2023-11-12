@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useMediaQuery } from "react-responsive";
 
 import FixedHeader from "../components/FixedHeader";
 import NavigationMenu from "../components/NavigationMenu";
@@ -11,8 +12,12 @@ import MyTrip from "../components/video/MyTrip";
 
 import Footer from "../components/Footer";
 import Modal from "../components/Modal";
+import MobileVideoTimeline from "../components/video/MobileVideoTimeline";
 
 function App() {
+	const isMobile: boolean = useMediaQuery({
+		query: "(max-width:360px)",
+	});
 	return (
 		<AppContainer>
 			<Modal />
@@ -20,16 +25,29 @@ function App() {
 				<FixedHeader />
 				<NavigationMenu />
 			</div>
-
-			<main className="main">
-				<VideoWrapper />
-				<VideoInfomation />
-				<VideoPlaces />
-			</main>
-			<aside className="aside">
-				<VideoTimeLine />
-				<MyTrip />
-			</aside>
+			{isMobile ? (
+				<>
+					<main className="main">
+						<VideoWrapper />
+						<MobileVideoTimeline />
+						<VideoInfomation />
+						<VideoPlaces />
+						<MyTrip />
+					</main>
+				</>
+			) : (
+				<>
+					<main className="main">
+						<VideoWrapper />
+						<VideoInfomation />
+						<VideoPlaces />
+					</main>
+					<aside className="aside">
+						<VideoTimeLine />
+						<MyTrip />
+					</aside>
+				</>
+			)}
 
 			<footer className="footer">
 				<Footer />
@@ -51,6 +69,15 @@ const AppContainer = styled.div`
 	grid-column-gap: 20px;
 	grid-row-gap: 40px;
 
+	@media (max-width: 360px) {
+		grid-template-areas:
+			"header header"
+			"main main"
+			"footer footer";
+		grid-template-rows: 80px auto auto 100px;
+		grid-row-gap: 0px;
+	}
+
 	.header {
 		grid-area: header;
 	}
@@ -67,6 +94,10 @@ const AppContainer = styled.div`
 
 		padding-top: 20px;
 		padding-left: 150px;
+
+		@media (max-width: 360px) {
+			padding: 0px;
+		}
 	}
 
 	.aside {
@@ -77,6 +108,10 @@ const AppContainer = styled.div`
 		width: 300px;
 		padding-top: 20px;
 		padding-right: 150px;
+
+		@media (max-width: 360px) {
+			padding: 0px;
+		}
 	}
 `;
 

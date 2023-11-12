@@ -1,66 +1,127 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Tag from "./MyTripTag";
 import { ReactSortable } from "react-sortablejs";
+import { useMediaQuery } from "react-responsive";
 
 import { myTripState } from "../../recoil/myTripState";
 import { useRecoilState } from "recoil";
 
+import { MdBackpack } from "react-icons/md";
+import { AiOutlineClose } from "react-icons/ai";
+
 function MyTrip() {
+	const isMobile: boolean = useMediaQuery({
+		query: "(max-width:360px)",
+	});
 	const [myTripList, setMyTripList] = useRecoilState(myTripState);
+	const [isopen, setisopen] = useState(false);
 
 	useEffect(() => {
 		console.log(myTripList);
 	}, [myTripList]);
 
 	return (
-		<Container>
-			<Header>
-				<span>내 여행 일정</span>
-			</Header>
-			<Main>
-				<Tag isgreen={true} text="출발지" placeName="부산역" id={-1} />
-				<VerticalLine />
-				<ReactSortable
-					list={myTripList.map((x) => ({ ...x, chosen: false }))}
-					setList={(newState) => setMyTripList(newState)}
-					handle=".handle"
-				>
-					{myTripList.map((item) => (
-						<div
-							key={item.id}
-							style={{
-								display: "flex",
-								flexDirection: "column",
-								alignItems: "center",
+		<>
+			<Container isopen={isopen}>
+				<Header>
+					<span>내 여행 일정</span>
+					{isMobile && (
+						<AiOutlineClose
+							className="closeBtn"
+							onClick={() => {
+								setisopen(false);
 							}}
-						>
-							<Tag
-								isgreen={false}
-								placeName={item.placeName}
-								id={item.id}
-							/>
-							<VerticalLine />
-						</div>
-					))}
-				</ReactSortable>
-				<div className="addTag">
-					<span>이 위치에 추가됩니다</span>
-				</div>
-				<VerticalLine />
-				<Tag isgreen={true} text="도착지" placeName="부산역" id={-2} />
-			</Main>
-			<Footer>
-				<span>계획 실행하기</span>
-			</Footer>
-		</Container>
+						/>
+					)}
+				</Header>
+				<Main>
+					<Tag
+						isgreen={true}
+						text="출발지"
+						placeName="부산역"
+						id={-1}
+					/>
+					<VerticalLine />
+					<ReactSortable
+						list={myTripList.map((x) => ({ ...x, chosen: false }))}
+						setList={(newState) => setMyTripList(newState)}
+						handle=".handle"
+					>
+						{myTripList.map((item) => (
+							<div
+								key={item.id}
+								style={{
+									display: "flex",
+									flexDirection: "column",
+									alignItems: "center",
+								}}
+							>
+								<Tag
+									isgreen={false}
+									placeName={item.placeName}
+									id={item.id}
+								/>
+								<VerticalLine />
+							</div>
+						))}
+					</ReactSortable>
+					<div className="addTag">
+						<span>이 위치에 추가됩니다</span>
+					</div>
+					<VerticalLine />
+					<Tag
+						isgreen={true}
+						text="도착지"
+						placeName="부산역"
+						id={-2}
+					/>
+				</Main>
+				<Footer>
+					<span>계획 실행하기</span>
+				</Footer>
+			</Container>
+			{isMobile && (
+				<MyTripBtn
+					onClick={() => {
+						setisopen((prev) => !prev);
+					}}
+				>
+					<MdBackpack />
+				</MyTripBtn>
+			)}
+		</>
 	);
 }
 
-const Container = styled.div`
+const MyTripBtn = styled.div`
+	width: 40px;
+	height: 40px;
+
+	border-radius: 100%;
+
+	background-color: ${({ theme }) => theme.primary};
+
+	position: fixed;
+	right: 16px;
+	bottom: 16px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	svg {
+		color: white;
+		width: 24px;
+		height: 24px;
+	}
+`;
+
+const Container = styled.div<{ isopen: boolean }>`
 	width: 100%;
 	display: flex;
 	flex-direction: column;
+	justify-content: space-between;
 	gap: 16px;
 
 	border-radius: 7.5px;
@@ -69,6 +130,18 @@ const Container = styled.div`
 	margin-top: 17px;
 	position: sticky;
 	top: 80px;
+
+	@media (max-width: 360px) {
+		display: ${({ isopen }) => (isopen ? "block" : "none")};
+
+		position: fixed;
+		right: 58px;
+		bottom: 58px;
+		top: inherit;
+
+		width: 242px;
+		height: 410px;
+	}
 `;
 
 const Header = styled.div`
@@ -83,6 +156,21 @@ const Header = styled.div`
 	border-top-right-radius: 7.5px;
 	border-top-left-radius: 7.5px;
 	border-bottom: 0.75px solid #807b7b;
+
+	@media (max-width: 360px) {
+		position: relative;
+
+		svg {
+			width: 24px;
+			height: 24px;
+
+			position: absolute;
+			right: 14px;
+			top: 14px;
+
+			color: grey;
+		}
+	}
 	span {
 		color: ${({ theme }) => theme.textPrimary};
 		font-size: 21px;
@@ -125,6 +213,17 @@ const Main = styled.div`
 	flex-direction: column;
 	align-items: center;
 
+	@media (max-width: 360px) {
+		padding-top: 20px;
+		padding-bottom: 20px;
+
+		background-color: #f9fbf9;
+
+		height: 330px;
+		overflow-y: auto;
+		box-sizing: border-box;
+	}
+
 	.addTag {
 		width: 250px;
 		height: 40px;
@@ -139,6 +238,9 @@ const Main = styled.div`
 		border: 0.75px dashed ${({ theme }) => theme.textPrimary};
 		background-color: white;
 
+		@media (max-width: 360px) {
+			width: 200px;
+		}
 		span {
 			color: ${({ theme }) => theme.textPrimary};
 			font-size: 12px;
@@ -152,6 +254,11 @@ const VerticalLine = styled.div`
 	width: 210px;
 	height: 20px;
 	border-left: 4px dotted #807b7b;
+	flex-shrink: 0;
+
+	@media (max-width: 360px) {
+		width: auto;
+	}
 `;
 
 export default MyTrip;
