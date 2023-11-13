@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import StarIcon from "../../assets/svg/StarIcon.svg";
+import { useMediaQuery } from "react-responsive";
 
 export type reviewType = {
 	authorAttribution: {
@@ -18,13 +19,18 @@ export type reviewType = {
 };
 
 function Review(props: reviewType) {
+	const isMobile: boolean = useMediaQuery({
+		query: "(max-width:490px)",
+	});
 	return (
 		<Container>
-			<img
-				src={`https://places.googleapis.com/v1/places/ChIJl8gXNgvpaDURP6m_S0gwF74/photos/AcJnMuGS49HzvZKuMrIHx3EFy2pw1KurbIzytZPDZ2ENJ0SC4tSUMxRiOmsV_yLIneUWzwaesXnooGOhCGXU6WVcJQCqfWuATpWWETXhQUjL8B66_BzIVPdKrYqoeeOusAg2y6CzVrq37sBGgfABonJa3MA9GoESKesHStou/media?maxHeightPx=185&maxWidthPx=185&key=${process.env.REACT_APP_GOOGLE_API_KEY}`}
-				alt=""
-				className="placeThumbnail"
-			/>
+			{!isMobile && (
+				<img
+					src={`https://places.googleapis.com/v1/places/ChIJl8gXNgvpaDURP6m_S0gwF74/photos/AcJnMuGS49HzvZKuMrIHx3EFy2pw1KurbIzytZPDZ2ENJ0SC4tSUMxRiOmsV_yLIneUWzwaesXnooGOhCGXU6WVcJQCqfWuATpWWETXhQUjL8B66_BzIVPdKrYqoeeOusAg2y6CzVrq37sBGgfABonJa3MA9GoESKesHStou/media?maxHeightPx=185&maxWidthPx=185&key=${process.env.REACT_APP_GOOGLE_API_KEY}`}
+					alt=""
+					className="placeThumbnail"
+				/>
+			)}
 			<TextContainer>
 				<AuthorContainer>
 					<img
@@ -62,6 +68,12 @@ const Container = styled.div`
 	padding-left: 84px;
 	padding-right: 84px;
 
+	@media (max-width: 490px) {
+		padding: 0px;
+		margin-top: 16px;
+		margin-bottom: 16px;
+	}
+
 	.placeThumbnail {
 		width: 185px;
 		height: 185px;
@@ -72,17 +84,30 @@ const AuthorContainer = styled.div`
 	display: flex;
 	gap: 15px;
 
+	@media (max-width: 490px) {
+		gap: 4px;
+	}
+
 	.authorTextContainer {
 		display: flex;
 		flex-direction: column;
 		gap: 5px;
 		margin-bottom: 16px;
 
+		@media (max-width: 490px) {
+			margin-bottom: 6px;
+		}
+
 		.authorName {
 			color: ${({ theme }) => theme.textPrimary};
 			font-size: 20px;
 			font-weight: 600;
 			font-style: normal;
+
+			@media (max-width: 490px) {
+				font-size: 13px;
+				font-weight: 600;
+			}
 		}
 
 		.counts {
@@ -90,6 +115,11 @@ const AuthorContainer = styled.div`
 			font-size: 16px;
 			font-weight: 300;
 			font-style: normal;
+
+			@media (max-width: 490px) {
+				font-size: 11px;
+				font-weight: 400;
+			}
 		}
 	}
 `;
@@ -102,6 +132,19 @@ const ReviewDesc = styled.div`
 	font-weight: 300;
 	color: ${({ theme }) => theme.titlePrimary};
 	margin-bottom: 22px;
+
+	@media (max-width: 490px) {
+		svg {
+			width: 12px;
+			height: 12px;
+		}
+
+		font-size: 11px;
+		font-weight: 400;
+
+		gap: 6px;
+		margin-bottom: 8px;
+	}
 `;
 
 const TextContainer = styled.div`
@@ -111,6 +154,12 @@ const TextContainer = styled.div`
 		width: 46px;
 		height: 46px;
 		flex-shrink: 0;
+
+		@media (max-width: 490px) {
+			display: block;
+			width: 30px;
+			height: 30px;
+		}
 	}
 
 	.reviewText {
@@ -122,11 +171,21 @@ const TextContainer = styled.div`
 
 		width: 100%;
 		height: 75px;
-		display: -webkit-box; // 얘네를 추가히준다
+		display: -webkit-box;
 		-webkit-line-clamp: 3;
 		-webkit-box-orient: vertical;
 		overflow: hidden;
 		text-overflow: ellipsis;
+
+		@media (max-width: 490px) {
+			height: 100px;
+
+			font-size: 14px;
+			font-weight: 400;
+			letter-spacing: -0.35px;
+
+			-webkit-line-clamp: 6;
+		}
 	}
 `;
 
