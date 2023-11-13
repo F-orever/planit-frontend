@@ -11,7 +11,7 @@ import Logo from "../assets/Logo.svg";
 
 function NavigationMenu() {
 	const isMobile: boolean = useMediaQuery({
-		query: "(max-width:360px)",
+		query: "(max-width:490px)",
 	});
 	const [isopen, setIsOpen] = useState<boolean>(false);
 	const [subisopen, setsubIsOpen] = useState<boolean>(false);
@@ -93,7 +93,7 @@ const StyledHeader = styled.div`
 	justify-content: space-between;
 	align-items: center;
 
-	@media (max-width: 360px) {
+	@media (max-width: 490px) {
 		padding-top: 0px;
 		height: 60px;
 		justify-content: center;
@@ -108,7 +108,11 @@ const StyledHeader = styled.div`
 
 		margin-left: 150px;
 
-		@media (max-width: 360px) {
+		@media (max-width: 1280px) {
+			margin-left: 40px;
+		}
+
+		@media (max-width: 490px) {
 			margin-left: 0px;
 		}
 	}
@@ -144,7 +148,7 @@ const NavBar = styled.nav`
 		font-size: 21px;
 	}
 
-	@media (max-width: 360px) {
+	@media (max-width: 490px) {
 		display: none;
 	}
 `;
@@ -254,7 +258,7 @@ const DropDownMenu = styled.div<{ isopen: boolean }>`
 		`};
 
 	.menu {
-		margin-left: 360px;
+		margin-left: 490px;
 
 		height: 100%;
 
@@ -268,7 +272,7 @@ const DropDownMenu = styled.div<{ isopen: boolean }>`
 		}
 	}
 
-	@media (max-width: 360px) {
+	@media (max-width: 490px) {
 		display: none;
 	}
 `;
@@ -281,13 +285,17 @@ const IconsContainer = styled.div`
 
 	margin-right: 153px;
 
+	@media (max-width: 1280px) {
+		margin-right: 40px;
+	}
+
 	svg {
 		width: 30px;
 		height: 30px;
 		cursor: pointer;
 	}
 
-	@media (max-width: 360px) {
+	@media (max-width: 490px) {
 		display: none;
 	}
 `;

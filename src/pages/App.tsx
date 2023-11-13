@@ -16,7 +16,7 @@ import MobileVideoTimeline from "../components/video/MobileVideoTimeline";
 
 function App() {
 	const isMobile: boolean = useMediaQuery({
-		query: "(max-width:360px)",
+		query: "(max-width:490px)",
 	});
 	return (
 		<AppContainer>
@@ -31,7 +31,7 @@ function App() {
 						<VideoWrapper />
 						<MobileVideoTimeline />
 						<VideoInfomation />
-						<VideoPlaces />
+						{/* <VideoPlaces /> */}
 						<MyTrip />
 					</main>
 				</>
@@ -40,7 +40,7 @@ function App() {
 					<main className="main">
 						<VideoWrapper />
 						<VideoInfomation />
-						<VideoPlaces />
+						{/* <VideoPlaces /> */}
 					</main>
 					<aside className="aside">
 						<VideoTimeLine />
@@ -69,7 +69,7 @@ const AppContainer = styled.div`
 	grid-column-gap: 20px;
 	grid-row-gap: 40px;
 
-	@media (max-width: 360px) {
+	@media (max-width: 490px) {
 		grid-template-areas:
 			"header header"
 			"main main"
@@ -93,9 +93,12 @@ const AppContainer = styled.div`
 		flex-direction: column;
 
 		padding-top: 20px;
-		padding-left: 150px;
+		padding-left: 7vw;
+		@media (max-width: 1670px) {
+			padding-left: 3vw;
+		}
 
-		@media (max-width: 360px) {
+		@media (max-width: 490px) {
 			padding: 0px;
 		}
 	}
@@ -107,9 +110,13 @@ const AppContainer = styled.div`
 
 		width: 300px;
 		padding-top: 20px;
-		padding-right: 150px;
+		padding-right: 7vw;
 
-		@media (max-width: 360px) {
+		@media (max-width: 1670px) {
+			padding-right: 3vw;
+		}
+
+		@media (max-width: 490px) {
 			padding: 0px;
 		}
 	}

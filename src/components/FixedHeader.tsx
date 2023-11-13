@@ -26,7 +26,7 @@ const StyledHeader = styled.div`
 	top: 0px;
 	z-index: 10;
 
-	@media (max-width: 360px) {
+	@media (max-width: 490px) {
 		position: absolute;
 		top: 60px;
 		height: 20px;

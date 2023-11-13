@@ -12,7 +12,7 @@ import { AiOutlineClose } from "react-icons/ai";
 
 function MyTrip() {
 	const isMobile: boolean = useMediaQuery({
-		query: "(max-width:360px)",
+		query: "(max-width:490px)",
 	});
 	const [myTripList, setMyTripList] = useRecoilState(myTripState);
 	const [isopen, setisopen] = useState(false);
@@ -131,7 +131,7 @@ const Container = styled.div<{ isopen: boolean }>`
 	position: sticky;
 	top: 80px;
 
-	@media (max-width: 360px) {
+	@media (max-width: 490px) {
 		display: ${({ isopen }) => (isopen ? "block" : "none")};
 
 		position: fixed;
@@ -157,7 +157,7 @@ const Header = styled.div`
 	border-top-left-radius: 7.5px;
 	border-bottom: 0.75px solid #807b7b;
 
-	@media (max-width: 360px) {
+	@media (max-width: 490px) {
 		position: relative;
 
 		svg {
@@ -213,7 +213,7 @@ const Main = styled.div`
 	flex-direction: column;
 	align-items: center;
 
-	@media (max-width: 360px) {
+	@media (max-width: 490px) {
 		padding-top: 20px;
 		padding-bottom: 20px;
 
@@ -238,7 +238,7 @@ const Main = styled.div`
 		border: 0.75px dashed ${({ theme }) => theme.textPrimary};
 		background-color: white;
 
-		@media (max-width: 360px) {
+		@media (max-width: 490px) {
 			width: 200px;
 		}
 		span {
@@ -256,7 +256,7 @@ const VerticalLine = styled.div`
 	border-left: 4px dotted #807b7b;
 	flex-shrink: 0;
 
-	@media (max-width: 360px) {
+	@media (max-width: 490px) {
 		width: auto;
 	}
 `;

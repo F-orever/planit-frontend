@@ -23,7 +23,7 @@ function VideoInfomation() {
 	});
 
 	const isMobile: boolean = useMediaQuery({
-		query: "(max-width:360px)",
+		query: "(max-width:490px)",
 	});
 
 	//useEffect(() => {}, [statics]);
@@ -231,7 +231,7 @@ const Container = styled.div`
 	flex-direction: column;
 	justify-content: flex-start;
 
-	@media (max-width: 360px) {
+	@media (max-width: 490px) {
 		box-sizing: border-box;
 	}
 
@@ -240,7 +240,7 @@ const Container = styled.div`
 		font-size: 20px;
 		font-weight: 400;
 
-		@media (max-width: 360px) {
+		@media (max-width: 490px) {
 			padding-left: 20px;
 			padding-right: 16px;
 
@@ -258,13 +258,14 @@ const TitleContainer = styled.div`
 	justify-content: space-between;
 	align-items: center;
 
-	@media (max-width: 360px) {
+	@media (max-width: 490px) {
 		padding-left: 20px;
 		padding-right: 16px;
 
 		flex-direction: column;
 		align-items: flex-start;
 		gap: 10px;
+		box-sizing: border-box;
 	}
 
 	div {
@@ -278,7 +279,7 @@ const TitleContainer = styled.div`
 			font-weight: normal;
 			letter-spacing: -1px;
 
-			@media (max-width: 360px) {
+			@media (max-width: 490px) {
 				font-size: 12px;
 				font-weight: 600;
 				letter-spacing: -0.3px;
@@ -291,7 +292,7 @@ const TitleContainer = styled.div`
 		font-size: 32px;
 		font-weight: 600;
 
-		@media (max-width: 360px) {
+		@media (max-width: 490px) {
 			font-size: 20px;
 			font-weight: 700;
 			letter-spacing: -0.5px;
@@ -302,7 +303,11 @@ const TitleContainer = styled.div`
 		display: flex;
 		gap: 30px;
 
-		@media (max-width: 360px) {
+		@media (max-width: 1280px) {
+			gap: 20px;
+		}
+
+		@media (max-width: 490px) {
 			gap: 10px;
 		}
 
@@ -311,7 +316,7 @@ const TitleContainer = styled.div`
 			height: 26px;
 			color: #cccccc;
 
-			@media (max-width: 360px) {
+			@media (max-width: 490px) {
 				width: 16px;
 				height: 16px;
 			}
@@ -326,7 +331,7 @@ const HeartBox = styled.div<{ isclick: boolean }>`
 	}
 
 	span {
-		color: ${({ theme }) => theme.primary} !important;
+		color: ${({ isclick, theme }) => isclick ? theme.primary : "#cccccc"} !important;
 		margin-left: 6px;
 	}
 `;
@@ -339,7 +344,7 @@ const UserContainer = styled.div`
 	margin-bottom: 36px;
 	margin-top: 20px;
 
-	@media (max-width: 360px) {
+	@media (max-width: 490px) {
 		padding-left: 20px;
 		padding-right: 16px;
 
@@ -354,7 +359,7 @@ const UserContainer = styled.div`
 		margin-right: 16px;
 		color: ${({ theme }) => theme.textPrimary};
 
-		@media (max-width: 360px) {
+		@media (max-width: 490px) {
 			width: 32px;
 			height: 32px;
 			margin-right: 0px;
@@ -371,7 +376,7 @@ const UserContainer = styled.div`
 			font-size: 24px;
 			font-weight: 500;
 
-			@media (max-width: 360px) {
+			@media (max-width: 490px) {
 				font-size: 15px;
 				font-weight: 500;
 			}
@@ -382,7 +387,7 @@ const UserContainer = styled.div`
 			font-size: 15px;
 			font-weight: 300;
 
-			@media (max-width: 360px) {
+			@media (max-width: 490px) {
 				font-size: 12px;
 				font-weight: 400;
 				letter-spacing: -0.3px;
@@ -405,7 +410,7 @@ const UserContainer = styled.div`
 		font-size: 15px;
 		font-weight: 700;
 
-		@media (max-width: 360px) {
+		@media (max-width: 490px) {
 			width: 64px;
 			height: 24px;
 			padding: 8px 10px;
@@ -426,6 +431,13 @@ const VideoInfo = styled.div<{ isopen: boolean }>`
 	padding-left: 90px;
 	padding-right: 90px;
 
+	@media (max-width: 1280px) {
+		padding-top: 10px;
+		padding-bottom: 10px;
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+
 	border-radius: 10px;
 	border: 0.5px solid #807b7b;
 	background-color: #f8f8f8;
@@ -434,7 +446,7 @@ const VideoInfo = styled.div<{ isopen: boolean }>`
 	flex-direction: column;
 	justify-content: center;
 
-	@media (max-width: 360px) {
+	@media (max-width: 490px) {
 		border-radius: 0px;
 
 		padding-bottom: ${({ isopen }) => (isopen ? "36px" : "0px")};
@@ -452,7 +464,7 @@ const VideoInfo = styled.div<{ isopen: boolean }>`
 		padding-bottom: 18px;
 		border-bottom: 1px solid #d9d9d9;
 
-		@media (max-width: 360px) {
+		@media (max-width: 490px) {
 			flex-direction: column;
 			display: ${({ isopen }) => (isopen ? "flex" : "none")};
 
@@ -481,7 +493,7 @@ const VideoInfo = styled.div<{ isopen: boolean }>`
 			align-items: center;
 			gap: 20px;
 
-			@media (max-width: 360px) {
+			@media (max-width: 490px) {
 				gap: 5px;
 			}
 
@@ -490,7 +502,12 @@ const VideoInfo = styled.div<{ isopen: boolean }>`
 				height: 42px;
 				color: ${({ theme }) => theme.primary};
 
-				@media (max-width: 360px) {
+				@media (max-width: 1280px) {
+					width: 30px;
+					height: 30px;
+				}
+
+				@media (max-width: 490px) {
 					width: 22px;
 					height: 22px;
 				}
@@ -502,7 +519,12 @@ const VideoInfo = styled.div<{ isopen: boolean }>`
 				font-weight: 300;
 				letter-spacing: 1.2px;
 
-				@media (max-width: 360px) {
+				@media (max-width: 1280px) {
+					font-size: 18px;
+					letter-spacing: 0px;
+				}
+
+				@media (max-width: 490px) {
 					font-size: 13px;
 					font-weight: 400;
 					letter-spacing: -0.1px;
@@ -520,7 +542,7 @@ const VideoInfo = styled.div<{ isopen: boolean }>`
 			height: 16px;
 			border-left: 1px solid #d9d9d9;
 
-			@media (max-width: 360px) {
+			@media (max-width: 490px) {
 				height: 14px;
 			}
 		}
@@ -532,7 +554,7 @@ const VideoInfo = styled.div<{ isopen: boolean }>`
 		align-items: center;
 		gap: 24px;
 
-		@media (max-width: 360px) {
+		@media (max-width: 490px) {
 			margin-top: 0px;
 			gap: 0px;
 		}
@@ -543,7 +565,12 @@ const VideoInfo = styled.div<{ isopen: boolean }>`
 			font-weight: 500;
 			letter-spacing: 1.2px;
 
-			@media (max-width: 360px) {
+			@media (max-width: 1280px) {
+				font-size: 18px;
+				letter-spacing: 0px;
+			}
+
+			@media (max-width: 490px) {
 				font-size: 13px;
 				font-weight: 600;
 				letter-spacing: -0.1px;
@@ -556,7 +583,12 @@ const VideoInfo = styled.div<{ isopen: boolean }>`
 			font-weight: 300;
 			letter-spacing: 1.2px;
 
-			@media (max-width: 360px) {
+			@media (max-width: 1280px) {
+				font-size: 16px;
+				letter-spacing: 0px;
+			}
+
+			@media (max-width: 490px) {
 				font-size: 13px;
 				font-weight: 400;
 				letter-spacing: -0.1px;
@@ -572,7 +604,7 @@ const VideoInfo = styled.div<{ isopen: boolean }>`
 		font-weight: 400;
 		line-height: 35px;
 
-		@media (max-width: 360px) {
+		@media (max-width: 490px) {
 			margin-top: 18px;
 			display: ${({ isopen }) => (isopen ? "inline-block" : "none")};
 

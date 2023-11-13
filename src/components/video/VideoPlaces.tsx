@@ -53,7 +53,7 @@ function VideoPlaces() {
 const StyledSlider = styled(Slider)`
 	width: calc(100vw / 3 * 2);
 
-	@media (max-width: 360px) {
+	@media (max-width: 490px) {
 		width: 100%;
 	}
 `;

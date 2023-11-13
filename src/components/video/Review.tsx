@@ -20,7 +20,7 @@ export type reviewType = {
 
 function Review(props: reviewType) {
 	const isMobile: boolean = useMediaQuery({
-		query: "(max-width:360px)",
+		query: "(max-width:490px)",
 	});
 	return (
 		<Container>
@@ -68,7 +68,7 @@ const Container = styled.div`
 	padding-left: 84px;
 	padding-right: 84px;
 
-	@media (max-width: 360px) {
+	@media (max-width: 490px) {
 		padding: 0px;
 		margin-top: 16px;
 		margin-bottom: 16px;
@@ -84,7 +84,7 @@ const AuthorContainer = styled.div`
 	display: flex;
 	gap: 15px;
 
-	@media (max-width: 360px) {
+	@media (max-width: 490px) {
 		gap: 4px;
 	}
 
@@ -94,7 +94,7 @@ const AuthorContainer = styled.div`
 		gap: 5px;
 		margin-bottom: 16px;
 
-		@media (max-width: 360px) {
+		@media (max-width: 490px) {
 			margin-bottom: 6px;
 		}
 
@@ -104,7 +104,7 @@ const AuthorContainer = styled.div`
 			font-weight: 600;
 			font-style: normal;
 
-			@media (max-width: 360px) {
+			@media (max-width: 490px) {
 				font-size: 13px;
 				font-weight: 600;
 			}
@@ -116,7 +116,7 @@ const AuthorContainer = styled.div`
 			font-weight: 300;
 			font-style: normal;
 
-			@media (max-width: 360px) {
+			@media (max-width: 490px) {
 				font-size: 11px;
 				font-weight: 400;
 			}
@@ -133,7 +133,7 @@ const ReviewDesc = styled.div`
 	color: ${({ theme }) => theme.titlePrimary};
 	margin-bottom: 22px;
 
-	@media (max-width: 360px) {
+	@media (max-width: 490px) {
 		svg {
 			width: 12px;
 			height: 12px;
@@ -155,7 +155,7 @@ const TextContainer = styled.div`
 		height: 46px;
 		flex-shrink: 0;
 
-		@media (max-width: 360px) {
+		@media (max-width: 490px) {
 			display: block;
 			width: 30px;
 			height: 30px;
@@ -177,7 +177,7 @@ const TextContainer = styled.div`
 		overflow: hidden;
 		text-overflow: ellipsis;
 
-		@media (max-width: 360px) {
+		@media (max-width: 490px) {
 			height: 100px;
 
 			font-size: 14px;

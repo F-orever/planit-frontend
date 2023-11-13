@@ -34,7 +34,7 @@ type PlaceDetailProps = {
 
 function PlaceDetail({ onNextClick, onPrevClick, id }: PlaceDetailProps) {
 	const isMobile: boolean = useMediaQuery({
-		query: "(max-width:360px)",
+		query: "(max-width:490px)",
 	});
 
 	const [data, setData] = useState<any>(null);
@@ -270,7 +270,7 @@ const ReviewSummary = styled.div`
 	justify-content: space-between;
 	align-items: center;
 
-	@media (max-width: 360px) {
+	@media (max-width: 490px) {
 		height: auto;
 		margin-top: 18px;
 		margin-bottom: 18px;
@@ -282,7 +282,7 @@ const ReviewSummary = styled.div`
 		gap: 14px;
 		align-items: flex-start;
 
-		@media (max-width: 360px) {
+		@media (max-width: 490px) {
 			display: none;
 		}
 
@@ -309,7 +309,7 @@ const ReviewSummary = styled.div`
 		gap: 18px;
 		align-items: center;
 
-		@media (max-width: 360px) {
+		@media (max-width: 490px) {
 			width: 100%;
 			gap: 5px;
 
@@ -324,7 +324,7 @@ const ReviewSummary = styled.div`
 			font-weight: 800;
 			letter-spacing: 2.1px;
 
-			@media (max-width: 360px) {
+			@media (max-width: 490px) {
 				font-size: 16px;
 				font-weight: 800;
 				letter-spacing: 0.8px;
@@ -338,7 +338,7 @@ const ReviewSummary = styled.div`
 			line-height: normal;
 			letter-spacing: 0.9px;
 
-			@media (max-width: 360px) {
+			@media (max-width: 490px) {
 				font-size: 11px;
 				font-weight: 600;
 				letter-spacing: -0.3px;
@@ -369,7 +369,7 @@ const SliderHeader = styled.div`
 	.typeIcon {
 		margin-left: 54px;
 
-		@media (max-width: 360px) {
+		@media (max-width: 490px) {
 			display: none;
 		}
 	}
@@ -389,7 +389,7 @@ const SliderHeader = styled.div`
 			letter-spacing: 2.4px;
 			word-break: keep-all;
 
-			@media (max-width: 360px) {
+			@media (max-width: 490px) {
 				display: none;
 			}
 		}
@@ -400,7 +400,7 @@ const SliderHeader = styled.div`
 			font-weight: normal;
 			letter-spacing: 1.2px;
 
-			@media (max-width: 360px) {
+			@media (max-width: 490px) {
 				display: none;
 			}
 		}
@@ -414,7 +414,7 @@ const SliderHeader = styled.div`
 		align-items: flex-start;
 		gap: 10px;
 
-		@media (max-width: 360px) {
+		@media (max-width: 490px) {
 			display: none;
 		}
 
@@ -441,7 +441,7 @@ const SliderHeader = styled.div`
 		align-items: center;
 		gap: 11px;
 
-		@media (max-width: 360px) {
+		@media (max-width: 490px) {
 			display: none;
 		}
 
@@ -475,7 +475,7 @@ const Container = styled.div`
 	justify-content: center;
 	align-items: center;
 
-	@media (max-width: 360px) {
+	@media (max-width: 490px) {
 		background-color: #f9f9f9;
 
 		padding-top: 18px;
@@ -493,7 +493,7 @@ const ReviewContainer = styled.div`
 	height: 420px;
 	overflow-y: auto;
 
-	@media (max-width: 360px) {
+	@media (max-width: 490px) {
 		margin-top: 24px;
 		height: 390px;
 	}
