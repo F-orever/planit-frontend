@@ -70,7 +70,6 @@ const Container = styled.footer`
 		font-size: 19px;
 		font-weight: 200;
 		margin-top: 9px;
-		width: 80%;
 		line-break: normal;
 
 		@media (max-width: 490px) {
@@ -106,7 +105,7 @@ const Container = styled.footer`
 			font-weight: 600;
 
 			@media (max-width: 490px) {
-				padding-bottom: 13px;
+				font-size: 13px;
 			}
 		}
 	}

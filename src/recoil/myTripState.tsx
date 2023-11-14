@@ -16,8 +16,5 @@ export const idState = atom<number>({
 
 export const myTripState = atom<ItemType[]>({
 	key: "myTripState",
-	default: [
-		{ id: 1, icon: <MarketIcon />, placeName: "초량 밀면" },
-		{ id: 2, icon: <Restaurant />, placeName: "감천 문화마을" },
-	],
+	default: [],
 });

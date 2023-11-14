@@ -3,15 +3,10 @@ import Slider, { Settings } from "react-slick";
 import styled from "styled-components";
 import PlaceDetail from "./PlaceDetail";
 
+import { mockPlaceData } from "./mockData";
+
 import { useRecoilState } from "recoil";
 import { placeDetailSliderIdx } from "../../recoil/placeDetailSliderIdxState";
-
-const mockPlacesId: string[] = [
-	"ChIJl8gXNgvpaDURP6m_S0gwF74",
-	"ChIJl8gXNgvpaDURP6m_S0gwF74",
-	"ChIJYX3RzGXraDURkrB6BWdfyMY",
-	"ChIJHZ833WrsaDURsQWExKDNvDI",
-];
 
 function VideoPlaces() {
 	const sliderRef = useRef<Slider>(null);
@@ -34,12 +29,12 @@ function VideoPlaces() {
 
 	return (
 		<StyledSlider ref={sliderRef} {...settings}>
-			{mockPlacesId.map((place, idx) => {
+			{mockPlaceData.map((place, idx) => {
 				if (sliderRef.current !== null) {
 					return (
 						<PlaceDetail
 							key={idx}
-							id={place}
+							id={idx}
 							onNextClick={sliderRef.current.slickNext}
 							onPrevClick={sliderRef.current.slickPrev}
 						/>

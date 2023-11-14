@@ -94,6 +94,13 @@ const Container = styled.div<{ isgreen: boolean }>`
 		height: 12px;
 		color: #4a4a4a;
 		cursor: pointer;
+
+		@media (max-width: 490px) {
+			width: 20px;
+			height: 20px;
+
+			top: 10px;
+		}
 	}
 
 	.head {

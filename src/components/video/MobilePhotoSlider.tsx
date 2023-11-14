@@ -12,10 +12,11 @@ type photoType = {
 };
 
 type PhotoSliderProps = {
-	photos: photoType[];
+	photoLength: number;
+	id: number;
 };
 
-function MobilePhotoSlider({ photos }: PhotoSliderProps) {
+function MobilePhotoSlider({ photoLength, id }: PhotoSliderProps) {
 	const settings: Settings = {
 		dots: true,
 		infinite: true,
@@ -25,24 +26,25 @@ function MobilePhotoSlider({ photos }: PhotoSliderProps) {
 		draggable: false,
 	};
 
-	return (
-		<StyledSlider {...settings}>
-			{photos !== null &&
-				photos.map((photo: photoType, idx: number) => {
-					return (
-						<div key={idx}>
-							<img
-								src={`https://places.googleapis.com/v1/${photo.name}/media?maxHeightPx=400&maxWidthPx=400&key=${process.env.REACT_APP_GOOGLE_API_KEY}`}
-								alt=""
-								style={{
-									cursor: "pointer",
-								}}
-							/>
-						</div>
-					);
-				})}
-		</StyledSlider>
-	);
+	function values() {
+		const arr = [];
+		for (let i = 1; i <= photoLength; i++) {
+			arr.push(
+				<div key={id}>
+					<img
+						src={`./imgs/${id + 1}/${i}.png`}
+						alt=""
+						style={{
+							cursor: "pointer",
+						}}
+					/>
+				</div>,
+			);
+		}
+		return arr;
+	}
+
+	return <StyledSlider {...settings}>{values()}</StyledSlider>;
 }
 
 const StyledSlider = styled(Slider)`

@@ -16,10 +16,11 @@ type photoType = {
 };
 
 type PhotoSliderProps = {
-	photos: photoType[];
+	photoLength: number;
+	id: number;
 };
 
-function PhotoSlider({ photos }: PhotoSliderProps) {
+function PhotoSlider({ photoLength, id }: PhotoSliderProps) {
 	const setModalState = useSetRecoilState(modalState);
 	const settings: Settings = {
 		dots: false,
@@ -32,48 +33,50 @@ function PhotoSlider({ photos }: PhotoSliderProps) {
 		prevArrow: <AiOutlineLeft />,
 	};
 
-	return (
-		<StyledSlider {...settings}>
-			{photos !== null &&
-				photos.map((photo: photoType, idx: number) => {
-					return (
-						<div key={idx}>
-							<img
-								src={`https://places.googleapis.com/v1/${photo.name}/media?maxHeightPx=400&maxWidthPx=400&key=${process.env.REACT_APP_GOOGLE_API_KEY}`}
-								alt=""
-								style={{
-									cursor: "pointer",
-								}}
-								onClick={() => {
-									setModalState({
-										children: (
-											<StyledChildren>
-												<img
-													onClick={(e) => {
-														e.stopPropagation();
-													}}
-													src={`https://places.googleapis.com/v1/${photo.name}/media?maxHeightPx=1080&maxWidthPx=1920&key=${process.env.REACT_APP_GOOGLE_API_KEY}`}
-													alt=""
-												/>
-												<AiOutlineClose
-													onClick={() => {
-														setModalState({
-															children: <></>,
-															isopen: false,
-														});
-													}}
-												/>
-											</StyledChildren>
-										),
-										isopen: true,
-									});
-								}}
-							/>
-						</div>
-					);
-				})}
-		</StyledSlider>
-	);
+	function values() {
+		const arr = [];
+		for (let i = 1; i <= photoLength; i++) {
+			arr.push(
+				<div key={i}>
+					<img
+						src={`./imgs/${id + 1}/${i}.png`}
+						alt=""
+						style={{
+							cursor: "pointer",
+						}}
+						onClick={() => {
+							setModalState({
+								children: (
+									<StyledChildren>
+										<img
+											onClick={(e) => {
+												e.stopPropagation();
+											}}
+											src={`./imgs/${id + 1}/${i}.png`}
+											alt=""
+										/>
+										<AiOutlineClose
+											onClick={() => {
+												setModalState({
+													children: <></>,
+													isopen: false,
+												});
+											}}
+										/>
+									</StyledChildren>
+								),
+								isopen: true,
+							});
+						}}
+					/>
+				</div>,
+			);
+		}
+
+		return arr;
+	}
+
+	return <StyledSlider {...settings}>{values()}</StyledSlider>;
 }
 
 const StyledSlider = styled(Slider)`

@@ -1,61 +1,69 @@
 import React from "react";
 import styled from "styled-components";
 import StarIcon from "../../assets/svg/StarIcon.svg";
+import { CiStar } from "react-icons/ci";
 import { useMediaQuery } from "react-responsive";
+import { FaRegUserCircle } from "react-icons/fa";
 
 export type reviewType = {
-	authorAttribution: {
-		displayName: string;
-		uri: string;
-		photoUri: string;
-	};
 	name: string;
-	text: {
-		languagueCode: string;
-		text: string;
-	};
+	text: string;
+	reviewCount: string;
+	photoCount: string;
 	rating: number;
 	relativePublishTimeDescription: string;
 };
 
-function Review(props: reviewType) {
+type ReviewPropsType = {
+	review: reviewType;
+	id: number;
+	idx: number;
+};
+
+function Review({ review, id, idx }: ReviewPropsType) {
 	const isMobile: boolean = useMediaQuery({
 		query: "(max-width:490px)",
 	});
+
+	function rate() {
+		const arr = [];
+		for (let i = 0; i < review.rating; i++) {
+			arr.push(<StarIcon />);
+		}
+		for (let i = 0; i < 5 - review.rating; i++) {
+			arr.push(<CiStar style={{ color: "yellow" }} />);
+		}
+
+		return arr;
+	}
+
 	return (
 		<Container>
 			{!isMobile && (
 				<img
-					src={`https://places.googleapis.com/v1/places/ChIJl8gXNgvpaDURP6m_S0gwF74/photos/AcJnMuGS49HzvZKuMrIHx3EFy2pw1KurbIzytZPDZ2ENJ0SC4tSUMxRiOmsV_yLIneUWzwaesXnooGOhCGXU6WVcJQCqfWuATpWWETXhQUjL8B66_BzIVPdKrYqoeeOusAg2y6CzVrq37sBGgfABonJa3MA9GoESKesHStou/media?maxHeightPx=185&maxWidthPx=185&key=${process.env.REACT_APP_GOOGLE_API_KEY}`}
+					src={`./imgs/${id + 1}/${idx + 1}.png`}
 					alt=""
 					className="placeThumbnail"
 				/>
 			)}
 			<TextContainer>
 				<AuthorContainer>
-					<img
+					{/* <img
 						src={props.authorAttribution.photoUri}
 						alt="thumbnail"
-					/>
+					/> */}
+					<FaRegUserCircle />
 					<div className="authorTextContainer">
-						<span className="authorName">
-							{props.authorAttribution.displayName}
-						</span>
+						<span className="authorName">{review.name}</span>
 						<span className="counts">리뷰 278개 ∙ 사진 47장</span>
 					</div>
 				</AuthorContainer>
 				<ReviewDesc>
 					{/*<span>{props.rating}</span> */}
-					<span>
-						<StarIcon />
-						<StarIcon />
-						<StarIcon />
-						<StarIcon />
-						<StarIcon />
-					</span>
-					<span>{props.relativePublishTimeDescription}</span>
+					<span>{rate()}</span>
+					<span>{review.relativePublishTimeDescription}</span>
 				</ReviewDesc>
-				<span className="reviewText">{props.text.text}</span>
+				<span className="reviewText">{review.text}</span>
 			</TextContainer>
 		</Container>
 	);
@@ -86,6 +94,16 @@ const AuthorContainer = styled.div`
 
 	@media (max-width: 490px) {
 		gap: 4px;
+	}
+
+	svg {
+		width: 46px;
+		height: 46px;
+
+		@media (max-width: 490px) {
+			width: 28px;
+			height: 28px;
+		}
 	}
 
 	.authorTextContainer {
