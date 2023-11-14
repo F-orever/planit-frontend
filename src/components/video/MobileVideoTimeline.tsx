@@ -1,6 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
-import { useMediaQuery } from "react-responsive";
 
 import MobileTimeLineTag from "./MobileTimeLineTag";
 import MobileTimeLineTagLinker from "./MobileTimeLineTagLinker";
@@ -13,11 +12,12 @@ import { placeDetailSliderIdx } from "../../recoil/placeDetailSliderIdxState";
 
 function MobileVideoTimeline() {
 	const index = useRecoilValue(timelineIdx);
-	const setDetailsIdx = useSetRecoilState(placeDetailSliderIdx);
 	const refArr = useRef<HTMLDivElement[]>([]);
 	const tagsContainerRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
+		//tagsContainerRef.current.offsetWidth
+		//140px + 50px
 		tagsContainerRef.current?.scrollTo({
 			left: index * 190 - 200,
 			top: 0,

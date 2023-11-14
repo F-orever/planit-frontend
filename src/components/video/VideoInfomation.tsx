@@ -56,10 +56,11 @@ function VideoInfomation() {
 
 	return (
 		<Container>
-			<span className="date">2023. 10. 19.</span>
+			<span className="date">2023. 4. 1.</span>
 			<TitleContainer>
 				<span className="title">
-					부산 풀코스! 서울에서 부산 당일치기 도전기
+					2023년엔 일단 시작, 일단 출발💙 | 힙한 곳들만 쏙쏙 다녀온
+					부산 당일치기
 				</span>
 				<div className="icons">
 					<div>
@@ -101,10 +102,10 @@ function VideoInfomation() {
 							gap: "6px",
 						}}
 					>
-						<BiSolidUserCircle />
+						<img src="./UserImage.png" />
 						<div className="userinfo">
-							<span className="name">tree_jin99</span>
-							<span className="followers">팔로워 23.4만명</span>
+							<span className="name">Hann 잰</span>
+							<span className="followers">팔로워 5.69만명</span>
 						</div>
 					</div>
 				) : (
@@ -115,10 +116,10 @@ function VideoInfomation() {
 							gap: "16px",
 						}}
 					>
-						<BiSolidUserCircle />
+						<img src="./UserImage.png" />
 						<div className="userinfo">
-							<span className="name">tree_jin99</span>
-							<span className="followers">팔로워 23.4만명</span>
+							<span className="name">Hann 잰</span>
+							<span className="followers">팔로워 5.69만명</span>
 						</div>
 					</div>
 				)}
@@ -147,13 +148,13 @@ function VideoInfomation() {
 							</div>
 							<div className="mobileContainer">
 								<div className="iconContainer">
-									<FaCanadianMapleLeaf />
-									<span>가을</span>
+									<img src="./spring.png" />
+									<span>봄</span>
 								</div>
 								<div className="verticalLine"></div>
 								<div className="iconContainer">
 									<LiaMoneyBillAltSolid />
-									<span>~20만원</span>
+									<span>~30만원</span>
 								</div>
 								<div className="verticalLine"></div>
 								<div className="themeContainer">
@@ -184,13 +185,13 @@ function VideoInfomation() {
 							</div>
 							<div className="verticalLine"></div>
 							<div className="iconContainer">
-								<FaCanadianMapleLeaf />
-								<span>가을</span>
+								<img src="./spring.png" />
+								<span>봄</span>
 							</div>
 							<div className="verticalLine"></div>
 							<div className="iconContainer">
 								<LiaMoneyBillAltSolid />
-								<span>~20만원</span>
+								<span>~30만원</span>
 							</div>
 						</div>
 
@@ -203,9 +204,12 @@ function VideoInfomation() {
 					</>
 				)}
 				<span className="desc">
-					서울에서 부산까지! 시간은 없는데 멀리 떠나고 싶어서 부산
-					지인의 도움 하에 당일치기 여행을 했습니다! <br />
-					조금 바쁜 영상이 될테니 두 눈 부릅뜨고 시청해주세요 :)
+					여러분 안녕하세요! 오늘은 여행 브이로그를 가져왔습니다. 2023
+					올해 제 목표가 일단 시작, 일단 출발 이거든요! 망설이기만
+					하다가가는 아무것도 못하잖아요 그래서 올해는 너무 깊이
+					생각하지 않고 뭐든 일단! 해보는 걸로 정했습니다! 그래서 떠난
+					부산 여행! 모두가 말렸던 부산 당일치기를!!!! 제가
+					해냈습니다!!!! 후훗😎 그럼 오늘 영상도 재밌게 봐주세요!💙
 				</span>
 
 				{isMobile && (
@@ -224,7 +228,7 @@ function VideoInfomation() {
 }
 
 const Container = styled.div`
-	width: 100%;
+	width: calc(100vw / 3 * 2);
 	margin-top: 20px;
 
 	display: flex;
@@ -232,6 +236,7 @@ const Container = styled.div`
 	justify-content: flex-start;
 
 	@media (max-width: 490px) {
+		width: 100%;
 		box-sizing: border-box;
 	}
 
@@ -294,7 +299,7 @@ const TitleContainer = styled.div`
 
 		@media (max-width: 490px) {
 			font-size: 20px;
-			font-weight: 700;
+			font-weight: 600;
 			letter-spacing: -0.5px;
 		}
 	}
@@ -353,11 +358,12 @@ const UserContainer = styled.div`
 		margin-bottom: 20px;
 	}
 
-	svg {
+	img {
 		width: 60px;
 		height: 60px;
 		margin-right: 16px;
 		color: ${({ theme }) => theme.textPrimary};
+		border-radius: 100%;
 
 		@media (max-width: 490px) {
 			width: 32px;
@@ -497,7 +503,8 @@ const VideoInfo = styled.div<{ isopen: boolean }>`
 				gap: 5px;
 			}
 
-			svg {
+			svg,
+			img {
 				width: 42px;
 				height: 42px;
 				color: ${({ theme }) => theme.primary};

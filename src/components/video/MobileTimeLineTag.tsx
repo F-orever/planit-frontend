@@ -8,9 +8,7 @@ import { myTripState, idState } from "../../recoil/myTripState";
 
 //svg
 import MarketIcon from "../../assets/svg/placetType/MarketIcon.svg";
-import FillWhiteCirclePlusIcon from "../../assets/svg/FillWhiteCirclePlusIcon.svg";
 import FillPrimaryCirclePlusIcon from "../../assets/svg/FillPrimaryCirclePlusIcon.svg";
-import MessageDetailIcon from "../../assets/svg/MessageDetailIcon.svg";
 import { sliderTimeState, timelineIdx } from "../../recoil/timelineIdx";
 
 type TimeLineTagProps = {

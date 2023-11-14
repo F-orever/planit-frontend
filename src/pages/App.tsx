@@ -31,7 +31,7 @@ function App() {
 						<VideoWrapper />
 						<MobileVideoTimeline />
 						<VideoInfomation />
-						{/* <VideoPlaces /> */}
+						<VideoPlaces />
 						<MyTrip />
 					</main>
 				</>
@@ -40,7 +40,7 @@ function App() {
 					<main className="main">
 						<VideoWrapper />
 						<VideoInfomation />
-						{/* <VideoPlaces /> */}
+						<VideoPlaces />
 					</main>
 					<aside className="aside">
 						<VideoTimeLine />
@@ -76,6 +76,9 @@ const AppContainer = styled.div`
 			"footer footer";
 		grid-template-rows: 80px auto auto 100px;
 		grid-row-gap: 0px;
+		@media (max-width: 490px) {
+			grid-template-rows: 80px auto auto;
+		}
 	}
 
 	.header {
@@ -92,7 +95,6 @@ const AppContainer = styled.div`
 		display: flex;
 		flex-direction: column;
 
-		padding-top: 20px;
 		padding-left: 7vw;
 		@media (max-width: 1670px) {
 			padding-left: 3vw;
@@ -109,7 +111,6 @@ const AppContainer = styled.div`
 		flex-direction: column;
 
 		width: 300px;
-		padding-top: 20px;
 		padding-right: 7vw;
 
 		@media (max-width: 1670px) {

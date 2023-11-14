@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
+import { mockPlaceData } from "./mockData";
 
 import { useSetRecoilState, useRecoilState } from "recoil";
 import { myTripState, idState } from "../../recoil/myTripState";
@@ -18,7 +19,6 @@ import {
 
 import ParkIcon from "../../assets/svg/ParkIcon.svg";
 import FillPrimaryCirclePlusIcon from "../../assets/svg/FillPrimaryCirclePlusIcon.svg";
-import axios from "axios";
 
 import PhotoSlider from "./PhotosSlider";
 import MobilePhotoSlider from "./MobilePhotoSlider";
@@ -29,7 +29,7 @@ import MarketIcon from "../../assets/svg/placetType/MarketIcon.svg";
 type PlaceDetailProps = {
 	onNextClick: () => void;
 	onPrevClick: () => void;
-	id: string;
+	id: number;
 };
 
 function PlaceDetail({ onNextClick, onPrevClick, id }: PlaceDetailProps) {
@@ -37,218 +37,198 @@ function PlaceDetail({ onNextClick, onPrevClick, id }: PlaceDetailProps) {
 		query: "(max-width:490px)",
 	});
 
-	const [data, setData] = useState<any>(null);
 	const setMyTrip = useSetRecoilState(myTripState);
 	const [myTripId, setMyTripId] = useRecoilState(idState);
 	const [isopen, setisopen] = useState(false);
 
-	useEffect(() => {
-		axios
-			.get(
-				`https://places.googleapis.com/v1/places/${id}?fields=*&key=${process.env.REACT_APP_GOOGLE_API_KEY}`,
-			)
-			.then((response) => {
-				console.log(response.data);
-				setData(response.data);
-			});
-	}, []);
-
 	return (
 		<Container>
-			{data && (
-				<>
-					{isMobile && (
-						<MobileAddBtn
+			{isMobile && (
+				<MobileAddBtn
+					onClick={() => {
+						setMyTrip((prev) => [
+							...prev,
+							{
+								id: myTripId,
+								icon: <MarketIcon />,
+								placeName: String(
+									mockPlaceData[id].displayName.text,
+								),
+							},
+						]);
+						setMyTripId((prev) => prev + 1);
+					}}
+				>
+					<span>내 일정에 추가하기</span>
+				</MobileAddBtn>
+			)}
+			<SliderHeader>
+				<div className="leftItems">
+					{isMobile ? (
+						<AiOutlineLeft
+							className="sliderButton"
 							onClick={() => {
-								setMyTrip((prev) => [
-									...prev,
-									{
-										id: myTripId,
-										icon: <MarketIcon />,
-										placeName: String(
-											data.displayName.text,
-										),
-									},
-								]);
-								setMyTripId((prev) => prev + 1);
+								onPrevClick();
 							}}
-						>
-							<span>내 일정에 추가하기</span>
-						</MobileAddBtn>
+						/>
+					) : (
+						<BsChevronDoubleLeft
+							className="sliderButton"
+							onClick={() => {
+								onPrevClick();
+							}}
+						/>
 					)}
-					<SliderHeader>
-						<div className="leftItems">
-							{isMobile ? (
-								<AiOutlineLeft
-									className="sliderButton"
-									onClick={() => {
-										onPrevClick();
-									}}
-								/>
-							) : (
-								<BsChevronDoubleLeft
-									className="sliderButton"
-									onClick={() => {
-										onPrevClick();
-									}}
-								/>
-							)}
-							<div className="typeIcon">
-								<ParkIcon />
-							</div>
-							<div className="titleBox">
-								<span className="title">
-									{data.displayName.text}
-								</span>
-								<span className="type">
-									{data.primaryTypeDisplayName.text}
-								</span>
-							</div>
-							<div className="info">
-								<span>
-									<FaLocationDot />
-									{data.formattedAddress}
-								</span>
-								<span>
-									<IoMdCall />
-									{data.nationalPhoneNumber}
-								</span>
+					<div className="typeIcon">
+						<ParkIcon />
+					</div>
+					<div className="titleBox">
+						<span className="title">
+							{mockPlaceData[id].displayName.text}
+						</span>
+						<span className="type">
+							{mockPlaceData[id].primaryTypeDisplayName.text}
+						</span>
+					</div>
+					<div className="info">
+						<span>
+							<FaLocationDot />
+							{mockPlaceData[id].formattedAddress}
+						</span>
+						<span>
+							<IoMdCall />
+							{mockPlaceData[id].nationalPhoneNumber}
+						</span>
 
-								<span className="time">
-									<BiTimeFive />
-									<span
-										style={{
-											marginRight: "30px",
-										}}
-									>
-										영업중
-									</span>
-									<span>오후 12:00~10:00</span>
-								</span>
-							</div>
-						</div>
-						{isMobile && (
-							<MobileTitleContainer>
-								<span>{data.displayName.text}</span>
-								<AiOutlineInfoCircle
-									className="infoBtn"
-									onClick={() => {
-										setisopen((prev) => !prev);
-									}}
-								/>
-							</MobileTitleContainer>
-						)}
-						<div className="rightItems">
-							<div
-								className="addBtnBox"
-								onClick={() => {
-									setMyTrip((prev) => [
-										...prev,
-										{
-											id: myTripId,
-											icon: <MarketIcon />,
-											placeName: String(
-												data.displayName.text,
-											),
-										},
-									]);
-									setMyTripId((prev) => prev + 1);
+						<span className="time">
+							<BiTimeFive />
+							<span
+								style={{
+									marginRight: "30px",
 								}}
 							>
-								<FillPrimaryCirclePlusIcon />
-								<span>일정 추가</span>
-							</div>
-							{isMobile ? (
-								<AiOutlineRight
-									className="sliderButton"
-									onClick={() => {
-										onNextClick();
-									}}
-								/>
-							) : (
-								<BsChevronDoubleRight
-									className="sliderButton"
-									onClick={() => {
-										onNextClick();
-									}}
-								/>
-							)}
-						</div>
-					</SliderHeader>
-					<SeperateLine />
-					{isMobile && (
-						<PopupInfo isopen={isopen}>
-							<AiOutlineClose
-								className="closeBtn"
-								onClick={() => {
-									setisopen(false);
-								}}
-							/>
-							<div className="info">
-								<span>
-									<FaLocationDot />
-									{data.formattedAddress}
-								</span>
-								<span>
-									<IoMdCall />
-									{data.nationalPhoneNumber}
-								</span>
-
-								<span className="time">
-									<BiTimeFive />
-									<span
-										style={{
-											color: "#349348",
-										}}
-									>
-										영업 중
-									</span>
-									<span> 오후 12:00~10:00</span>
-								</span>
-							</div>
-						</PopupInfo>
-					)}
+								영업중
+							</span>
+							<span>오후 12:00~10:00</span>
+						</span>
+					</div>
+				</div>
+				{isMobile && (
+					<MobileTitleContainer>
+						<span>{mockPlaceData[id].displayName.text}</span>
+						<AiOutlineInfoCircle
+							className="infoBtn"
+							onClick={() => {
+								setisopen((prev) => !prev);
+							}}
+						/>
+					</MobileTitleContainer>
+				)}
+				<div className="rightItems">
+					<div
+						className="addBtnBox"
+						onClick={() => {
+							setMyTrip((prev) => [
+								...prev,
+								{
+									id: myTripId,
+									icon: <MarketIcon />,
+									placeName: String(
+										mockPlaceData[id].displayName.text,
+									),
+								},
+							]);
+							setMyTripId((prev) => prev + 1);
+						}}
+					>
+						<FillPrimaryCirclePlusIcon />
+						<span>일정 추가</span>
+					</div>
 					{isMobile ? (
-						<MobilePhotoSlider photos={data ? data.photos : []} />
+						<AiOutlineRight
+							className="sliderButton"
+							onClick={() => {
+								onNextClick();
+							}}
+						/>
 					) : (
-						<PhotoSlider photos={data ? data.photos : []} />
+						<BsChevronDoubleRight
+							className="sliderButton"
+							onClick={() => {
+								onNextClick();
+							}}
+						/>
 					)}
-					<SeperateLine />
-					<ReviewSummary>
-						<div className="title">
-							<span className="header">리뷰 요약</span>
-							<span className="tags">
-								{data.types.map((type: string) => `#${type} `)}
+				</div>
+			</SliderHeader>
+			<SeperateLine />
+			{isMobile && (
+				<PopupInfo isopen={isopen}>
+					<AiOutlineClose
+						className="closeBtn"
+						onClick={() => {
+							setisopen(false);
+						}}
+					/>
+					<div className="info">
+						<span>
+							<FaLocationDot />
+							{mockPlaceData[id].formattedAddress}
+						</span>
+						<span>
+							<IoMdCall />
+							{mockPlaceData[id].nationalPhoneNumber}
+						</span>
+
+						<span className="time">
+							<BiTimeFive />
+							<span
+								style={{
+									color: "#349348",
+								}}
+							>
+								영업 중
 							</span>
-						</div>
-						<div className="rating">
-							<span className="header">
-								{data !== null && data.rating}
-							</span>
-							<span>
-								<StarIcon />
-								<StarIcon />
-								<StarIcon />
-								<StarIcon />
-								<StarIcon />
-							</span>
-							<span className="reviewCount">리뷰 5,227개</span>
-						</div>
-					</ReviewSummary>
-					<SeperateLine />
-					<ReviewContainer>
-						{isMobile && (
-							<MobileReviewTitle>리뷰</MobileReviewTitle>
-						)}
-						{data.reviews.map((review: reviewType, idx: number) => (
-							<>
-								<Review {...review} />
-								{isMobile && <SeperateLine />}
-							</>
-						))}
-					</ReviewContainer>
-				</>
+							<span> 오후 12:00~10:00</span>
+						</span>
+					</div>
+				</PopupInfo>
 			)}
+			{isMobile ? (
+				<MobilePhotoSlider
+					photoLength={mockPlaceData[id].photoLength}
+					id={id}
+				/>
+			) : (
+				<PhotoSlider
+					photoLength={mockPlaceData[id].photoLength}
+					id={id}
+				/>
+			)}
+			<SeperateLine />
+			<ReviewSummary>
+				<div className="title">
+					<span className="header">리뷰 요약</span>
+					{/* <span className="tags">
+						{mockPlaceData.types.map((type: string) => `#${type} `)}
+					</span> */}
+				</div>
+				<div className="rating">
+					<img src={`./imgs/${id + 1}/rating.png`} />
+				</div>
+			</ReviewSummary>
+			<SeperateLine />
+			<ReviewContainer>
+				{isMobile && <MobileReviewTitle>리뷰</MobileReviewTitle>}
+				{mockPlaceData[id].reviews.map(
+					(review: reviewType, idx: number) => (
+						<>
+							<Review id={id} idx={idx} review={review} />
+							{isMobile && <SeperateLine />}
+						</>
+					),
+				)}
+			</ReviewContainer>
 		</Container>
 	);
 }

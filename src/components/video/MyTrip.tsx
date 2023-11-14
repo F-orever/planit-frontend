@@ -39,7 +39,7 @@ function MyTrip() {
 					<Tag
 						isgreen={true}
 						text="출발지"
-						placeName="부산역"
+						placeName="서울역"
 						id={-1}
 					/>
 					<VerticalLine />
@@ -105,6 +105,7 @@ const MyTripBtn = styled.div`
 	position: fixed;
 	right: 16px;
 	bottom: 16px;
+	z-index: 20;
 
 	display: flex;
 	justify-content: center;
@@ -137,10 +138,11 @@ const Container = styled.div<{ isopen: boolean }>`
 		position: fixed;
 		right: 58px;
 		bottom: 58px;
+		z-index: 20;
 		top: inherit;
 
 		width: 242px;
-		height: 410px;
+		height: 444px;
 	}
 `;
 
@@ -175,6 +177,10 @@ const Header = styled.div`
 		color: ${({ theme }) => theme.textPrimary};
 		font-size: 21px;
 		font-weight: 500;
+
+		@media (max-width: 490px) {
+			font-size: 18px;
+		}
 	}
 `;
 
@@ -205,6 +211,10 @@ const Footer = styled.div`
 		color: ${({ theme }) => theme.textPrimary};
 		font-size: 21px;
 		font-weight: 500;
+
+		@media (max-width: 490px) {
+			font-size: 18px;
+		}
 	}
 `;
 
