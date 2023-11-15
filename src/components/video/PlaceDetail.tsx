@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
 import { mockPlaceData } from "./mockData";
+import ReactGA from "react-ga4";
 
 import { useSetRecoilState, useRecoilState } from "recoil";
 import { myTripState, idState } from "../../recoil/myTripState";
@@ -46,6 +47,11 @@ function PlaceDetail({ onNextClick, onPrevClick, id }: PlaceDetailProps) {
 			{isMobile && (
 				<MobileAddBtn
 					onClick={() => {
+						ReactGA.event({
+							category: "Event",
+							action: "Place Detail Add Btn",
+							label: "장소 상세보기 추가 버튼 클릭",
+						});
 						setMyTrip((prev) => [
 							...prev,
 							{
@@ -68,6 +74,11 @@ function PlaceDetail({ onNextClick, onPrevClick, id }: PlaceDetailProps) {
 						<AiOutlineLeft
 							className="sliderButton"
 							onClick={() => {
+								ReactGA.event({
+									category: "Event",
+									action: "Mobile Place Detail Prev Btn",
+									label: "모바일 장소 상세 슬라이드 이전 버튼 클릭",
+								});
 								onPrevClick();
 							}}
 						/>
@@ -75,6 +86,11 @@ function PlaceDetail({ onNextClick, onPrevClick, id }: PlaceDetailProps) {
 						<BsChevronDoubleLeft
 							className="sliderButton"
 							onClick={() => {
+								ReactGA.event({
+									category: "Event",
+									action: "Place Detail Prev Btn",
+									label: "장소 상세 슬라이드 이전 버튼 클릭",
+								});
 								onPrevClick();
 							}}
 						/>
@@ -119,6 +135,11 @@ function PlaceDetail({ onNextClick, onPrevClick, id }: PlaceDetailProps) {
 						<AiOutlineInfoCircle
 							className="infoBtn"
 							onClick={() => {
+								ReactGA.event({
+									category: "Event",
+									action: "Mobile Place Detail Add Btn",
+									label: "모바일 장소 상세 추가 버튼 클릭",
+								});
 								setisopen((prev) => !prev);
 							}}
 						/>
@@ -128,6 +149,11 @@ function PlaceDetail({ onNextClick, onPrevClick, id }: PlaceDetailProps) {
 					<div
 						className="addBtnBox"
 						onClick={() => {
+							ReactGA.event({
+								category: "Event",
+								action: "Place Detail Add Btn",
+								label: "장소 상세 추가 버튼 클릭",
+							});
 							setMyTrip((prev) => [
 								...prev,
 								{
@@ -148,6 +174,12 @@ function PlaceDetail({ onNextClick, onPrevClick, id }: PlaceDetailProps) {
 						<AiOutlineRight
 							className="sliderButton"
 							onClick={() => {
+								ReactGA.event({
+									category: "Event",
+									action: "Mobile Place Detail Next Btn",
+									label: "모바일 장소 상세 슬라이드 다음 버튼 클릭",
+								});
+
 								onNextClick();
 							}}
 						/>
@@ -155,6 +187,11 @@ function PlaceDetail({ onNextClick, onPrevClick, id }: PlaceDetailProps) {
 						<BsChevronDoubleRight
 							className="sliderButton"
 							onClick={() => {
+								ReactGA.event({
+									category: "Event",
+									action: "Place Detail Next Btn",
+									label: "장소 상세 슬라이드 다음 버튼 클릭",
+								});
 								onNextClick();
 							}}
 						/>
@@ -167,6 +204,11 @@ function PlaceDetail({ onNextClick, onPrevClick, id }: PlaceDetailProps) {
 					<AiOutlineClose
 						className="closeBtn"
 						onClick={() => {
+							ReactGA.event({
+								category: "Event",
+								action: "Mobile Place Detail Info Btn",
+								label: "모바일 장소 상세 정보 버튼 클릭",
+							});
 							setisopen(false);
 						}}
 					/>
@@ -214,7 +256,22 @@ function PlaceDetail({ onNextClick, onPrevClick, id }: PlaceDetailProps) {
 					</span> */}
 				</div>
 				<div className="rating">
-					<img src={`./imgs/${id + 1}/rating.png`} />
+					<img src={`./rating.png`} />
+					<div className="textArea">
+						<span className="header">
+							{mockPlaceData[id].rating.value}
+						</span>
+						<span>
+							<StarIcon />
+							<StarIcon />
+							<StarIcon />
+							<StarIcon />
+							<StarIcon />
+						</span>
+						<span className="reviewCount">
+							리뷰 {mockPlaceData[id].rating.count}개
+						</span>
+					</div>
 				</div>
 			</ReviewSummary>
 			<SeperateLine />
@@ -251,9 +308,18 @@ const ReviewSummary = styled.div`
 	align-items: center;
 
 	@media (max-width: 490px) {
+		width: 100%;
 		height: auto;
 		margin-top: 18px;
 		margin-bottom: 18px;
+	}
+
+	.textArea {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 22px;
 	}
 
 	.title {
@@ -285,13 +351,27 @@ const ReviewSummary = styled.div`
 
 	.rating {
 		display: flex;
-		flex-direction: column;
-		gap: 18px;
+		flex-direction: row;
+		gap: 30px;
 		align-items: center;
 
+		img {
+			width: 400px;
+
+			@media (max-width: 1200px) {
+				width: 300px;
+			}
+			@media (max-width: 900px) {
+				width: 200px;
+			}
+			@media (max-width: 490px) {
+				width: 60%;
+			}
+		}
+
 		@media (max-width: 490px) {
-			width: 100%;
-			gap: 5px;
+			width: 90%;
+			justify-content: space-between;
 
 			svg {
 				width: 11px;
@@ -349,6 +429,10 @@ const SliderHeader = styled.div`
 	.typeIcon {
 		margin-left: 54px;
 
+		@media (max-width: 1300px) {
+			margin-left: 24px;
+		}
+
 		@media (max-width: 490px) {
 			display: none;
 		}
@@ -369,6 +453,9 @@ const SliderHeader = styled.div`
 			letter-spacing: 2.4px;
 			word-break: keep-all;
 
+			@media (max-width: 1300px) {
+				margin-left: 32px;
+			}
 			@media (max-width: 490px) {
 				display: none;
 			}
@@ -380,6 +467,9 @@ const SliderHeader = styled.div`
 			font-weight: normal;
 			letter-spacing: 1.2px;
 
+			@media (max-width: 1300px) {
+				margin-left: 16px;
+			}
 			@media (max-width: 490px) {
 				display: none;
 			}
@@ -394,6 +484,9 @@ const SliderHeader = styled.div`
 		align-items: flex-start;
 		gap: 10px;
 
+		@media (max-width: 1300px) {
+			margin-left: 24px;
+		}
 		@media (max-width: 490px) {
 			display: none;
 		}
@@ -402,6 +495,10 @@ const SliderHeader = styled.div`
 			display: flex;
 			justify-content: center;
 			align-items: center;
+
+			@media (max-width: 1300px) {
+				font-size: 14px;
+			}
 			svg {
 				width: 30px;
 				height: 30px;

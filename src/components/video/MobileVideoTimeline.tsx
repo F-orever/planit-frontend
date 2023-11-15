@@ -16,10 +16,8 @@ function MobileVideoTimeline() {
 	const tagsContainerRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
-		//tagsContainerRef.current.offsetWidth
-		//140px + 50px
 		tagsContainerRef.current?.scrollTo({
-			left: index * 190 - 200,
+			left: index * 190 - tagsContainerRef.current.offsetWidth / 2 + 70,
 			top: 0,
 			behavior: "smooth",
 		});

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import ReactGA from "react-ga4";
 
 import { GiHamburgerMenu } from "react-icons/gi";
 import { BsFillTrashFill } from "react-icons/bs";
@@ -28,6 +29,11 @@ function MyTripTag({ isgreen, text, placeName, id }: MyTripTagProps) {
 				<BsFillTrashFill
 					className="trash"
 					onClick={() => {
+						ReactGA.event({
+							category: "Event",
+							action: "MyTrip Delete Btn",
+							label: "내 여행 태그 삭제 버튼 클릭",
+						});
 						setMyTrip((prev) => prev.filter((item) => item.id !== id),
 						);
 					}}

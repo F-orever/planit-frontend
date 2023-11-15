@@ -1,14 +1,19 @@
 import React, { useEffect, useRef } from "react";
 import Slider, { Settings } from "react-slick";
 import styled from "styled-components";
-import PlaceDetail from "./PlaceDetail";
+import { useMediaQuery } from "react-responsive";
 
 import { mockPlaceData } from "./mockData";
 
 import { useRecoilState } from "recoil";
 import { placeDetailSliderIdx } from "../../recoil/placeDetailSliderIdxState";
+import PlaceDetail from "./PlaceDetail";
 
 function VideoPlaces() {
+	const isMobile: boolean = useMediaQuery({
+		query: "(max-width:490px)",
+	});
+
 	const sliderRef = useRef<Slider>(null);
 	const [idx, setIdx] = useRecoilState(placeDetailSliderIdx);
 	const settings: Settings = {
@@ -17,6 +22,7 @@ function VideoPlaces() {
 		slidesToShow: 1,
 		slidesToScroll: 1,
 		draggable: false,
+		arrows: isMobile ? false : true,
 	};
 
 	useEffect(() => {
@@ -49,7 +55,7 @@ const StyledSlider = styled(Slider)`
 	width: calc(100vw / 3 * 2);
 
 	@media (max-width: 490px) {
-		width: 100%;
+		width: 100vw;
 	}
 `;
 

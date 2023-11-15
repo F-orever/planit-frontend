@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
+
+import ReactGA from "react-ga4";
 
 import FixedHeader from "../components/FixedHeader";
 import NavigationMenu from "../components/NavigationMenu";
@@ -18,6 +20,11 @@ function App() {
 	const isMobile: boolean = useMediaQuery({
 		query: "(max-width:490px)",
 	});
+
+	useEffect(() => {
+		ReactGA.send({ hitType: "pageview", page: "/", title: "MVP TEST " });
+	}, []);
+
 	return (
 		<AppContainer>
 			<Modal />

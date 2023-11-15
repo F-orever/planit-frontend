@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { get, statics, update } from "../../db/repository/statics";
 import { useMediaQuery } from "react-responsive";
+import ReactGA from "react-ga4";
 
 //icons
 import { BsFillBookmarkFill, BsFillPersonFill } from "react-icons/bs";
@@ -76,6 +77,11 @@ function VideoInfomation() {
 					<HeartBox isclick={isclick}>
 						<AiFillHeart
 							onClick={() => {
+								ReactGA.event({
+									category: "Event",
+									action: "Loves Btn",
+									label: "좋아요 버튼 클릭",
+								});
 								if (!isclick) {
 									update(statics.id, {
 										id: statics.id,
@@ -215,6 +221,11 @@ function VideoInfomation() {
 				{isMobile && (
 					<ShortButton
 						onClick={() => {
+							ReactGA.event({
+								category: "Event",
+								action: "Mobile Info Close Btn",
+								label: "모바일 영상 정보 간략히 버튼 클릭",
+							});
 							setisopen((prev) => !prev);
 						}}
 					>

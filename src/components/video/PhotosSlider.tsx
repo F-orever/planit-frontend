@@ -4,9 +4,11 @@ import Slider, { Settings } from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { AiOutlineRight, AiOutlineLeft, AiOutlineClose } from "react-icons/ai";
+import ReactGA from "react-ga4";
 
 import { useSetRecoilState } from "recoil";
 import { modalState } from "../../recoil/modalState";
+import LazyImage from "./LazyImage";
 
 type photoType = {
 	authorAttributions: [];
@@ -38,25 +40,31 @@ function PhotoSlider({ photoLength, id }: PhotoSliderProps) {
 		for (let i = 1; i <= photoLength; i++) {
 			arr.push(
 				<div key={i}>
-					<img
+					<LazyImage
 						src={`./imgs/${id + 1}/${i}.png`}
-						alt=""
-						style={{
-							cursor: "pointer",
-						}}
 						onClick={() => {
+							ReactGA.event({
+								category: "Event",
+								action: "Place Detail Img Modal Open Btn",
+								label: "장소 상세 정보 이미지 모달 버튼 클릭",
+							});
 							setModalState({
 								children: (
-									<StyledChildren>
-										<img
-											onClick={(e) => {
-												e.stopPropagation();
-											}}
+									<StyledChildren
+										onClick={(e) => {
+											e.stopPropagation();
+										}}
+									>
+										<LazyImage
 											src={`./imgs/${id + 1}/${i}.png`}
-											alt=""
 										/>
 										<AiOutlineClose
 											onClick={() => {
+												ReactGA.event({
+													category: "Event",
+													action: "Close Img Modal",
+													label: "이미지 모달 닫기 버튼 클릭",
+												});
 												setModalState({
 													children: <></>,
 													isopen: false,
@@ -69,6 +77,47 @@ function PhotoSlider({ photoLength, id }: PhotoSliderProps) {
 							});
 						}}
 					/>
+					{/* <img
+						// src={`./imgs/${id + 1}/${i}.png`}
+						alt=""
+						style={{
+							cursor: "pointer",
+						}}
+						onClick={() => {
+							ReactGA.event({
+								category: "Event",
+								action: "Place Detail Img Modal Open Btn",
+								label: "장소 상세 정보 이미지 모달 버튼 클릭",
+							});
+							setModalState({
+								children: (
+									<StyledChildren>
+										<img
+											onClick={(e) => {
+												e.stopPropagation();
+											}}
+											// src={`./imgs/${id + 1}/${i}.png`}
+											alt=""
+										/>
+										<AiOutlineClose
+											onClick={() => {
+												ReactGA.event({
+													category: "Event",
+													action: "Close Img Modal",
+													label: "이미지 모달 닫기 버튼 클릭",
+												});
+												setModalState({
+													children: <></>,
+													isopen: false,
+												});
+											}}
+										/>
+									</StyledChildren>
+								),
+								isopen: true,
+							});
+						}}
+					/> */}
 				</div>,
 			);
 		}

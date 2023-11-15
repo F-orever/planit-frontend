@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import { useMediaQuery } from "react-responsive";
+import ReactGA from "react-ga4";
 
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { FaUserCircle } from "react-icons/fa";
@@ -22,6 +23,11 @@ function NavigationMenu() {
 				<GiHamburgerMenu
 					className="navBtn"
 					onClick={() => {
+						ReactGA.event({
+							category: "Event",
+							action: "Mobile Open Dropdown Menu",
+							label: "모바일 드롭 다운 메뉴 버튼 클릭",
+						});
 						setIsOpen((prev) => !prev);
 					}}
 				/>
@@ -30,6 +36,11 @@ function NavigationMenu() {
 				<MobileDropDownMenu isopen={isopen} subisopen={subisopen}>
 					<span
 						onClick={() => {
+							ReactGA.event({
+								category: "Event",
+								action: "Mobile Open Sub Dropdown Menu",
+								label: "모바일 드롭 다운 서브메뉴 버튼 클릭",
+							});
 							setsubIsOpen((prev) => !prev);
 						}}
 					>

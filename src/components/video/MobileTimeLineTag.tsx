@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import ReactGA from "react-ga4";
 
 //recoil
 import { useSetRecoilState, useRecoilState } from "recoil";
@@ -36,6 +37,11 @@ function MobileTimeLineTag({
 	return (
 		<Content
 			onClick={() => {
+				ReactGA.event({
+					category: "Event",
+					action: "Mobile TimeLine Tag",
+					label: "모바일 타임라인 태그 클릭",
+				});
 				setCurrentTime(time);
 				setPlaceDetailSliderIdx(index);
 				setCenterIdx(index);
@@ -44,6 +50,11 @@ function MobileTimeLineTag({
 			<FillPrimaryCirclePlusIcon
 				className="plusBtn"
 				onClick={() => {
+					ReactGA.event({
+						category: "Event",
+						action: "Mobile TimeLine Tag Add Btn",
+						label: "모바일 타임라인 태그 추가버튼 클릭",
+					});
 					setMyTrip((prev) => [
 						...prev,
 						{
@@ -92,6 +103,10 @@ const Content = styled.div`
 		color: grey;
 		margin-right: 0px;
 		z-index: 10;
+	}
+
+	.plusBtn {
+		flex-shrink: 0;
 	}
 
 	.textContainer {

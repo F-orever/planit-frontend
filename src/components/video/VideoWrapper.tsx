@@ -4,6 +4,7 @@ import { mockData } from "./mockData";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { sliderTimeState, timelineIdx } from "../../recoil/timelineIdx";
 import styled from "styled-components";
+import ReactGA from "react-ga4";
 
 function VideoWrapper() {
 	const playerRef = useRef<YouTube>(null);
@@ -75,7 +76,16 @@ function VideoWrapper() {
 	}, []);
 
 	return (
-		<StyledWrapper ref={Wrapper}>
+		<StyledWrapper
+			ref={Wrapper}
+			onClick={() => {
+				ReactGA.event({
+					category: "Event",
+					action: "Youtube Player Play",
+					label: "유튜브 영상 클릭",
+				});
+			}}
+		>
 			<YouTube videoId="Abp2iKMS72E" opts={opts} ref={playerRef} />
 		</StyledWrapper>
 	);
