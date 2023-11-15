@@ -84,7 +84,12 @@ function MyTrip() {
 					/>
 				</Main>
 				<Footer>
-					<a href="https://docs.google.com/forms/d/e/1FAIpQLSfpCACDU1onaIus8Tz_nanmxIFexfVCcswglm5uEa0W64e_Yg/viewform?usp=sf_link">
+					<a
+						href="https://docs.google.com/forms/d/e/1FAIpQLSfpCACDU1onaIus8Tz_nanmxIFexfVCcswglm5uEa0W64e_Yg/viewform?usp=sf_link"
+						style={{
+							textDecoration: "none",
+						}}
+					>
 						<span>계획 실행하기</span>
 					</a>
 				</Footer>

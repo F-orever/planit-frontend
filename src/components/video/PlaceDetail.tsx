@@ -256,7 +256,22 @@ function PlaceDetail({ onNextClick, onPrevClick, id }: PlaceDetailProps) {
 					</span> */}
 				</div>
 				<div className="rating">
-					<img src={`./imgs/${id + 1}/rating.png`} />
+					<img src={`./rating.png`} />
+					<div className="textArea">
+						<span className="header">
+							{mockPlaceData[id].rating.value}
+						</span>
+						<span>
+							<StarIcon />
+							<StarIcon />
+							<StarIcon />
+							<StarIcon />
+							<StarIcon />
+						</span>
+						<span className="reviewCount">
+							리뷰 {mockPlaceData[id].rating.count}개
+						</span>
+					</div>
 				</div>
 			</ReviewSummary>
 			<SeperateLine />
@@ -299,6 +314,14 @@ const ReviewSummary = styled.div`
 		margin-bottom: 18px;
 	}
 
+	.textArea {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 22px;
+	}
+
 	.title {
 		display: flex;
 		flex-direction: column;
@@ -328,26 +351,31 @@ const ReviewSummary = styled.div`
 
 	.rating {
 		display: flex;
-		flex-direction: column;
-		gap: 18px;
+		flex-direction: row;
+		gap: 30px;
 		align-items: center;
 
 		img {
 			width: 400px;
-			height: 140px;
+
+			@media (max-width: 1200px) {
+				width: 300px;
+			}
+			@media (max-width: 900px) {
+				width: 200px;
+			}
+			@media (max-width: 490px) {
+				width: 60%;
+			}
 		}
 
 		@media (max-width: 490px) {
-			width: 100%;
-			gap: 5px;
+			width: 90%;
+			justify-content: space-between;
 
 			svg {
 				width: 11px;
 				height: 11px;
-			}
-
-			img {
-				width: 100%;
 			}
 		}
 

@@ -92,6 +92,10 @@ export const mockPlaceData = [
 		formattedAddress: "서울특별시 용산구 한강대로 405",
 		nationalPhoneNumber: "1544-7788",
 		photoLength: 12,
+		rating: {
+			value: 4.4,
+			count: "1,583",
+		},
 		reviews: [
 			{
 				name: "jeanie",
@@ -145,6 +149,10 @@ export const mockPlaceData = [
 		formattedAddress: "부산 동구 중앙대로 206",
 		nationalPhoneNumber: "1544-7788",
 		photoLength: 9,
+		rating: {
+			value: 4.4,
+			count: "1,254",
+		},
 		reviews: [
 			{
 				name: "Learner",
@@ -203,6 +211,10 @@ export const mockPlaceData = [
 		formattedAddress: "부산광역시 수영구 광안해변로 100",
 		nationalPhoneNumber: "051-623-5977",
 		photoLength: 11,
+		rating: {
+			value: 4.3,
+			count: "113",
+		},
 		reviews: [
 			{
 				name: "Min",
@@ -253,9 +265,13 @@ export const mockPlaceData = [
 		primaryTypeDisplayName: {
 			text: "해변",
 		},
-		formattedAddress: "-",
-		nationalPhoneNumber: "-",
+		formattedAddress: " ",
+		nationalPhoneNumber: " ",
 		photoLength: 10,
+		rating: {
+			value: 4.6,
+			count: "994",
+		},
 		reviews: [
 			{
 				name: "로시",
@@ -308,9 +324,13 @@ export const mockPlaceData = [
 		primaryTypeDisplayName: {
 			text: "한식당",
 		},
-		formattedAddress: "-",
-		nationalPhoneNumber: "부산광역시 수영구 광남로120번길 8",
+		formattedAddress: "부산광역시 수영구 광남로120번길 8",
+		nationalPhoneNumber: " ",
 		photoLength: 9,
+		rating: {
+			value: 4.2,
+			count: "11,470",
+		},
 		reviews: [
 			{
 				name: "장현용",
@@ -366,9 +386,13 @@ export const mockPlaceData = [
 		primaryTypeDisplayName: {
 			text: "관광 명소",
 		},
-		formattedAddress: "-",
-		nationalPhoneNumber: "부산광역시 해운대구 달맞이길62번길 13",
+		formattedAddress: "부산광역시 해운대구 달맞이길62번길 13",
+		nationalPhoneNumber: " ",
 		photoLength: 10,
+		rating: {
+			value: 4.4,
+			count: "3,990",
+		},
 		reviews: [
 			{
 				name: "jjhu",
@@ -434,9 +458,13 @@ export const mockPlaceData = [
 		primaryTypeDisplayName: {
 			text: "해변",
 		},
-		formattedAddress: "-",
-		nationalPhoneNumber: "-",
+		formattedAddress: " ",
+		nationalPhoneNumber: " ",
 		photoLength: 13,
+		rating: {
+			value: 4.4,
+			count: "268",
+		},
 		reviews: [
 			{
 				name: "gyeol ha",
@@ -493,8 +521,12 @@ export const mockPlaceData = [
 			text: "관광명소",
 		},
 		formattedAddress: "부산광역시 해운대구 우동",
-		nationalPhoneNumber: "-",
+		nationalPhoneNumber: " ",
 		photoLength: 11,
+		rating: {
+			value: 4.0,
+			count: "751",
+		},
 		reviews: [
 			{
 				name: "Nansil Lee",
@@ -552,8 +584,12 @@ export const mockPlaceData = [
 			text: "튀김덮밥 전문점",
 		},
 		formattedAddress: "부산광역시 해운대구 우동1로38번가길 15",
-		nationalPhoneNumber: "-",
+		nationalPhoneNumber: " ",
 		photoLength: 11,
+		rating: {
+			value: 4.5,
+			count: "435",
+		},
 		reviews: [
 			{
 				name: "Dreaming Y",
@@ -611,9 +647,13 @@ export const mockPlaceData = [
 		primaryTypeDisplayName: {
 			text: "해변",
 		},
-		formattedAddress: "-",
-		nationalPhoneNumber: "-",
+		formattedAddress: " ",
+		nationalPhoneNumber: " ",
 		photoLength: 10,
+		rating: {
+			value: 4.6,
+			count: "1,719",
+		},
 		reviews: [
 			{
 				name: "걸어서동네한바퀴",
@@ -666,8 +706,12 @@ export const mockPlaceData = [
 			text: "커피숍/커피 전문점",
 		},
 		formattedAddress: "부산광역시 해운대구 우제1동 618-15",
-		nationalPhoneNumber: "-",
+		nationalPhoneNumber: " ",
 		photoLength: 10,
+		rating: {
+			value: 4.3,
+			count: "66",
+		},
 		reviews: [
 			{
 				name: "Rovin Park",
@@ -732,6 +776,10 @@ export const mockPlaceData = [
 		formattedAddress: "부산광역시 부산진구 동성로 25",
 		nationalPhoneNumber: "050-71320-2750",
 		photoLength: 10,
+		rating: {
+			value: 4.3,
+			count: "66",
+		},
 		reviews: [
 			{
 				name: "jinho park",
