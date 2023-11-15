@@ -4,6 +4,7 @@ import StarIcon from "../../assets/svg/StarIcon.svg";
 import { CiStar } from "react-icons/ci";
 import { useMediaQuery } from "react-responsive";
 import { FaRegUserCircle } from "react-icons/fa";
+import LazyImage from "./LazyImage";
 
 export type reviewType = {
 	name: string;
@@ -39,13 +40,7 @@ function Review({ review, id, idx }: ReviewPropsType) {
 
 	return (
 		<Container>
-			{!isMobile && (
-				<img
-					src={`./imgs/${id + 1}/${idx + 1}.png`}
-					alt=""
-					className="placeThumbnail"
-				/>
-			)}
+			{!isMobile && <LazyImage src={`./imgs/${id + 1}/${idx + 1}.png`} />}
 			<TextContainer>
 				<AuthorContainer>
 					{/* <img
@@ -82,7 +77,7 @@ const Container = styled.div`
 		margin-bottom: 16px;
 	}
 
-	.placeThumbnail {
+	img {
 		width: 185px;
 		height: 185px;
 	}

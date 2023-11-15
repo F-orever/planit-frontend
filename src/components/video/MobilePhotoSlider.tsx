@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Slider, { Settings } from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import LazyImage from "./LazyImage";
 
 type photoType = {
 	authorAttributions: [];
@@ -31,13 +32,14 @@ function MobilePhotoSlider({ photoLength, id }: PhotoSliderProps) {
 		for (let i = 1; i <= photoLength; i++) {
 			arr.push(
 				<div key={id}>
-					<img
+					{/* <img
 						src={`./imgs/${id + 1}/${i}.png`}
 						alt=""
 						style={{
 							cursor: "pointer",
 						}}
-					/>
+					/> */}
+					<LazyImage src={`./imgs/${id + 1}/${i}.png`} />
 				</div>,
 			);
 		}

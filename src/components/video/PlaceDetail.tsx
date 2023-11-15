@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
 import { mockPlaceData } from "./mockData";
+import ReactGA from "react-ga4";
 
 import { useSetRecoilState, useRecoilState } from "recoil";
 import { myTripState, idState } from "../../recoil/myTripState";
@@ -46,6 +47,11 @@ function PlaceDetail({ onNextClick, onPrevClick, id }: PlaceDetailProps) {
 			{isMobile && (
 				<MobileAddBtn
 					onClick={() => {
+						ReactGA.event({
+							category: "Event",
+							action: "Place Detail Add Btn",
+							label: "장소 상세보기 추가 버튼 클릭",
+						});
 						setMyTrip((prev) => [
 							...prev,
 							{
@@ -68,6 +74,11 @@ function PlaceDetail({ onNextClick, onPrevClick, id }: PlaceDetailProps) {
 						<AiOutlineLeft
 							className="sliderButton"
 							onClick={() => {
+								ReactGA.event({
+									category: "Event",
+									action: "Mobile Place Detail Prev Btn",
+									label: "모바일 장소 상세 슬라이드 이전 버튼 클릭",
+								});
 								onPrevClick();
 							}}
 						/>
@@ -75,6 +86,11 @@ function PlaceDetail({ onNextClick, onPrevClick, id }: PlaceDetailProps) {
 						<BsChevronDoubleLeft
 							className="sliderButton"
 							onClick={() => {
+								ReactGA.event({
+									category: "Event",
+									action: "Place Detail Prev Btn",
+									label: "장소 상세 슬라이드 이전 버튼 클릭",
+								});
 								onPrevClick();
 							}}
 						/>
@@ -119,6 +135,11 @@ function PlaceDetail({ onNextClick, onPrevClick, id }: PlaceDetailProps) {
 						<AiOutlineInfoCircle
 							className="infoBtn"
 							onClick={() => {
+								ReactGA.event({
+									category: "Event",
+									action: "Mobile Place Detail Add Btn",
+									label: "모바일 장소 상세 추가 버튼 클릭",
+								});
 								setisopen((prev) => !prev);
 							}}
 						/>
@@ -128,6 +149,11 @@ function PlaceDetail({ onNextClick, onPrevClick, id }: PlaceDetailProps) {
 					<div
 						className="addBtnBox"
 						onClick={() => {
+							ReactGA.event({
+								category: "Event",
+								action: "Place Detail Add Btn",
+								label: "장소 상세 추가 버튼 클릭",
+							});
 							setMyTrip((prev) => [
 								...prev,
 								{
@@ -148,6 +174,12 @@ function PlaceDetail({ onNextClick, onPrevClick, id }: PlaceDetailProps) {
 						<AiOutlineRight
 							className="sliderButton"
 							onClick={() => {
+								ReactGA.event({
+									category: "Event",
+									action: "Mobile Place Detail Next Btn",
+									label: "모바일 장소 상세 슬라이드 다음 버튼 클릭",
+								});
+
 								onNextClick();
 							}}
 						/>
@@ -155,6 +187,11 @@ function PlaceDetail({ onNextClick, onPrevClick, id }: PlaceDetailProps) {
 						<BsChevronDoubleRight
 							className="sliderButton"
 							onClick={() => {
+								ReactGA.event({
+									category: "Event",
+									action: "Place Detail Next Btn",
+									label: "장소 상세 슬라이드 다음 버튼 클릭",
+								});
 								onNextClick();
 							}}
 						/>
@@ -167,6 +204,11 @@ function PlaceDetail({ onNextClick, onPrevClick, id }: PlaceDetailProps) {
 					<AiOutlineClose
 						className="closeBtn"
 						onClick={() => {
+							ReactGA.event({
+								category: "Event",
+								action: "Mobile Place Detail Info Btn",
+								label: "모바일 장소 상세 정보 버튼 클릭",
+							});
 							setisopen(false);
 						}}
 					/>
@@ -251,6 +293,7 @@ const ReviewSummary = styled.div`
 	align-items: center;
 
 	@media (max-width: 490px) {
+		width: 100%;
 		height: auto;
 		margin-top: 18px;
 		margin-bottom: 18px;
@@ -289,6 +332,11 @@ const ReviewSummary = styled.div`
 		gap: 18px;
 		align-items: center;
 
+		img {
+			width: 400px;
+			height: 140px;
+		}
+
 		@media (max-width: 490px) {
 			width: 100%;
 			gap: 5px;
@@ -296,6 +344,10 @@ const ReviewSummary = styled.div`
 			svg {
 				width: 11px;
 				height: 11px;
+			}
+
+			img {
+				width: 100%;
 			}
 		}
 
@@ -349,6 +401,10 @@ const SliderHeader = styled.div`
 	.typeIcon {
 		margin-left: 54px;
 
+		@media (max-width: 1300px) {
+			margin-left: 24px;
+		}
+
 		@media (max-width: 490px) {
 			display: none;
 		}
@@ -369,6 +425,9 @@ const SliderHeader = styled.div`
 			letter-spacing: 2.4px;
 			word-break: keep-all;
 
+			@media (max-width: 1300px) {
+				margin-left: 32px;
+			}
 			@media (max-width: 490px) {
 				display: none;
 			}
@@ -380,6 +439,9 @@ const SliderHeader = styled.div`
 			font-weight: normal;
 			letter-spacing: 1.2px;
 
+			@media (max-width: 1300px) {
+				margin-left: 16px;
+			}
 			@media (max-width: 490px) {
 				display: none;
 			}
@@ -394,6 +456,9 @@ const SliderHeader = styled.div`
 		align-items: flex-start;
 		gap: 10px;
 
+		@media (max-width: 1300px) {
+			margin-left: 24px;
+		}
 		@media (max-width: 490px) {
 			display: none;
 		}
@@ -402,6 +467,10 @@ const SliderHeader = styled.div`
 			display: flex;
 			justify-content: center;
 			align-items: center;
+
+			@media (max-width: 1300px) {
+				font-size: 14px;
+			}
 			svg {
 				width: 30px;
 				height: 30px;
