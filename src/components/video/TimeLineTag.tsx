@@ -115,7 +115,8 @@ const TagWrapper = styled.div<{ iscenter: boolean }>`
 	width: 240px;
 	height: 66px;
 	border-radius: 6px;
-	background-color: ${(props) => props.iscenter ? "white" : props.theme.primary};
+	background-color: ${(props) =>
+		props.iscenter ? "white" : props.theme.primary};
 
 	display: flex;
 	flex-direction: row;
@@ -135,7 +136,8 @@ const TagWrapper = styled.div<{ iscenter: boolean }>`
 const Content = styled.div<{ iscenter?: boolean }>`
 	width: 200px;
 	height: 66px;
-	background-color: ${(props) => props.iscenter ? props.theme.primary : "white"};
+	background-color: ${(props) =>
+		props.iscenter ? props.theme.primary : "white"};
 	border-radius: 6px;
 	border: 0.25px solid #d6d6d9;
 	box-shadow: 6px 0px 4px -2px rgba(0, 0, 0, 0.2);
@@ -173,7 +175,8 @@ const Content = styled.div<{ iscenter?: boolean }>`
 			font-size: 14px;
 			font-weight: 400;
 			letter-spacing: -0.35px;
-			color: ${(props) => props.iscenter ? "white" : props.theme.titleSecondary};
+			color: ${(props) =>
+				props.iscenter ? "white" : props.theme.titleSecondary};
 		}
 	}
 `;

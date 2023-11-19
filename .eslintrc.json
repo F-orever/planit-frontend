@@ -1,12 +1,8 @@
 //eslintrc.json
 {
 	"plugins": ["@typescript-eslint", "prettier"],
-
 	"extends": [
-		"react-app",
-		"eslint:recommended",
-		"prettier",
-		"plugin:@typescript-eslint/recommended"
+		"react-app"
 	],
 
 	"env": {
@@ -26,14 +22,11 @@
 
 	"rules": {
 		"indent": "off",
-		"@typescript-eslint/indent": ["error", "tab"],
 		"no-var": "error",
 		"no-new-object": "error",
-		"lines-between-class-members": "error",
 		"no-new-func": "error",
-		"implicit-arrow-linebreak": "error",
+		"lines-between-class-members": "error",
 		"brace-style": "error",
-		"curly": "error",
 		"eqeqeq": "error",
 		"react/jsx-pascal-case": "warn",
 		"react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],
