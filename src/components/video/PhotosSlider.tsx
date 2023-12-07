@@ -8,7 +8,7 @@ import ReactGA from "react-ga4";
 
 import { useSetRecoilState } from "recoil";
 import { modalState } from "../../recoil/modalState";
-import LazyImage from "./LazyImage";
+import LazyImage from "../../utils/LazyImage";
 
 type photoType = {
 	authorAttributions: [];

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styled, { css } from "styled-components";
 import { useMediaQuery } from "react-responsive";
 import ReactGA from "react-ga4";
@@ -10,7 +10,7 @@ import { FiChevronUp, FiChevronDown } from "react-icons/fi";
 
 import Logo from "../assets/Logo.svg";
 
-function NavigationMenu() {
+function GNBHeader() {
 	const isMobile: boolean = useMediaQuery({
 		query: "(max-width:490px)",
 	});
@@ -187,7 +187,8 @@ const MobileDropDownMenu = styled.div<MobileDropDownMenuProps>`
 		visibility 0.6s ease-in-out,
 		height 0.6s ease-in-out;
 
-	${({ isopen, subisopen }) => isopen &&
+	${({ isopen, subisopen }) =>
+		isopen &&
 		css`
 			opacity: 1;
 			visibility: visible;
@@ -223,7 +224,8 @@ const SubDropDown = styled.div<{ isopen: boolean }>`
 		visibility 0.6s ease-in-out,
 		height 0.6s ease-in-out;
 
-	${({ isopen }) => isopen &&
+	${({ isopen }) =>
+		isopen &&
 		css`
 			opacity: 1;
 			visibility: visible;
@@ -261,7 +263,8 @@ const DropDownMenu = styled.div<{ isopen: boolean }>`
 		visibility 0.6s ease-in-out,
 		height 0.6s ease-in-out;
 
-	${({ isopen }) => isopen &&
+	${({ isopen }) =>
+		isopen &&
 		css`
 			opacity: 1;
 			visibility: visible;
@@ -311,4 +314,4 @@ const IconsContainer = styled.div`
 	}
 `;
 
-export default NavigationMenu;
+export default GNBHeader;

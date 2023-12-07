@@ -22,7 +22,7 @@ import ParkIcon from "../../assets/svg/ParkIcon.svg";
 import FillPrimaryCirclePlusIcon from "../../assets/svg/FillPrimaryCirclePlusIcon.svg";
 
 import PhotoSlider from "./PhotosSlider";
-import MobilePhotoSlider from "./MobilePhotoSlider";
+import MobilePhotoSlider from "./mobile/PhotoSlider";
 import Review, { reviewType } from "./Review";
 import StarIcon from "../../assets/svg/StarIcon.svg";
 import MarketIcon from "../../assets/svg/placetType/MarketIcon.svg";

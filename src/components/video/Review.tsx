@@ -4,7 +4,7 @@ import StarIcon from "../../assets/svg/StarIcon.svg";
 import { CiStar } from "react-icons/ci";
 import { useMediaQuery } from "react-responsive";
 import { FaRegUserCircle } from "react-icons/fa";
-import LazyImage from "./LazyImage";
+import LazyImage from "../../utils/LazyImage";
 
 export type reviewType = {
 	name: string;

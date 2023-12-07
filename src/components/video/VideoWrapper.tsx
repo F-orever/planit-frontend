@@ -94,7 +94,6 @@ function VideoWrapper() {
 const StyledWrapper = styled.div`
 	position: relative;
 	width: calc(100vw / 3 * 2);
-	//width: 100%;
 	height: 37vw;
 
 	@media (max-width: 490px) {
