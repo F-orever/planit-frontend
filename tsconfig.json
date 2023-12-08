@@ -22,6 +22,6 @@
   },
   "include": [
     "src",
-    "src/assets/assets.d.ts"
+    "src/assets/declare.d.ts"
   ]
 }

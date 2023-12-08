@@ -11,13 +11,6 @@ import VideoPlaces from "./VideoPlaces";
 import VideoTimeLine from "./VideoTimeLine";
 import VideoWrapper from "./VideoWrapper";
 
-import {
-	MobilePhotoSlider,
-	MobileTimeLineTag,
-	MobileTimeLineTagLinker,
-	MobileVideoTimeline,
-} from "./mobile";
-
 export {
 	LazyImage,
 	MyTrip,
@@ -31,8 +24,4 @@ export {
 	VideoPlaces,
 	VideoTimeLine,
 	VideoWrapper,
-	MobilePhotoSlider,
-	MobileTimeLineTag,
-	MobileTimeLineTagLinker,
-	MobileVideoTimeline,
 };

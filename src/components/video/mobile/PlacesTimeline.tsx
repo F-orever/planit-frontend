@@ -1,13 +1,15 @@
 import { useEffect, useRef } from "react";
 import { useRecoilValue } from "recoil";
 
-import { mockData } from "../mockData";
-import { MobileTimeLineTag, MobileTimeLineTagLinker } from ".";
-import * as S from "../../../styles/VideoMobile.styles";
 import { timelineIdx } from "../../../recoil";
 import { BusIcon } from "../../../assets/svg";
+import * as S from "../../../styles/VideoMobile.styles";
+import { mockData } from "../mockData";
 
-function VideoMobileTimeline() {
+import VideoMobileTimeLineTag from "./TimeLineTag";
+import VideoMobileTimeLineTagLinker from "./TimeLineTagLinker";
+
+function VideoMobilePlacesTimeline() {
 	const index = useRecoilValue(timelineIdx);
 	const refArr = useRef<HTMLDivElement[]>([]);
 	const tagsContainerRef = useRef<HTMLDivElement>(null);
@@ -34,13 +36,13 @@ function VideoMobileTimeline() {
 								display: "flex",
 							}}
 						>
-							<MobileTimeLineTag
+							<VideoMobileTimeLineTag
 								index={idx}
 								iscenter={idx === index}
 								{...data}
 							/>
 							{idx !== mockData.length - 1 && (
-								<MobileTimeLineTagLinker
+								<VideoMobileTimeLineTagLinker
 									Icon={<BusIcon />}
 									time={"30분"}
 								/>
@@ -53,4 +55,4 @@ function VideoMobileTimeline() {
 	);
 }
 
-export default VideoMobileTimeline;
+export default VideoMobilePlacesTimeline;

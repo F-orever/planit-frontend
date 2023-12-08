@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
 import { mockPlaceData } from "./mockData";

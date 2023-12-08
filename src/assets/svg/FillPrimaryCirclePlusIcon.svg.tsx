@@ -1,4 +1,4 @@
-export default function FillWhiteCirclePlusIcon(
+export default function FillPrimaryCirclePlusIcon(
 	props: React.SVGProps<SVGSVGElement>,
 ) {
 	return (

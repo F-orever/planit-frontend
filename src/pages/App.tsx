@@ -1,20 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
 
 import ReactGA from "react-ga4";
 
-import FixedHeader from "../components/FixedHeader";
-import NavigationMenu from "../components/NavigationMenu";
-import VideoWrapper from "../components/video/VideoWrapper";
-import VideoTimeLine from "../components/video/VideoTimeLine";
-import VideoInfomation from "../components/video/VideoInfomation";
-import VideoPlaces from "../components/video/VideoPlaces";
-import MyTrip from "../components/video/MyTrip";
+import { FixedHeader, GNBHeader, Footer, Modal } from "../components";
+import {
+	VideoWrapper,
+	VideoTimeLine,
+	VideoInfomation,
+	VideoPlaces,
+	MyTrip,
+} from "../components/video";
 
-import Footer from "../components/Footer";
-import Modal from "../components/Modal";
-import MobileVideoTimeline from "../components/video/MobileVideoTimeline";
+import { VideoMobileTimeline } from "../components/video/mobile";
 
 function App() {
 	const isMobile: boolean = useMediaQuery({
@@ -22,7 +21,7 @@ function App() {
 	});
 
 	useEffect(() => {
-		ReactGA.send({ hitType: "pageview", page: "/", title: "MVP TEST " });
+		ReactGA.send({ hitType: "pageview", page: "/", title: "MVP TEST" });
 	}, []);
 
 	return (
@@ -30,13 +29,13 @@ function App() {
 			<Modal />
 			<div className="header">
 				<FixedHeader />
-				<NavigationMenu />
+				<GNBHeader />
 			</div>
 			{isMobile ? (
 				<>
 					<main className="main">
 						<VideoWrapper />
-						<MobileVideoTimeline />
+						<VideoMobileTimeline />
 						<VideoInfomation />
 						<VideoPlaces />
 						<MyTrip />
@@ -99,16 +98,13 @@ const AppContainer = styled.div`
 	.main {
 		grid-area: main;
 
+		justify-self: flex-end;
+
 		display: flex;
 		flex-direction: column;
 
-		padding-left: 7vw;
-		@media (max-width: 1670px) {
-			padding-left: 3vw;
-		}
-
 		@media (max-width: 490px) {
-			padding: 0px;
+			width: 100vw;
 		}
 	}
 
@@ -118,11 +114,6 @@ const AppContainer = styled.div`
 		flex-direction: column;
 
 		width: 300px;
-		padding-right: 7vw;
-
-		@media (max-width: 1670px) {
-			padding-right: 3vw;
-		}
 
 		@media (max-width: 490px) {
 			padding: 0px;

@@ -1,11 +1,11 @@
-import MobilePhotoSlider from "./PhotoSlider";
-import MobileTimeLineTag from "./TimeLineTag";
-import MobileTimeLineTagLinker from "./TimeLineTagLinker";
-import MobileVideoTimeline from "./VideoTimeline";
+import VideoMobilePhotoSlider from "./PhotoSlider";
+import VideoMobileTimeLineTag from "./TimeLineTag";
+import VideoMobileTimeLineTagLinker from "./TimeLineTagLinker";
+import VideoMobileTimeline from "./PlacesTimeline";
 
 export {
-	MobilePhotoSlider,
-	MobileTimeLineTag,
-	MobileTimeLineTagLinker,
-	MobileVideoTimeline,
+	VideoMobilePhotoSlider,
+	VideoMobileTimeLineTag,
+	VideoMobileTimeLineTagLinker,
+	VideoMobileTimeline,
 };

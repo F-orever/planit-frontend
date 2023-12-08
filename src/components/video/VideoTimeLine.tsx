@@ -38,7 +38,8 @@ function VideoTimeLine() {
 						return (
 							<div
 								key={idx}
-								ref={(el) => (refArr.current[idx] = el as HTMLDivElement)
+								ref={(el) =>
+									(refArr.current[idx] = el as HTMLDivElement)
 								}
 							>
 								<TimeLineTag

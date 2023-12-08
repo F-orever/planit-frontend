@@ -12,5 +12,6 @@
     "printWidth": 80,
     "tabWidth": 4,
     "useTabs": true,
-    "embeddedLanguageFormatting": "auto"
+    "embeddedLanguageFormatting": "auto",
+    "endOfLine": "auto"
   }
