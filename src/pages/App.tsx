@@ -1,15 +1,14 @@
-import { useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 
 import { FixedHeader, GNBHeader, Footer, Modal } from "../components";
 import {
 	VideoWrapper,
-	VideoTimeLine,
-	VideoInfomation,
-	VideoPlaces,
-	MyTrip,
-} from "../components/video";
-import { VideoMobileTimeline } from "../components/video/mobile";
+	VideoPostTimeLine,
+	VideoPostInfomation,
+	VideoPostPlaces,
+	VideoPostMyTrip,
+} from "../components/VideoPost";
+import { VideoMobileTimeline } from "../components/VideoPost/mobile";
 
 import * as S from "../styles/Layout.styles";
 
@@ -30,21 +29,21 @@ function App() {
 					<S.Main>
 						<VideoWrapper />
 						<VideoMobileTimeline />
-						<VideoInfomation />
-						<VideoPlaces />
-						<MyTrip />
+						<VideoPostInfomation />
+						<VideoPostPlaces />
+						<VideoPostMyTrip />
 					</S.Main>
 				</>
 			) : (
 				<>
 					<S.Main>
 						<VideoWrapper />
-						<VideoInfomation />
-						<VideoPlaces />
+						<VideoPostInfomation />
+						<VideoPostPlaces />
 					</S.Main>
 					<S.Aside>
-						<VideoTimeLine />
-						<MyTrip />
+						<VideoPostTimeLine />
+						<VideoPostMyTrip />
 					</S.Aside>
 				</>
 			)}

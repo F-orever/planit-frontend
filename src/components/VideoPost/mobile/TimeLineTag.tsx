@@ -1,6 +1,6 @@
 import { useSetRecoilState, useRecoilState } from "recoil";
 
-import * as S from "../../../styles/VideoMobile.styles";
+import * as S from "../../../styles/VideoPost/Mobile.styles";
 
 import {
 	placeDetailSliderIdx,

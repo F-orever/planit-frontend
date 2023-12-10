@@ -3,7 +3,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import LazyImage from "../../../utils/LazyImage";
-import * as S from "../../../styles/VideoMobile.styles";
+import * as S from "../../../styles/VideoPost/Mobile.styles";
 
 type VideoMobilePhotoSliderProps = {
 	photoLength: number;

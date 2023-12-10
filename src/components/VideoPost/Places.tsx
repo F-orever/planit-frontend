@@ -1,18 +1,16 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import Slider, { Settings } from "react-slick";
-import styled from "styled-components";
-import { useMediaQuery } from "react-responsive";
-
-import { mockPlaceData } from "./mockData";
-
 import { useRecoilState } from "recoil";
-import { placeDetailSliderIdx } from "../../recoil/placeDetailSliderIdxState";
+
 import PlaceDetail from "./PlaceDetail";
 
-function VideoPlaces() {
-	const isMobile: boolean = useMediaQuery({
-		query: "(max-width:490px)",
-	});
+import { PlacesSlider } from "../../styles/VideoPost/PlaceDetailSlider.styles";
+import { mockPlaceData } from "./mockData";
+import useResponsive from "../../hooks/useResponsive";
+import { placeDetailSliderIdx } from "../../recoil";
+
+function VideoPostPlaces() {
+	const { isMobile } = useResponsive();
 
 	const sliderRef = useRef<Slider>(null);
 	const [idx, setIdx] = useRecoilState(placeDetailSliderIdx);
@@ -34,7 +32,7 @@ function VideoPlaces() {
 	}, [sliderRef.current]);
 
 	return (
-		<StyledSlider ref={sliderRef} {...settings}>
+		<PlacesSlider ref={sliderRef} {...settings}>
 			{mockPlaceData.map((place, idx) => {
 				if (sliderRef.current !== null) {
 					return (
@@ -47,16 +45,8 @@ function VideoPlaces() {
 					);
 				}
 			})}
-		</StyledSlider>
+		</PlacesSlider>
 	);
 }
 
-const StyledSlider = styled(Slider)`
-	width: calc(100vw / 3 * 2);
-
-	@media (max-width: 490px) {
-		width: 100vw;
-	}
-`;
-
-export default VideoPlaces;
+export default VideoPostPlaces;

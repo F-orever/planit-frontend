@@ -1,4 +1,4 @@
-import * as S from "../../../styles/VideoMobile.styles";
+import * as S from "../../../styles/VideoPost/Mobile.styles";
 
 type VideoMobileTimeLineTagLinkerProps = {
 	Icon: React.ReactNode;

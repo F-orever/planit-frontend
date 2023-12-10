@@ -3,7 +3,7 @@ import { useRecoilValue } from "recoil";
 
 import { timelineIdx } from "../../../recoil";
 import { BusIcon } from "../../../assets/svg";
-import * as S from "../../../styles/VideoMobile.styles";
+import * as S from "../../../styles/VideoPost/Mobile.styles";
 import { mockData } from "../mockData";
 
 import VideoMobileTimeLineTag from "./TimeLineTag";

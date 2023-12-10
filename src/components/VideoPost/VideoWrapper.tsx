@@ -1,15 +1,19 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import YouTube, { YouTubeProps } from "react-youtube";
-import { mockData } from "./mockData";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { sliderTimeState, timelineIdx } from "../../recoil/timelineIdx";
-import styled from "styled-components";
 
-function VideoWrapper() {
+import { mockData } from "./mockData";
+import { sliderTimeState, timelineIdx } from "../../recoil";
+import { YoutubeVideoWrapper } from "../../styles/VideoPost/VideoWrapper";
+
+function VideoPostWrapper() {
 	const playerRef = useRef<YouTube>(null);
 	const Wrapper = useRef<HTMLDivElement>(null);
+
 	const setCenterIdx = useSetRecoilState(timelineIdx);
 	const sliderTime = useRecoilValue(sliderTimeState);
+
+	//Youtube options
 	const [opts, setOpts] = useState<YouTubeProps["opts"]>({
 		width: Wrapper.current?.offsetWidth,
 		height: Wrapper.current?.offsetHeight,
@@ -19,6 +23,7 @@ function VideoWrapper() {
 		},
 	});
 
+	//TimeLine이 변할 때 마다 Youtube의 영상 시간 조정
 	useEffect(() => {
 		setOpts({
 			width: Wrapper.current?.offsetWidth,
@@ -30,7 +35,7 @@ function VideoWrapper() {
 		});
 	}, [sliderTime]);
 
-	//반응형 영상 크기 조절
+	//반응형 영상 크기 조절 설정
 	useEffect(() => {
 		const observer = new ResizeObserver(() => {
 			setOpts({
@@ -47,6 +52,7 @@ function VideoWrapper() {
 		}
 	}, []);
 
+	//setInterval로 0.1초 간격으로 영상 시간 변경에 따른 슬라이더에 영향
 	useEffect(() => {
 		const interval = setInterval(async () => {
 			const elapsed = await playerRef.current
@@ -75,21 +81,10 @@ function VideoWrapper() {
 	}, []);
 
 	return (
-		<StyledWrapper ref={Wrapper}>
+		<YoutubeVideoWrapper ref={Wrapper}>
 			<YouTube videoId="Abp2iKMS72E" opts={opts} ref={playerRef} />
-		</StyledWrapper>
+		</YoutubeVideoWrapper>
 	);
 }
 
-const StyledWrapper = styled.div`
-	position: relative;
-	width: calc(100vw / 3 * 2);
-	height: 37vw;
-
-	@media (max-width: 490px) {
-		width: 100vw;
-		height: 200px;
-	}
-`;
-
-export default VideoWrapper;
+export default VideoPostWrapper;
