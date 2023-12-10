@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
 
 import ReactGA from "react-ga4";
