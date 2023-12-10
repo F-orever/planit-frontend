@@ -1,10 +1,11 @@
-import React from "react";
-import MarketIcon from "../../assets/svg/placetType/MarketIcon.svg";
-
-import { BsTrainFreightFront } from "react-icons/bs";
-import { MdApartment, MdCardTravel } from "react-icons/md";
-import { FaUmbrellaBeach } from "react-icons/fa";
-import { BiCoffee } from "react-icons/bi";
+import { MarketIcon } from "../../assets/svg";
+import {
+	BsTrainFreightFront,
+	MdApartment,
+	FaUmbrellaBeach,
+	MdCardTravel,
+	BiCoffee,
+} from "../../assets/Icons";
 
 export const mockData = [
 	{

@@ -1,7 +1,7 @@
 import { modalState } from "./modalState";
 import { placeDetailSliderIdx } from "./placeDetailSliderIdxState";
 import { timelineIdx } from "./timelineIdx";
-import { myTripState, idState } from "./myTripState";
+import { myTripState, myTripID } from "./myTripState";
 import { sliderTimeState } from "./timelineIdx";
 
 export {
@@ -9,6 +9,6 @@ export {
 	placeDetailSliderIdx,
 	timelineIdx,
 	myTripState,
-	idState,
+	myTripID,
 	sliderTimeState,
 };

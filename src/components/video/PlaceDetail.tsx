@@ -5,7 +5,7 @@ import { mockPlaceData } from "./mockData";
 import ReactGA from "react-ga4";
 
 import { useSetRecoilState, useRecoilState } from "recoil";
-import { myTripState, idState } from "../../recoil/myTripState";
+import { myTripState, myTripID } from "../../recoil/myTripState";
 
 import { FaLocationDot } from "react-icons/fa6";
 import { IoMdCall } from "react-icons/io";
@@ -39,7 +39,7 @@ function PlaceDetail({ onNextClick, onPrevClick, id }: PlaceDetailProps) {
 	});
 
 	const setMyTrip = useSetRecoilState(myTripState);
-	const [myTripId, setMyTripId] = useRecoilState(idState);
+	const [myTripId, setMyTripId] = useRecoilState(myTripID);
 	const [isopen, setisopen] = useState(false);
 
 	return (

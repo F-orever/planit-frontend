@@ -5,7 +5,7 @@ import ReactGA from "react-ga4";
 //recoil
 import { useSetRecoilState, useRecoilState } from "recoil";
 import { placeDetailSliderIdx } from "../../recoil/placeDetailSliderIdxState";
-import { myTripState, idState } from "../../recoil/myTripState";
+import { myTripState, myTripID } from "../../recoil/myTripState";
 
 //svg
 import MarketIcon from "../../assets/svg/placetType/MarketIcon.svg";
@@ -35,7 +35,7 @@ function TimeLineTag({
 	const setMyTrip = useSetRecoilState(myTripState);
 	const setCenterIdx = useSetRecoilState(timelineIdx);
 	const setCurrentTime = useSetRecoilState(sliderTimeState);
-	const [id, setId] = useRecoilState(idState);
+	const [myTripId, setMyTripId] = useRecoilState(myTripID);
 	return (
 		<TagWrapper iscenter={iscenter}>
 			<Content
@@ -71,12 +71,12 @@ function TimeLineTag({
 						setMyTrip((prev) => [
 							...prev,
 							{
-								id: id,
+								id: myTripId,
 								icon: <MarketIcon />,
 								placeName: place,
 							},
 						]);
-						setId((prev) => prev + 1);
+						setMyTripId((prev) => prev + 1);
 					}}
 				/>
 			) : (
@@ -91,12 +91,12 @@ function TimeLineTag({
 						setMyTrip((prev) => [
 							...prev,
 							{
-								id: id,
+								id: myTripId,
 								icon: <MarketIcon />,
 								placeName: place,
 							},
 						]);
-						setId((prev) => prev + 1);
+						setMyTripId((prev) => prev + 1);
 					}}
 				/>
 			)}

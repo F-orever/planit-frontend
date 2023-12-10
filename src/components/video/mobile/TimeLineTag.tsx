@@ -6,7 +6,7 @@ import * as S from "../../../styles/VideoMobile.styles";
 import {
 	placeDetailSliderIdx,
 	myTripState,
-	idState,
+	myTripID,
 	sliderTimeState,
 	timelineIdx,
 } from "../../../recoil";
@@ -33,7 +33,7 @@ function VideoMobileTimeLineTag({
 	const setMyTrip = useSetRecoilState(myTripState);
 	const setCenterIdx = useSetRecoilState(timelineIdx);
 	const setCurrentTime = useSetRecoilState(sliderTimeState);
-	const [id, setId] = useRecoilState(idState);
+	const [id, setId] = useRecoilState(myTripID);
 
 	return (
 		<S.Tag
