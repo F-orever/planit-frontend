@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
 
@@ -12,8 +12,9 @@ import {
 	VideoPlaces,
 	MyTrip,
 } from "../components/video";
-
 import { VideoMobileTimeline } from "../components/video/mobile";
+
+import * as S from "../styles/Layout.styles";
 
 function App() {
 	const isMobile: boolean = useMediaQuery({
@@ -25,100 +26,40 @@ function App() {
 	}, []);
 
 	return (
-		<AppContainer>
+		<S.Body>
 			<Modal />
-			<div className="header">
+			<S.Header>
 				<FixedHeader />
 				<GNBHeader />
-			</div>
+			</S.Header>
 			{isMobile ? (
 				<>
-					<main className="main">
+					<S.Main>
 						<VideoWrapper />
 						<VideoMobileTimeline />
 						<VideoInfomation />
 						<VideoPlaces />
 						<MyTrip />
-					</main>
+					</S.Main>
 				</>
 			) : (
 				<>
-					<main className="main">
+					<S.Main>
 						<VideoWrapper />
 						<VideoInfomation />
 						<VideoPlaces />
-					</main>
-					<aside className="aside">
+					</S.Main>
+					<S.Aside>
 						<VideoTimeLine />
 						<MyTrip />
-					</aside>
+					</S.Aside>
 				</>
 			)}
-
-			<footer className="footer">
+			<S.Footer>
 				<Footer />
-			</footer>
-		</AppContainer>
+			</S.Footer>
+		</S.Body>
 	);
 }
-
-const AppContainer = styled.div`
-	width: 100%;
-	display: grid;
-	grid-template-columns: 4fr 1fr;
-	grid-template-rows: 140px auto 100px;
-	grid-template-areas:
-		"header header"
-		"main aside"
-		"footer footer";
-
-	grid-column-gap: 20px;
-	grid-row-gap: 40px;
-
-	@media (max-width: 490px) {
-		grid-template-areas:
-			"header header"
-			"main main"
-			"footer footer";
-		grid-template-rows: 80px auto auto 100px;
-		grid-row-gap: 0px;
-		@media (max-width: 490px) {
-			grid-template-rows: 80px auto auto;
-		}
-	}
-
-	.header {
-		grid-area: header;
-	}
-
-	.footer {
-		grid-area: footer;
-	}
-
-	.main {
-		grid-area: main;
-
-		justify-self: flex-end;
-
-		display: flex;
-		flex-direction: column;
-
-		@media (max-width: 490px) {
-			width: 100vw;
-		}
-	}
-
-	.aside {
-		grid-area: aside;
-		display: flex;
-		flex-direction: column;
-
-		width: 300px;
-
-		@media (max-width: 490px) {
-			padding: 0px;
-		}
-	}
-`;
 
 export default App;
