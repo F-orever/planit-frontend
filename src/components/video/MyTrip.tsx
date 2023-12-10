@@ -1,15 +1,12 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import Tag from "./MyTripTag";
+import { useRecoilState } from "recoil";
 import { ReactSortable } from "react-sortablejs";
 import { useMediaQuery } from "react-responsive";
-import ReactGA from "react-ga4";
 
-import { myTripState } from "../../recoil/myTripState";
-import { useRecoilState } from "recoil";
-
-import { MdBackpack } from "react-icons/md";
-import { AiOutlineClose } from "react-icons/ai";
+import Tag from "./MyTripTag";
+import { myTripState } from "../../recoil";
+import { MdBackpack, AiOutlineClose } from "../../assets/Icons";
 
 function MyTrip() {
 	const isMobile: boolean = useMediaQuery({
@@ -18,9 +15,7 @@ function MyTrip() {
 	const [myTripList, setMyTripList] = useRecoilState(myTripState);
 	const [isopen, setisopen] = useState(false);
 
-	useEffect(() => {
-		console.log(myTripList);
-	}, [myTripList]);
+	useEffect(() => {}, [myTripList]);
 
 	return (
 		<>
@@ -31,11 +26,6 @@ function MyTrip() {
 						<AiOutlineClose
 							className="closeBtn"
 							onClick={() => {
-								ReactGA.event({
-									category: "Event",
-									action: "Mobile MyTrip Close Btn",
-									label: "모바일 내 여행 닫기 버튼 클릭",
-								});
 								setisopen(false);
 							}}
 						/>
@@ -97,11 +87,6 @@ function MyTrip() {
 			{isMobile && (
 				<MyTripBtn
 					onClick={() => {
-						ReactGA.event({
-							category: "Event",
-							action: "Mobile Mytrip Open",
-							label: "모바일 내 여행 열기 버튼 클릭",
-						});
 						setisopen((prev) => !prev);
 					}}
 				>

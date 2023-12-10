@@ -2,7 +2,6 @@ import { useState } from "react";
 import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
 import { mockPlaceData } from "./mockData";
-import ReactGA from "react-ga4";
 
 import { useSetRecoilState, useRecoilState } from "recoil";
 import { myTripState, myTripID } from "../../recoil/myTripState";
@@ -47,11 +46,6 @@ function PlaceDetail({ onNextClick, onPrevClick, id }: PlaceDetailProps) {
 			{isMobile && (
 				<MobileAddBtn
 					onClick={() => {
-						ReactGA.event({
-							category: "Event",
-							action: "Place Detail Add Btn",
-							label: "장소 상세보기 추가 버튼 클릭",
-						});
 						setMyTrip((prev) => [
 							...prev,
 							{
@@ -74,11 +68,6 @@ function PlaceDetail({ onNextClick, onPrevClick, id }: PlaceDetailProps) {
 						<AiOutlineLeft
 							className="sliderButton"
 							onClick={() => {
-								ReactGA.event({
-									category: "Event",
-									action: "Mobile Place Detail Prev Btn",
-									label: "모바일 장소 상세 슬라이드 이전 버튼 클릭",
-								});
 								onPrevClick();
 							}}
 						/>
@@ -86,11 +75,6 @@ function PlaceDetail({ onNextClick, onPrevClick, id }: PlaceDetailProps) {
 						<BsChevronDoubleLeft
 							className="sliderButton"
 							onClick={() => {
-								ReactGA.event({
-									category: "Event",
-									action: "Place Detail Prev Btn",
-									label: "장소 상세 슬라이드 이전 버튼 클릭",
-								});
 								onPrevClick();
 							}}
 						/>
@@ -135,11 +119,6 @@ function PlaceDetail({ onNextClick, onPrevClick, id }: PlaceDetailProps) {
 						<AiOutlineInfoCircle
 							className="infoBtn"
 							onClick={() => {
-								ReactGA.event({
-									category: "Event",
-									action: "Mobile Place Detail Add Btn",
-									label: "모바일 장소 상세 추가 버튼 클릭",
-								});
 								setisopen((prev) => !prev);
 							}}
 						/>
@@ -149,11 +128,6 @@ function PlaceDetail({ onNextClick, onPrevClick, id }: PlaceDetailProps) {
 					<div
 						className="addBtnBox"
 						onClick={() => {
-							ReactGA.event({
-								category: "Event",
-								action: "Place Detail Add Btn",
-								label: "장소 상세 추가 버튼 클릭",
-							});
 							setMyTrip((prev) => [
 								...prev,
 								{
@@ -174,12 +148,6 @@ function PlaceDetail({ onNextClick, onPrevClick, id }: PlaceDetailProps) {
 						<AiOutlineRight
 							className="sliderButton"
 							onClick={() => {
-								ReactGA.event({
-									category: "Event",
-									action: "Mobile Place Detail Next Btn",
-									label: "모바일 장소 상세 슬라이드 다음 버튼 클릭",
-								});
-
 								onNextClick();
 							}}
 						/>
@@ -187,11 +155,6 @@ function PlaceDetail({ onNextClick, onPrevClick, id }: PlaceDetailProps) {
 						<BsChevronDoubleRight
 							className="sliderButton"
 							onClick={() => {
-								ReactGA.event({
-									category: "Event",
-									action: "Place Detail Next Btn",
-									label: "장소 상세 슬라이드 다음 버튼 클릭",
-								});
 								onNextClick();
 							}}
 						/>
@@ -204,11 +167,6 @@ function PlaceDetail({ onNextClick, onPrevClick, id }: PlaceDetailProps) {
 					<AiOutlineClose
 						className="closeBtn"
 						onClick={() => {
-							ReactGA.event({
-								category: "Event",
-								action: "Mobile Place Detail Info Btn",
-								label: "모바일 장소 상세 정보 버튼 클릭",
-							});
 							setisopen(false);
 						}}
 					/>
@@ -251,9 +209,6 @@ function PlaceDetail({ onNextClick, onPrevClick, id }: PlaceDetailProps) {
 			<ReviewSummary>
 				<div className="title">
 					<span className="header">리뷰 요약</span>
-					{/* <span className="tags">
-						{mockPlaceData.types.map((type: string) => `#${type} `)}
-					</span> */}
 				</div>
 				<div className="rating">
 					<img src={`./rating.png`} />

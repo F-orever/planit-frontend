@@ -1,4 +1,3 @@
-import ReactGA from "react-ga4";
 import { useSetRecoilState, useRecoilState } from "recoil";
 
 import * as S from "../../../styles/VideoMobile.styles";
@@ -38,11 +37,6 @@ function VideoMobileTimeLineTag({
 	return (
 		<S.Tag
 			onClick={() => {
-				ReactGA.event({
-					category: "Event",
-					action: "Mobile TimeLine Tag",
-					label: "모바일 타임라인 태그 클릭",
-				});
 				setCurrentTime(time);
 				setPlaceDetailSliderIdx(index);
 				setCenterIdx(index);
@@ -51,11 +45,6 @@ function VideoMobileTimeLineTag({
 			<FillPrimaryCirclePlusIcon
 				className="plusBtn"
 				onClick={() => {
-					ReactGA.event({
-						category: "Event",
-						action: "Mobile TimeLine Tag Add Btn",
-						label: "모바일 타임라인 태그 추가버튼 클릭",
-					});
 					setMyTrip((prev) => [
 						...prev,
 						{

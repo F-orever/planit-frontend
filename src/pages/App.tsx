@@ -1,8 +1,6 @@
 import { useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 
-import ReactGA from "react-ga4";
-
 import { FixedHeader, GNBHeader, Footer, Modal } from "../components";
 import {
 	VideoWrapper,
@@ -19,10 +17,6 @@ function App() {
 	const isMobile: boolean = useMediaQuery({
 		query: "(max-width:490px)",
 	});
-
-	useEffect(() => {
-		ReactGA.send({ hitType: "pageview", page: "/", title: "MVP TEST" });
-	}, []);
 
 	return (
 		<S.Body>

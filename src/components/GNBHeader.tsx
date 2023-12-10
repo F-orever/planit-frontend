@@ -12,8 +12,6 @@ import {
 } from "../assets/Icons";
 import Logo from "../assets/Logo.svg";
 
-import ReactGA from "react-ga4";
-
 function GNBHeader() {
 	const isMobile: boolean = useMediaQuery({
 		query: "(max-width:490px)",
@@ -27,11 +25,6 @@ function GNBHeader() {
 				<GiHamburgerMenu
 					className="navBtn"
 					onClick={() => {
-						ReactGA.event({
-							category: "Event",
-							action: "Mobile Open Dropdown Menu",
-							label: "모바일 드롭 다운 메뉴 버튼 클릭",
-						});
 						setIsOpen((prev) => !prev);
 					}}
 				/>
@@ -40,11 +33,6 @@ function GNBHeader() {
 				<S.MobileDropDownMenu isopen={isopen} subisopen={subisopen}>
 					<span
 						onClick={() => {
-							ReactGA.event({
-								category: "Event",
-								action: "Mobile Open Sub Dropdown Menu",
-								label: "모바일 드롭 다운 서브메뉴 버튼 클릭",
-							});
 							setsubIsOpen((prev) => !prev);
 						}}
 					>

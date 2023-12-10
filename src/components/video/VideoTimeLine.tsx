@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import ReactGA from "react-ga4";
 
 import TimeLineTag from "./TimeLineTag";
 import TimeLineTagLinker from "./TimeLineTagLinker";
@@ -61,11 +60,6 @@ function VideoTimeLine() {
 			<div
 				className="footer"
 				onClick={() => {
-					ReactGA.event({
-						category: "Event",
-						action: "Close Timeline Btn",
-						label: "영상 슬라이드덱 접기,펼치기 버튼 클릭",
-					});
 					setIsOpen((prev) => !prev);
 				}}
 			>

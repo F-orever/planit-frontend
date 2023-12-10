@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import ReactGA from "react-ga4";
 
 import { GiHamburgerMenu } from "react-icons/gi";
 import { BsFillTrashFill } from "react-icons/bs";
@@ -29,12 +28,8 @@ function MyTripTag({ isgreen, text, placeName, id }: MyTripTagProps) {
 				<BsFillTrashFill
 					className="trash"
 					onClick={() => {
-						ReactGA.event({
-							category: "Event",
-							action: "MyTrip Delete Btn",
-							label: "내 여행 태그 삭제 버튼 클릭",
-						});
-						setMyTrip((prev) => prev.filter((item) => item.id !== id),
+						setMyTrip((prev) =>
+							prev.filter((item) => item.id !== id),
 						);
 					}}
 				/>
@@ -56,14 +51,16 @@ const Container = styled.div<{ isgreen: boolean }>`
 
 	border-radius: 7.5px;
 	border: 0.75px solid ${({ theme }) => theme.textPrimary};
-	background-color: ${({ isgreen, theme }) => isgreen ? "#32543A" : "white"};
+	background-color: ${({ isgreen, theme }) =>
+		isgreen ? "#32543A" : "white"};
 
 	@media (max-width: 490px) {
 		width: 200px;
 	}
 
 	span {
-		color: ${({ isgreen, theme }) => isgreen ? "white" : theme.textPrimary};
+		color: ${({ isgreen, theme }) =>
+			isgreen ? "white" : theme.textPrimary};
 		font-size: 16px;
 		font-weight: 600;
 		letter-spacing: 1.6px;

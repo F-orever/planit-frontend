@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import ReactGA from "react-ga4";
 
 //recoil
 import { useSetRecoilState, useRecoilState } from "recoil";
@@ -41,11 +40,6 @@ function TimeLineTag({
 			<Content
 				iscenter={iscenter}
 				onClick={() => {
-					ReactGA.event({
-						category: "Event",
-						action: "TimeLine Btn",
-						label: "타임라인 태그 클릭",
-					});
 					setCurrentTime(time);
 					setPlaceDetailSliderIdx(index);
 					setCenterIdx(index);
@@ -63,11 +57,6 @@ function TimeLineTag({
 				<FillPrimaryCirclePlusIcon
 					className="plusBtn"
 					onClick={() => {
-						ReactGA.event({
-							category: "Event",
-							action: "TimeLine Add Place Btn",
-							label: "타임라인 장소 추가 버튼 클릭",
-						});
 						setMyTrip((prev) => [
 							...prev,
 							{
@@ -83,11 +72,6 @@ function TimeLineTag({
 				<FillWhiteCirclePlusIcon
 					className="plusBtn"
 					onClick={() => {
-						ReactGA.event({
-							category: "Event",
-							action: "TimeLine Add Place Btn",
-							label: "타임라인 장소 추가 버튼 클릭",
-						});
 						setMyTrip((prev) => [
 							...prev,
 							{
