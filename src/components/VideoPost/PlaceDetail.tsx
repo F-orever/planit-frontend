@@ -83,18 +83,18 @@ function VideoPostPlaceDetail({
 							}}
 						/>
 					)}
-					<div className="typeIcon">
+					<S.PlaceTypeIcon>
 						<ParkIcon />
-					</div>
-					<div className="titleBox">
-						<span className="title">
+					</S.PlaceTypeIcon>
+					<S.PlaceTitleBox>
+						<S.PlaceTitle>
 							{mockPlaceData[id].displayName.text}
-						</span>
-						<span className="type">
+						</S.PlaceTitle>
+						<S.PlaceTime>
 							{mockPlaceData[id].primaryTypeDisplayName.text}
-						</span>
-					</div>
-					<div className="info">
+						</S.PlaceTime>
+					</S.PlaceTitleBox>
+					<S.PlaceInfomationSummary>
 						<span>
 							<FaLocationDot />
 							{mockPlaceData[id].formattedAddress}
@@ -104,7 +104,7 @@ function VideoPostPlaceDetail({
 							{mockPlaceData[id].nationalPhoneNumber}
 						</span>
 
-						<span className="time">
+						<span>
 							<BiTimeFive />
 							<span
 								style={{
@@ -115,13 +115,12 @@ function VideoPostPlaceDetail({
 							</span>
 							<span>오후 12:00~10:00</span>
 						</span>
-					</div>
+					</S.PlaceInfomationSummary>
 				</div>
 				{isMobile && (
 					<S.MobileTitleContainer>
 						<span>{mockPlaceData[id].displayName.text}</span>
 						<AiOutlineInfoCircle
-							className="infoBtn"
 							onClick={() => {
 								setisopen((prev) => !prev);
 							}}
@@ -129,8 +128,7 @@ function VideoPostPlaceDetail({
 					</S.MobileTitleContainer>
 				)}
 				<div className="rightItems">
-					<div
-						className="addBtnBox"
+					<S.PlaceAddBtnBox
 						onClick={() => {
 							setMyTrip((prev) => [
 								...prev,
@@ -147,7 +145,7 @@ function VideoPostPlaceDetail({
 					>
 						<FillPrimaryCirclePlusIcon />
 						<span>일정 추가</span>
-					</div>
+					</S.PlaceAddBtnBox>
 					{isMobile ? (
 						<AiOutlineRight
 							className="sliderButton"
@@ -211,15 +209,15 @@ function VideoPostPlaceDetail({
 			)}
 			<S.SeperateLine />
 			<S.ReviewSummary>
-				<div className="title">
-					<span className="header">리뷰 요약</span>
-				</div>
-				<div className="rating">
+				<S.ReviewTitleBox>
+					<span>리뷰 요약</span>
+				</S.ReviewTitleBox>
+				<S.ReviewRatingBox>
 					<img src={`./rating.png`} />
 					<div className="textArea">
-						<span className="header">
+						<S.ReviewCounts>
 							{mockPlaceData[id].rating.value}
-						</span>
+						</S.ReviewCounts>
 						<span>
 							<StarIcon />
 							<StarIcon />
@@ -227,11 +225,11 @@ function VideoPostPlaceDetail({
 							<StarIcon />
 							<StarIcon />
 						</span>
-						<span className="reviewCount">
+						<S.ReviewCounts>
 							리뷰 {mockPlaceData[id].rating.count}개
-						</span>
+						</S.ReviewCounts>
 					</div>
-				</div>
+				</S.ReviewRatingBox>
 			</S.ReviewSummary>
 			<S.SeperateLine />
 			<S.ReviewContainer>

@@ -67,114 +67,114 @@ export const SliderHeader = styled.div`
 		color: #747474;
 		cursor: pointer;
 	}
+`;
 
-	.typeIcon {
-		margin-left: 54px;
+export const PlaceTypeIcon = styled.div`
+	margin-left: 54px;
 
-		@media (max-width: 1300px) {
-			margin-left: 24px;
-		}
-
-		@media (max-width: 490px) {
-			display: none;
-		}
+	@media (max-width: 1300px) {
+		margin-left: 24px;
 	}
 
-	.titleBox {
+	@media (max-width: 490px) {
+		display: none;
+	}
+`;
+
+export const PlaceTitleBox = styled.div`
+	margin-left: 16px;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+`;
+
+export const PlaceTitle = styled.span`
+	color: ${({ theme }) => theme.primary};
+	font-size: 48px;
+	font-weight: 700;
+	letter-spacing: 2.4px;
+	word-break: keep-all;
+
+	@media (max-width: 1300px) {
+		margin-left: 32px;
+	}
+	@media (max-width: 490px) {
+		display: none;
+	}
+`;
+
+export const PlaceTime = styled.span`
+	color: ${({ theme }) => theme.textPrimary};
+	font-size: 24px;
+	font-weight: normal;
+	letter-spacing: 1.2px;
+
+	@media (max-width: 1300px) {
 		margin-left: 16px;
+	}
+	@media (max-width: 490px) {
+		display: none;
+	}
+`;
 
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: flex-start;
+export const PlaceInfomationSummary = styled.div`
+	margin-left: 60px;
 
-		.title {
-			color: ${({ theme }) => theme.primary};
-			font-size: 48px;
-			font-weight: 700;
-			letter-spacing: 2.4px;
-			word-break: keep-all;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 10px;
 
-			@media (max-width: 1300px) {
-				margin-left: 32px;
-			}
-			@media (max-width: 490px) {
-				display: none;
-			}
-		}
-
-		.type {
-			color: ${({ theme }) => theme.textPrimary};
-			font-size: 24px;
-			font-weight: normal;
-			letter-spacing: 1.2px;
-
-			@media (max-width: 1300px) {
-				margin-left: 16px;
-			}
-			@media (max-width: 490px) {
-				display: none;
-			}
-		}
+	@media (max-width: 1300px) {
+		margin-left: 24px;
+	}
+	@media (max-width: 490px) {
+		display: none;
 	}
 
-	.info {
-		margin-left: 60px;
-
+	span {
 		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-		gap: 10px;
-
-		@media (max-width: 1300px) {
-			margin-left: 24px;
-		}
-		@media (max-width: 490px) {
-			display: none;
-		}
-
-		span {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-
-			@media (max-width: 1300px) {
-				font-size: 14px;
-			}
-			svg {
-				width: 30px;
-				height: 30px;
-				color: ${({ theme }) => theme.primary};
-				text-align: center;
-				margin-right: 20px;
-			}
-		}
-	}
-
-	.addBtnBox {
-		margin-right: 52px;
-
-		display: flex;
-		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		gap: 11px;
 
-		@media (max-width: 490px) {
-			display: none;
+		@media (max-width: 1300px) {
+			font-size: 14px;
 		}
-
 		svg {
-			width: 48px;
-			height: 48px;
-		}
-		span {
-			width: 100px;
-			color: ${({ theme }) => theme.textPrimary};
+			width: 30px;
+			height: 30px;
+			color: ${({ theme }) => theme.primary};
 			text-align: center;
-			font-size: 15px;
-			font-weight: 500;
+			margin-right: 20px;
 		}
+	}
+`;
+
+export const PlaceAddBtnBox = styled.div`
+	margin-right: 52px;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 11px;
+
+	@media (max-width: 490px) {
+		display: none;
+	}
+
+	svg {
+		width: 48px;
+		height: 48px;
+	}
+	span {
+		width: 100px;
+		color: ${({ theme }) => theme.textPrimary};
+		text-align: center;
+		font-size: 15px;
+		font-weight: 500;
 	}
 `;
 
@@ -201,6 +201,56 @@ export const ReviewSummary = styled.div`
 		margin-top: 18px;
 		margin-bottom: 18px;
 	}
+`;
+
+export const ReviewTitleBox = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+	align-items: flex-start;
+
+	@media (max-width: 490px) {
+		display: none;
+	}
+
+	span {
+		color: ${({ theme }) => theme.textPrimary};
+		font-size: 48px;
+		font-weight: 700;
+		line-height: normal;
+		letter-spacing: 2.4px;
+	}
+`;
+
+export const ReviewRatingBox = styled.div`
+	display: flex;
+	flex-direction: row;
+	gap: 30px;
+	align-items: center;
+
+	img {
+		width: 400px;
+
+		@media (max-width: 1200px) {
+			width: 300px;
+		}
+		@media (max-width: 900px) {
+			width: 200px;
+		}
+		@media (max-width: 490px) {
+			width: 60%;
+		}
+	}
+
+	@media (max-width: 490px) {
+		width: 90%;
+		justify-content: space-between;
+
+		svg {
+			width: 11px;
+			height: 11px;
+		}
+	}
 
 	.textArea {
 		display: flex;
@@ -209,89 +259,31 @@ export const ReviewSummary = styled.div`
 		align-items: center;
 		gap: 22px;
 	}
+`;
 
-	.title {
-		display: flex;
-		flex-direction: column;
-		gap: 14px;
-		align-items: flex-start;
+export const ReviewRates = styled.span`
+	font-size: 42px;
+	font-weight: 800;
+	letter-spacing: 2.1px;
 
-		@media (max-width: 490px) {
-			display: none;
-		}
-
-		.header {
-			color: ${({ theme }) => theme.textPrimary};
-			font-size: 48px;
-			font-weight: 700;
-			line-height: normal;
-			letter-spacing: 2.4px;
-		}
-
-		.tags {
-			color: ${({ theme }) => theme.titlePrimary};
-			font-size: 19.2px;
-			font-weight: 300;
-			line-height: 25px;
-			letter-spacing: 0.96px;
-		}
+	@media (max-width: 490px) {
+		font-size: 16px;
+		font-weight: 800;
+		letter-spacing: 0.8px;
 	}
+`;
 
-	.rating {
-		display: flex;
-		flex-direction: row;
-		gap: 30px;
-		align-items: center;
+export const ReviewCounts = styled.span`
+	color: ${({ theme }) => theme.textPrimary};
+	font-size: 18px;
+	font-weight: 700;
+	line-height: normal;
+	letter-spacing: 0.9px;
 
-		img {
-			width: 400px;
-
-			@media (max-width: 1200px) {
-				width: 300px;
-			}
-			@media (max-width: 900px) {
-				width: 200px;
-			}
-			@media (max-width: 490px) {
-				width: 60%;
-			}
-		}
-
-		@media (max-width: 490px) {
-			width: 90%;
-			justify-content: space-between;
-
-			svg {
-				width: 11px;
-				height: 11px;
-			}
-		}
-
-		.header {
-			font-size: 42px;
-			font-weight: 800;
-			letter-spacing: 2.1px;
-
-			@media (max-width: 490px) {
-				font-size: 16px;
-				font-weight: 800;
-				letter-spacing: 0.8px;
-			}
-		}
-
-		.reviewCount {
-			color: ${({ theme }) => theme.textPrimary};
-			font-size: 18px;
-			font-weight: 700;
-			line-height: normal;
-			letter-spacing: 0.9px;
-
-			@media (max-width: 490px) {
-				font-size: 11px;
-				font-weight: 600;
-				letter-spacing: -0.3px;
-			}
-		}
+	@media (max-width: 490px) {
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: -0.3px;
 	}
 `;
 
@@ -330,7 +322,7 @@ export const MobileTitleContainer = styled.div`
 		font-style: normal;
 		line-height: normal;
 	}
-	.infoBtn {
+	svg {
 		position: absolute;
 		width: 10px;
 		height: 10px;
