@@ -1,4 +1,4 @@
-import db from "..";
+import { firestore } from "..";
 
 const COLLECTION_NAME = "mvp";
 
@@ -9,7 +9,7 @@ export type statics = {
 };
 
 export const get = async (): Promise<statics> => {
-	const snapshot = await db.collection(COLLECTION_NAME).get();
+	const snapshot = await firestore.collection(COLLECTION_NAME).get();
 	const data: Array<any> = [];
 
 	snapshot.docs.map((_data) => {
@@ -26,7 +26,7 @@ export const update = async (
 	id: string,
 	statics: statics,
 ): Promise<statics> => {
-	await db.collection(COLLECTION_NAME).doc(id).update(statics);
+	await firestore.collection(COLLECTION_NAME).doc(id).update(statics);
 
 	return {
 		...statics,
