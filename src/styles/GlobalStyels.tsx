@@ -18,7 +18,7 @@ const GlobalStyle = createGlobalStyle`
 		padding: 0;
 		border: 0;
 		font-size: 100%;
-		font-family: "NotoSans", "Pretendard";
+		font-family: "NotoSans", "Pretendard", sans-serif;
 		vertical-align: baseline;
 	}
 	/* HTML5 display-role reset for older browsers */
