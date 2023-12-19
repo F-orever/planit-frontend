@@ -1,6 +1,7 @@
 import { StarIcon } from "../../assets/svg";
 import { CiStar, FaRegUserCircle } from "../../assets/Icons";
 import LazyImage from "../../utils/LazyImage";
+import { getImageURL } from "../../db/repository/storage";
 import useResponsive from "../../hooks/useResponsive";
 import * as S from "../../styles/VideoPost/PlaceDetailComponents.styles";
 
@@ -36,7 +37,9 @@ function VideoPostReview({ review, id, idx }: ReviewPropsType) {
 
 	return (
 		<S.ReviewContainer>
-			{!isMobile && <LazyImage src={`./imgs/${id + 1}/${idx + 1}.png`} />}
+			{!isMobile && (
+				<LazyImage src={getImageURL(`${id + 1}/${idx + 1}.png`)} />
+			)}
 			<S.TextContainer>
 				<S.ReviewAuthorInfo>
 					<FaRegUserCircle />
