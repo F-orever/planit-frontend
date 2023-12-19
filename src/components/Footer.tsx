@@ -1,4 +1,4 @@
-import { AiOutlineInstagram } from "react-icons/ai";
+import { AiOutlineInstagram } from "@react-icons/all-files/ai/AiOutlineInstagram";
 
 import * as S from "../styles/Layout.styles";
 

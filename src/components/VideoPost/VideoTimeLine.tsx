@@ -5,7 +5,8 @@ import VideoPostTimeLineTag from "./TimeLineTag";
 import VideoPostTimeLineTagLinker from "./TimeLineTagLinker";
 
 //svg
-import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
+import { MdKeyboardArrowDown } from "@react-icons/all-files/md/MdKeyboardArrowDown";
+import { MdKeyboardArrowUp } from "@react-icons/all-files/md/MdKeyboardArrowUp";
 import { mockData } from "./mockData";
 import { timelineIdx } from "../../recoil/timelineIdx";
 import * as S from "../../styles/VideoPost/TimeLine.styles";
