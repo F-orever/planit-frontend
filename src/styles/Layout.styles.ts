@@ -42,6 +42,7 @@ export const Main = styled.div`
 
 	display: flex;
 	flex-direction: column;
+	position: relative;
 
 	@media (max-width: 490px) {
 		width: 100vw;
