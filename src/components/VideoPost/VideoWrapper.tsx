@@ -1,12 +1,14 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 
 import { mockData } from "./mockData";
 import { sliderTimeState, timelineIdx } from "../../recoil";
 import { YoutubeVideoWrapper } from "../../styles/VideoPost/VideoWrapper";
+import { getFileURL } from "../../db/repository/storage";
 
 function VideoPostWrapper() {
 	const playerRef = useRef<HTMLVideoElement>(null);
+	const [fileURL, setFileURL] = useState("");
 
 	const setCenterIdx = useSetRecoilState(timelineIdx);
 	const sliderTime = useRecoilValue(sliderTimeState);
@@ -17,6 +19,12 @@ function VideoPostWrapper() {
 			playerRef.current.currentTime = sliderTime;
 		}
 	}, [sliderTime]);
+
+	useEffect(() => {
+		getFileURL("sample.mp4").then((url) => {
+			setFileURL(url);
+		});
+	}, []);
 
 	//setInterval로 0.1초 간격으로 영상 시간 변경에 따른 슬라이더에 영향
 	useEffect(() => {
@@ -45,9 +53,7 @@ function VideoPostWrapper() {
 		};
 	}, []);
 
-	return (
-		<YoutubeVideoWrapper src={"./sample.mp4"} ref={playerRef} controls />
-	);
+	return <YoutubeVideoWrapper src={fileURL} ref={playerRef} controls />;
 }
 
 export default VideoPostWrapper;

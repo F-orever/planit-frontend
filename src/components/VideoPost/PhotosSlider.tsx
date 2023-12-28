@@ -11,7 +11,7 @@ import {
 import { modalState } from "../../recoil";
 import { LazyImage } from "../../utils";
 import * as S from "../../styles/VideoPost/PlaceDetailComponents.styles";
-import { getImageURL } from "../../db/repository/storage";
+import { getFileURL } from "../../db/repository/storage";
 
 type PhotoSliderProps = {
 	photoLength: number;
@@ -38,7 +38,7 @@ function VideoPostPhotoSlider({ photoLength, id }: PhotoSliderProps) {
 			arr.push(
 				<div key={i}>
 					<LazyImage
-						src={getImageURL(`${id + 1}/${i}.png`)}
+						src={getFileURL(`${id + 1}/${i}.png`)}
 						onClick={() => {
 							setModalState({
 								children: (
@@ -48,7 +48,7 @@ function VideoPostPhotoSlider({ photoLength, id }: PhotoSliderProps) {
 										}}
 									>
 										<LazyImage
-											src={getImageURL(
+											src={getFileURL(
 												`${id + 1}/${i}.png`,
 											)}
 										/>
