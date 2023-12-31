@@ -22,6 +22,7 @@ function VideoPostPhotoSlider({ photoLength, id }: PhotoSliderProps) {
 	const setModalState = useSetRecoilState(modalState);
 	const settings: Settings = {
 		dots: false,
+		lazyLoad: "anticipated",
 		infinite: true,
 		speed: 500,
 		swipeToSlide: true,

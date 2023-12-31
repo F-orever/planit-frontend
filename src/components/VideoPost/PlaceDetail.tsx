@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { useSetRecoilState, useRecoilState } from "recoil";
 
 import useResponsive from "../../hooks/useResponsive";
@@ -216,7 +216,9 @@ function VideoPostPlaceDetail({
 					<img src={`./rating.png`} />
 					<div className="textArea">
 						<S.ReviewCounts>
-							{mockPlaceData[id].rating.value}
+							<Suspense fallback={"loading"}>
+								{mockPlaceData[id].rating.value}
+							</Suspense>
 						</S.ReviewCounts>
 						<span>
 							<StarIcon />

@@ -17,6 +17,7 @@ function VideoMobilePhotoSlider({
 }: VideoMobilePhotoSliderProps) {
 	const settings: Settings = {
 		dots: true,
+		lazyLoad: "anticipated",
 		infinite: true,
 		slidesToShow: 1,
 		slidesToScroll: 1,
