@@ -45,7 +45,7 @@ const Slider = ({
 			<S.ArrowButton direction="right" onClick={sliderNext}>
 				<AiOutlineRight />
 			</S.ArrowButton>
-			<div ref={sliderRef}>{children}</div>
+			<S.Slider ref={sliderRef}>{children}</S.Slider>
 		</S.SliderContainer>
 	);
 };
