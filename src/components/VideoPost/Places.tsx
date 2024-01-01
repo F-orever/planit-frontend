@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { Suspense, useEffect, useRef } from "react";
 import Slider, { Settings } from "react-slick";
 import { useRecoilState } from "recoil";
 
@@ -16,6 +16,7 @@ function VideoPostPlaces() {
 	const [idx, setIdx] = useRecoilState(placeDetailSliderIdx);
 	const settings: Settings = {
 		dots: false,
+		lazyLoad: "ondemand",
 		speed: 500,
 		slidesToShow: 1,
 		slidesToScroll: 1,
@@ -36,12 +37,14 @@ function VideoPostPlaces() {
 			{mockPlaceData.map((place, idx) => {
 				if (sliderRef.current !== null) {
 					return (
-						<PlaceDetail
-							key={idx}
-							id={idx}
-							onNextClick={sliderRef.current.slickNext}
-							onPrevClick={sliderRef.current.slickPrev}
-						/>
+						<Suspense fallback={"loading..."}>
+							<PlaceDetail
+								key={idx}
+								id={idx}
+								onNextClick={sliderRef.current.slickNext}
+								onPrevClick={sliderRef.current.slickPrev}
+							/>
+						</Suspense>
 					);
 				}
 			})}

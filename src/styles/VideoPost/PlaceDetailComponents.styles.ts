@@ -70,7 +70,9 @@ export const PhotoStyledSliderChildren = styled.div`
 
 //PlaceDetail Review
 export const ReviewContainer = styled.div`
-	display: flex;
+	/* display: flex; */
+	display: grid;
+	grid-template-columns: 185px 1fr;
 	gap: 32px;
 	margin-bottom: 47px;
 	padding-left: 84px;
