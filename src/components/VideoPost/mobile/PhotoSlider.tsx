@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 import LazyImage from "../../../utils/LazyImage";
 import * as S from "../../../styles/VideoPost/Mobile.styles";
-import { getImageURL } from "../../../db/repository/storage";
+import { getFileURL } from "../../../db/repository/storage";
 
 type VideoMobilePhotoSliderProps = {
 	photoLength: number;
@@ -30,7 +30,7 @@ function VideoMobilePhotoSlider({
 		for (let i = 1; i <= photoLength; i++) {
 			arr.push(
 				<div key={id}>
-					<LazyImage src={getImageURL(`${id + 1}/${i}.png`)} />
+					<LazyImage src={getFileURL(`${id + 1}/${i}.png`)} />
 				</div>,
 			);
 		}

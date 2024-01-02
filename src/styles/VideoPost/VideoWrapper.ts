@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const YoutubeVideoWrapper = styled.div`
+export const YoutubeVideoWrapper = styled.video`
 	position: relative;
 	width: calc(100vw / 3 * 2);
 	height: 37vw;

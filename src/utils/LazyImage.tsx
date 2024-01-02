@@ -15,9 +15,10 @@ function LazyImage({ src, onClick }: LazyImageProps) {
 	useEffect(() => {
 		observer.current = new IntersectionObserver(intersectionOberserver);
 		imgRef.current && observer.current.observe(imgRef.current);
-		src.then((URL) => {
+		(async () => {
+			const URL = await src;
 			setImgURL(URL);
-		});
+		})();
 	}, []);
 
 	const intersectionOberserver = (
