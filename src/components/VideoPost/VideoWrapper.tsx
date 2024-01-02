@@ -21,9 +21,10 @@ function VideoPostWrapper() {
 	}, [sliderTime]);
 
 	useEffect(() => {
-		getFileURL("sample.mp4").then((url) => {
-			setFileURL(url);
-		});
+		(async () => {
+			const URL = await getFileURL("sample.mp4");
+			setFileURL(URL);
+		})();
 	}, []);
 
 	//setInterval로 0.1초 간격으로 영상 시간 변경에 따른 슬라이더에 영향
